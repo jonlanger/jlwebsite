@@ -1,65 +1,70 @@
-import Image from "next/image";
+import Link from "next/link";
 
-export default function Home() {
+import { PageShell } from "@/components/page-shell";
+import { buttonVariants } from "@/lib/button-variants";
+import { cn } from "@/lib/utils";
+
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <>
+      <section className="relative min-h-[70vh] overflow-hidden">
+        <PageShell className="relative flex min-h-[70vh] flex-col justify-center py-24 md:py-36">
+          <div className="flex max-w-4xl flex-col gap-5 md:gap-6">
+            <p className="font-heading text-[64px] font-semibold leading-none tracking-tight text-foreground">
+              Jon Langer
+            </p>
+            <p className="font-heading text-[32px] font-light leading-snug tracking-tight text-muted-foreground">
+              Design that works at the intersection of people, systems, and
+              craft.
+            </p>
+            <p className="text-[16px] leading-relaxed text-muted-foreground">
+              Research-led UX, UI, and industrial design — digital and physical.
+              From discovery to shipped experiences, with cross-functional
+              teams.
+            </p>
+          </div>
+
+          <div className="mt-8 flex flex-wrap gap-4 md:mt-10">
+            <Link
+              href="/projects"
+              className={cn(buttonVariants({ size: "lg" }), "h-11 px-6 text-base")}
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              View All Projects
+            </Link>
+            <Link
+              href="/process"
+              className={cn(
+                buttonVariants({ variant: "outline", size: "lg" }),
+                "h-11 px-6 text-base"
+              )}
             >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+              See process
+            </Link>
+          </div>
+        </PageShell>
+      </section>
+
+      <PageShell className="border-t border-border/30 py-24 md:py-32">
+        <p className="font-heading max-w-2xl text-2xl font-light leading-snug tracking-tight text-foreground md:text-3xl">
+          Portfolio, case studies &amp; projects
+        </p>
+        <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
+          The following projects are grounded in real-world research and
+          experience. Client details and personal information have been adjusted
+          for privacy. Every project starts with people — their journeys,
+          motivations, and contexts shape the design language, workflows, copy,
+          and implementation strategy from the ground up.
+        </p>
+        <Link
+          href="/projects"
+          className={cn(
+            buttonVariants({ size: "lg" }),
+            "mt-12 inline-flex h-11 px-6 text-base"
+          )}
+        >
+          Open projects
+        </Link>
+      </PageShell>
+    </>
   );
 }
