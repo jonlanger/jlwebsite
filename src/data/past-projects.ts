@@ -7,24 +7,19 @@ import {
   COCO_FLEET_MANAGER_JOURNEY_COLUMNS,
   type CocoJourneyMapColumns,
 } from "@/data/coco-journey-maps";
-import { AUREUM_FEATURE_RANKING_DATA } from "@/data/aureum-feature-ranking";
 import { AUREUM_IMPLEMENT_TABS } from "@/data/aureum-implement-tabs";
 import { AUREUM_USER_FLOW_TABS } from "@/data/aureum-user-flows";
-import { EQUIPIFY_FEATURE_RANKING_DATA } from "@/data/equipify-feature-ranking";
 import { EQUIPIFY_IMPLEMENT_TABS } from "@/data/equipify-implement-tabs";
 import { EQUIPIFY_USER_FLOW_TABS } from "@/data/equipify-user-flows";
 import { HEADLINES_FEATURE_RANKING_DATA } from "@/data/headlines-feature-ranking";
 import { HEADLINES_IMPLEMENT_TABS } from "@/data/headlines-implement-tabs";
 import { HEADLINES_CASUAL_READER_JOURNEY_COLUMNS } from "@/data/headlines-journey-maps";
 import { HEADLINES_USER_FLOW_TABS } from "@/data/headlines-user-flows";
-import { FOODTRACK_FEATURE_RANKING_DATA } from "@/data/foodtrack-feature-ranking";
 import { FOODTRACK_IMPLEMENT_TABS } from "@/data/foodtrack-implement-tabs";
 import { FOODTRACK_KITCHEN_MANAGER_JOURNEY_COLUMNS } from "@/data/foodtrack-journey-maps";
-import { STUDIOFLOW_FEATURE_RANKING_DATA } from "@/data/studioflow-feature-ranking";
 import { STUDIOFLOW_IMPLEMENT_TABS } from "@/data/studioflow-implement-tabs";
 import { STUDIOFLOW_USER_FLOW_TABS } from "@/data/studioflow-user-flows";
 import type { FeatureRankingBlock } from "@/data/coco-feature-ranking";
-import { PETRICOR_FEATURE_RANKING_DATA } from "@/data/petricor-feature-ranking";
 import { PETRICOR_IMPLEMENT_TABS } from "@/data/petricor-implement-tabs";
 import { PETRICOR_USER_FLOW_TABS } from "@/data/petricor-user-flows";
 import type { ResearchInsightsData } from "@/data/headlines-research-insights";
@@ -736,11 +731,8 @@ export const recentProjects2023_2026: PastProject[] = [
       {
         title: "Test",
         paragraphs: [
-          "Feature prioritization with lab technicians confirmed that hands-on sample preparation and incubation monitoring rank above administrative features — the system must earn trust at the bench before optimization features matter.",
-          "Sample Preparation and Incubation Monitoring lead the ranking, reflecting that automation value is measured first by reliability at the physical workflow, not by advanced analytics alone.",
+          "Validation sessions with lab technicians kept circling the same point: nobody cared about smarter analytics until the physical workflow felt trustworthy. Sample preparation and incubation monitoring had to work reliably at the bench — hands-on, interruptible, and easy to verify — before reporting, calibration admin, or optimization features earned attention. Automation value, in other words, was measured first by whether the device could be trusted with the sample, not by how impressive the cloud dashboard looked.",
         ],
-        featureRankingChartsAfterParagraphIndex: 0,
-        featureRankingData: PETRICOR_FEATURE_RANKING_DATA,
       },
       {
         title: "Refine",
@@ -935,11 +927,10 @@ export const recentProjects2023_2026: PastProject[] = [
       {
         title: "Test",
         paragraphs: [
-          "Feature voting across all five personas confirmed that AI-driven financial planning and real-time expense tracking are universal priorities — but persona-specific differences emerged in how users weight predictive analytics versus investment recommendations.",
-          "Lisa Robinson ranked predictive analytics highest — reflecting retiree concern about future financial risks — while Michael Chen prioritized the financial health dashboard. These differences shaped how features are surfaced on the home screen versus buried in secondary navigation.",
+          "AI-driven planning and real-time expense tracking were near-universal across all five personas. The divergence showed up in what people wanted to see first.",
+          "\"I don't need another chart of what I spent — I need to know what's about to go wrong.\" — Lisa Robinson, ranking predictive analytics above everything else.",
+          "Michael Chen flipped that priority: the financial health dashboard came first, with predictive tools as supporting context. Same product, two opening moves — one oriented toward future risk, the other toward current standing — which decided what anchors the home screen and what lives one tap deeper.",
         ],
-        featureRankingChartsAfterParagraphIndex: 0,
-        featureRankingData: AUREUM_FEATURE_RANKING_DATA,
       },
       {
         title: "Refine",
@@ -1124,11 +1115,9 @@ export const recentProjects2023_2026: PastProject[] = [
       {
         title: "Test",
         paragraphs: [
-          "Feature prioritization across four user groups confirmed that real-time inventory updates and bulk ordering capabilities are universal priorities — but persona-specific differences emerged in how users weight supplier ratings versus compliance reporting.",
-          "Procurement managers ranked price comparison and supplier performance highest, while safety and compliance officers prioritized certification tracking and quality audit trails. These differences shaped how features are surfaced on the dashboard versus buried in secondary navigation.",
+          "Before: the working IA assumption was a shared operations dashboard — inventory status and bulk ordering up front, with supplier ratings and compliance reporting treated as equal secondary tools for everyone.",
+          "After validation: inventory and bulk ordering stayed universal, but the secondary layer split hard. Procurement managers needed price comparison and supplier performance in reach; safety and compliance officers needed certification tracking and quality audit trails instead. One shared \"tools\" drawer collapsed into role-weighted surfaces so each group saw their decision criteria without hunting.",
         ],
-        featureRankingChartsAfterParagraphIndex: 0,
-        featureRankingData: EQUIPIFY_FEATURE_RANKING_DATA,
       },
       {
         title: "Refine",
@@ -1330,11 +1319,8 @@ export const recentProjects2023_2026: PastProject[] = [
       {
         title: "Test",
         paragraphs: [
-          "Feature prioritization across four personas confirmed that the unified dashboard and media asset management are universal priorities — but persona-specific differences emerged in how users weight review and approval systems versus budget management.",
-          "Directors ranked review and approval highest, reflecting creative oversight needs, while producers prioritized budget management and workflow automation. Editors and VFX supervisors both led with media asset management — shaping how the dashboard surfaces asset status versus financial metrics.",
+          "The surprise wasn't that the unified dashboard mattered — every persona put it near the top. It was that \"dashboard\" meant three different products. Directors opened it looking for review and approval queues; producers scanned for budget and workflow health; editors and VFX supervisors treated media asset status as the primary signal. One home surface had to carry creative sign-off, financial control, and asset readiness without flattening those jobs into a generic overview.",
         ],
-        featureRankingChartsAfterParagraphIndex: 0,
-        featureRankingData: STUDIOFLOW_FEATURE_RANKING_DATA,
       },
       {
         title: "Refine",
@@ -1706,11 +1692,28 @@ export const recentProjects2023_2026: PastProject[] = [
       {
         title: "Test",
         paragraphs: [
-          "Feature prioritization across kitchen managers, line cooks, head chefs, and owners confirmed that real-time inventory and low-stock alerts are universal priorities — but persona differences emerged in how users weight recipe cost tools versus waste analytics.",
-          "Kitchen managers and line cooks ranked live stock and alerts highest, while chefs prioritized portion standards and recipe cost simulation, and owners led with waste monitoring. Those differences shaped what surfaces on the home dashboard versus secondary analytics views.",
+          "Instead of another ranking exercise, we ran timed usability tasks against an early dashboard prototype — same screen, four roles — to see which jobs the home surface actually supported.",
         ],
-        featureRankingChartsAfterParagraphIndex: 0,
-        featureRankingData: FOODTRACK_FEATURE_RANKING_DATA,
+        table: {
+          ariaLabel: "Usability task pass/fail outcomes by kitchen role",
+          rows: [
+            {
+              col1: "Find items below alert threshold from home",
+              col2:
+                "Pass — kitchen managers and line cooks completed this quickly using live inventory and low-stock alerts.",
+            },
+            {
+              col1: "Estimate recipe cost after a portion change",
+              col2:
+                "Fail on home — chefs left the inventory view looking for portion standards and cost simulation that weren't primary.",
+            },
+            {
+              col1: "Review waste without opening a secondary report",
+              col2:
+                "Fail — owners could not reach waste monitoring from the main inventory surface.",
+            },
+          ],
+        },
       },
       {
         title: "Refine",
