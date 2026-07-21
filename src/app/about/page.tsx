@@ -11,6 +11,8 @@ export const metadata: Metadata = {
 };
 
 const experience = [
+  "BCG",
+  "Haulhub",
   "Markforged",
   "Accenture",
   "Altitude Inc",
@@ -19,7 +21,6 @@ const experience = [
   "Siemens Healthcare & Diagnostics",
   "Bruvida",
   "Folditure",
-  "BCG",
 ] as const;
 
 export default function AboutPage() {
