@@ -8,6 +8,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  contentColumnClass,
+  contentInnerStackClass,
+} from "@/lib/content-layout";
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Process",
@@ -57,36 +62,38 @@ const phases = [
 export default function ProcessPage() {
   return (
     <PageShell>
-      <h1 className="font-heading text-4xl font-extrabold tracking-tight md:text-5xl">
-        Discover. Explore. Test. Refine. Listen. Repeat.
-      </h1>
-      <p className="mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground">
-        A user-centered process that stays in motion. Each phase builds on the
-        last — and the cycle never fully closes, because good design keeps
-        evolving with the people who use it.
-      </p>
+      <div className={contentColumnClass}>
+        <h1 className="font-heading text-4xl font-extrabold tracking-tight md:text-5xl">
+          Discover. Explore. Test. Refine. Listen. Repeat.
+        </h1>
+        <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
+          A user-centered process that stays in motion. Each phase builds on the
+          last — and the cycle never fully closes, because good design keeps
+          evolving with the people who use it.
+        </p>
 
-      <div className="mt-14 space-y-6">
-        {phases.map((phase, index) => (
-          <Card key={phase.title} className="border-border/80 bg-card/80">
-            <CardHeader className="border-b border-border/60 pb-4">
-              <p className="text-xs font-bold uppercase tracking-widest text-primary">
-                Phase {index + 1}
-              </p>
-              <CardTitle className="font-heading mt-2 text-2xl font-bold">
-                {phase.title}
-              </CardTitle>
-              <p className="text-base font-semibold text-foreground">
-                {phase.objective}
-              </p>
-            </CardHeader>
-            <CardContent className="pt-4">
-              <CardDescription className="text-base leading-relaxed text-muted-foreground">
-                {phase.body}
-              </CardDescription>
-            </CardContent>
-          </Card>
-        ))}
+        <div className={cn(contentInnerStackClass, "mt-14")}>
+          {phases.map((phase, index) => (
+            <Card key={phase.title} className="border-border/80 bg-card/80">
+              <CardHeader className="border-b border-border/60 pb-4">
+                <p className="text-xs font-bold uppercase tracking-widest text-primary">
+                  Phase {index + 1}
+                </p>
+                <CardTitle className="font-heading mt-2 text-2xl font-bold">
+                  {phase.title}
+                </CardTitle>
+                <p className="text-base font-semibold text-foreground">
+                  {phase.objective}
+                </p>
+              </CardHeader>
+              <CardContent className="pt-4">
+                <CardDescription className="text-base leading-relaxed text-muted-foreground">
+                  {phase.body}
+                </CardDescription>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
       </div>
     </PageShell>
   );

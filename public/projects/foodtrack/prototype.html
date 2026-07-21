@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FoodTrack</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@1.14.0/dist/full.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.14.0/Sortable.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/resizable@0.9.0/dist/resizable.min.js"></script>
+  <style>
+    .hidden { display: none; }
+    .editable-title { margin-bottom: 0.5rem; }
+    .editable-subcategory { margin-bottom: 0.5rem; }
+    .editable-quantity { font-size: 2.25rem; padding: 0.5rem; }
+    .editable-date, .editable-min-quantity, .editable-weight, .editable-weight-unit { display: inline-block; width: auto; margin-left: 4px; }
+    .toast { padding: 1em; background: green; color: white; border-radius: 5px; }
+    .container { max-width: 90%; margin: 0 auto; }
+    #cardContainer { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem; }
+    #chartContainer {
+      display: flex;
+      flex-direction: column;
+      height: 420px;
+      min-height: 360px;
+      overflow: visible;
+    }
+    #chartContainer .chart-canvas-wrap {
+      position: relative;
+      flex: 1 1 auto;
+      min-height: 280px;
+      width: 100%;
+      overflow: hidden;
+    }
+    .card { position: relative; }
+    .color-picker { width: 40px; height: 40px; }
+    .category-chart-card { width: 100%; min-width: 33.33%; height: 360px; resize: horizontal; overflow: auto; }
+    html, body { margin: 0; }
+    #secondaryChartsContainer { display: flex; flex-wrap: wrap; gap: 1rem; }
+    .btn-refresh { display: flex; align-items: center; gap: 0.5rem; }
+    .btn-refresh svg { width: 24px; height: 24px; }
+
+    /* High-contrast dark theme overrides */
+    [data-theme="dark"] {
+      color-scheme: dark;
+      --p: 262 89% 68%;
+      --pf: 262 89% 58%;
+      --pc: 0 0% 100%;
+      --b1: 222 22% 7%;
+      --b2: 222 18% 11%;
+      --b3: 222 16% 16%;
+      --bc: 0 0% 98%;
+      --n: 222 14% 24%;
+      --nf: 222 14% 18%;
+      --nc: 0 0% 96%;
+      --wa: 38 96% 58%;
+      --er: 0 90% 62%;
+      --su: 142 72% 48%;
+      background-color: hsl(var(--b1));
+      color: hsl(var(--bc) / 1);
+    }
+
+    [data-theme="dark"] body {
+      background-color: hsl(var(--b1));
+      color: hsl(0 0% 98%);
+    }
+
+    [data-theme="dark"] .navbar,
+    [data-theme="dark"] .card,
+    [data-theme="dark"] #addItemForm,
+    [data-theme="dark"] .category-chart-card {
+      background-color: hsl(222 18% 12%);
+      border: 1px solid hsl(222 14% 32%);
+      color: hsl(0 0% 98%);
+    }
+
+    [data-theme="dark"] .btn-ghost {
+      color: hsl(0 0% 96%);
+    }
+
+    [data-theme="dark"] .btn-primary {
+      background-color: hsl(262 89% 62%);
+      border-color: hsl(262 89% 62%);
+      color: #fff;
+    }
+
+    [data-theme="dark"] .btn-outline.btn-primary {
+      background-color: transparent;
+      border-color: hsl(262 89% 72%);
+      color: hsl(262 89% 82%);
+    }
+
+    [data-theme="dark"] .btn-outline.btn-primary:hover {
+      background-color: hsl(262 89% 62%);
+      border-color: hsl(262 89% 62%);
+      color: #fff;
+    }
+
+    [data-theme="dark"] .input,
+    [data-theme="dark"] .select,
+    [data-theme="dark"] .editable-title,
+    [data-theme="dark"] .editable-subcategory,
+    [data-theme="dark"] .editable-quantity,
+    [data-theme="dark"] .editable-date,
+    [data-theme="dark"] .editable-min-quantity,
+    [data-theme="dark"] .editable-weight,
+    [data-theme="dark"] .editable-weight-unit {
+      background-color: hsl(222 20% 8%);
+      border-color: hsl(222 14% 42%);
+      color: hsl(0 0% 98%);
+    }
+
+    [data-theme="dark"] .label,
+    [data-theme="dark"] .label-text,
+    [data-theme="dark"] p,
+    [data-theme="dark"] h1,
+    [data-theme="dark"] h2,
+    [data-theme="dark"] h3 {
+      color: hsl(0 0% 96%);
+    }
+
+    [data-theme="dark"] .toggle {
+      --tglbg: hsl(222 14% 28%);
+      background-color: hsl(262 89% 62%);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="navbar bg-base-100">
+    <div class="flex-1">
+      <a class="btn btn-ghost text-xl">FoodTrack</a>
+    </div>
+    <div class="flex-none">
+      <label class="flex cursor-pointer gap-2 items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5" />
+          <path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" />
+        </svg>
+        <input type="checkbox" class="toggle theme-controller" />
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </label>
+    </div>
+  </div>
+
+  <div class="container mx-auto mt-4">
+    <button id="addItemBtn" class="btn btn-primary mb-4">Add item to Inventory</button>
+    <button id="autoPopulateBtn" class="btn btn-outline btn-primary mb-4 btn-refresh">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
+        <path fill-rule="evenodd" d="M9.664 1.319a.75.75 0 0 1 .672 0 41.059 41.059 0 0 1 8.198 5.424.75.75 0 0 1-.254 1.285 31.372 31.372 0 0 0-7.86 3.83.75.75 0 0 1-.84 0 31.508 31.508 0 0 0-2.08-1.287V9.394c0-.244.116-.463.302-.592a35.504 35.504 0 0 1 3.305-2.033.75.75 0 0 0-.714-1.319 37 37 0 0 0-3.446 2.12A2.216 2.216 0 0 0 6 9.393v.38a31.293 31.293 0 0 0-4.28-1.746.75.75 0 0 1-.254-1.285 41.059 41.059 0 0 1 8.198-5.424ZM6 11.459a29.848 29.848 0 0 0-2.455-1.158 41.029 41.029 0 0 0-.39 3.114.75.75 0 0 0 .419.74c.528.256 1.046.53 1.554.82-.21.324-.455.63-.739.914a.75.75 0 1 0 1.06 1.06c.37-.369.69-.77.96-1.193a26.61 26.61 0 0 1 3.095 2.348.75.75 0 0 0 .992 0 26.547 26.547 0 0 1 5.93-3.95.75.75 0 0 0 .42-.739 41.053 41.053 0 0 0-.39-3.114 29.925 29.925 0 0 0-5.199 2.801 2.25 2.25 0 0 1-2.514 0c-.41-.275-.826-.541-1.25-.797a6.985 6.985 0 0 1-1.084 3.45 26.503 26.503 0 0 0-1.281-.78A5.487 5.487 0 0 0 6 12v-.54Z" clip-rule="evenodd" />
+      </svg>
+      Auto Populate
+    </button>
+
+    <div id="addItemForm" class="hidden bg-base-100 p-4 shadow-md mb-4">
+      <div class="form-control mb-4">
+        <label class="label" for="itemSelect">Select Food Item</label>
+        <select id="itemSelect" class="select select-bordered">
+          <!-- Add 25 food categories as options -->
+          <option>Fruits</option>
+          <option>Vegetables</option>
+          <option>Dairy</option>
+          <option>Meat</option>
+          <option>Fish</option>
+          <option>Grains</option>
+          <option>Nuts</option>
+          <option>Seeds</option>
+          <option>Legumes</option>
+          <option>Spices</option>
+          <option>Herbs</option>
+          <option>Beverages</option>
+          <option>Snacks</option>
+          <option>Frozen Foods</option>
+          <option>Canned Foods</option>
+          <option>Condiments</option>
+          <option>Bakery</option>
+          <option>Confectionery</option>
+          <option>Prepared Meals</option>
+          <option>Oils</option>
+          <option>Soups</option>
+          <option>Pasta</option>
+          <option>Rice</option>
+          <option>Breakfast Cereals</option>
+          <option>Sauces</option>
+        </select>
+      </div>
+      <div class="form-control mb-4">
+        <label class="label" for="subcategoryInput">Subcategory</label>
+        <input id="subcategoryInput" class="input input-bordered" list="defaultSubcategories" />
+        <datalist id="defaultSubcategories">
+          <option value="Fresh">
+          <option value="Organic">
+          <option value="Imported">
+          <option value="Local">
+          <option value="Seasonal">
+          <option value="Frozen">
+          <option value="Canned">
+          <option value="Packaged">
+          <option value="Bulk">
+          <option value="Loose">
+        </datalist>
+      </div>
+      <div class="form-control mb-4">
+        <label class="label" for="quantityInput">Quantity</label>
+        <input id="quantityInput" type="number" class="input input-bordered" min="1" />
+      </div>
+      <div class="form-control mb-4">
+        <label class="label" for="minQuantityInput">Qty Alert</label>
+        <input id="minQuantityInput" type="number" class="input input-bordered" min="0" />
+      </div>
+      <div class="form-control mb-4">
+        <label class="label" for="weightInput">Weight</label>
+        <input id="weightInput" type="number" class="input input-bordered" min="0" />
+        <select id="weightUnitSelect" class="select select-bordered">
+          <option value="kg">kg</option>
+          <option value="g">g</option>
+          <option value="lb">lb</option>
+          <option value="oz">oz</option>
+        </select>
+      </div>
+      <div class="form-control mb-4">
+        <label class="label" for="dateInput">Date</label>
+        <input id="dateInput" type="date" class="input input-bordered" />
+      </div>
+      <div class="form-control mb-4">
+        <label class="label" for="colorPicker">Color</label>
+        <input id="colorPicker" type="color" class="input input-bordered" />
+      </div>
+      <button id="confirmBtn" class="btn btn-primary">Confirm</button>
+    </div>
+
+    <div id="categoryChartContainer" class="mb-4">
+      <div class="card bg-base-100 shadow-md p-4 mb-4">
+        <div class="flex items-center">
+          <select id="categoryChartSelect" class="select select-bordered mr-2">
+            <!-- Add 25 food categories as options -->
+            <option>Fruits</option>
+            <option>Vegetables</option>
+            <option>Dairy</option>
+            <option>Meat</option>
+            <option>Fish</option>
+            <option>Grains</option>
+            <option>Nuts</option>
+            <option>Seeds</option>
+            <option>Legumes</option>
+            <option>Spices</option>
+            <option>Herbs</option>
+            <option>Beverages</option>
+            <option>Snacks</option>
+            <option>Frozen Foods</option>
+            <option>Canned Foods</option>
+            <option>Condiments</option>
+            <option>Bakery</option>
+            <option>Confectionery</option>
+            <option>Prepared Meals</option>
+            <option>Oils</option>
+            <option>Soups</option>
+            <option>Pasta</option>
+            <option>Rice</option>
+            <option>Breakfast Cereals</option>
+            <option>Sauces</option>
+          </select>
+          <button id="addCategoryChartBtn" class="btn btn-outline btn-primary">Add Category Chart</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="chartContainer" class="card bg-base-100 shadow-md p-4 mb-4">
+      <h2 class="text-xl font-bold mb-4">Category Quantity</h2>
+      <div class="chart-canvas-wrap">
+        <canvas id="foodChart"></canvas>
+      </div>
+    </div>
+
+    <div id="secondaryChartsContainer"></div>
+
+    <div id="cardContainer"></div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const themeSwitch = document.querySelector('.theme-controller');
+      const themeAttribute = 'data-theme';
+      const lightTheme = 'light';
+      const darkTheme = 'dark';
+
+      function notifyParentHeight() {
+        // Force reflow so scrollHeight includes newly added cards.
+        void document.body.offsetHeight;
+        const height = Math.ceil(
+          Math.max(
+            document.body.scrollHeight,
+            document.documentElement.scrollHeight,
+            document.body.offsetHeight,
+            document.documentElement.offsetHeight
+          )
+        );
+        if (window.parent && window.parent !== window) {
+          window.parent.postMessage(
+            { source: 'foodtrack-prototype', type: 'resize', height },
+            '*'
+          );
+        }
+      }
+
+      themeSwitch.addEventListener('change', function() {
+        const theme = themeSwitch.checked ? darkTheme : lightTheme;
+        document.documentElement.setAttribute(themeAttribute, theme);
+        updateChartTheme();
+        updateIconColors();
+        saveUserSettings({ theme });
+        notifyParentHeight();
+      });
+
+      const addItemBtn = document.getElementById('addItemBtn');
+      const addItemForm = document.getElementById('addItemForm');
+      const itemSelect = document.getElementById('itemSelect');
+      const subcategoryInput = document.getElementById('subcategoryInput');
+      const quantityInput = document.getElementById('quantityInput');
+      const minQuantityInput = document.getElementById('minQuantityInput');
+      const weightInput = document.getElementById('weightInput');
+      const weightUnitSelect = document.getElementById('weightUnitSelect');
+      const dateInput = document.getElementById('dateInput');
+      const colorPicker = document.getElementById('colorPicker');
+      const confirmBtn = document.getElementById('confirmBtn');
+      const cardContainer = document.getElementById('cardContainer');
+      const chartContainer = document.getElementById('chartContainer');
+      const addCategoryChartBtn = document.getElementById('addCategoryChartBtn');
+      const categoryChartSelect = document.getElementById('categoryChartSelect');
+      const secondaryChartsContainer = document.getElementById('secondaryChartsContainer');
+      const autoPopulateBtn = document.getElementById('autoPopulateBtn');
+
+      const ctx = document.getElementById('foodChart').getContext('2d');
+
+      function randomHexColor() {
+        return `#${Math.floor(Math.random() * 0xffffff)
+          .toString(16)
+          .padStart(6, '0')}`;
+      }
+
+      const stackedTotalLabelsPlugin = {
+        id: 'stackedTotalLabels',
+        afterDatasetsDraw(chart) {
+          const { ctx: labelCtx } = chart;
+          const metaSets = chart.data.datasets.map((_, i) =>
+            chart.getDatasetMeta(i)
+          );
+          if (!metaSets.length || !metaSets[0].data.length) return;
+
+          const isDark =
+            document.documentElement.getAttribute('data-theme') === 'dark';
+          labelCtx.save();
+          labelCtx.font = '600 12px ui-sans-serif, system-ui, sans-serif';
+          labelCtx.fillStyle = isDark ? '#f4f4f5' : '#171717';
+          labelCtx.textAlign = 'center';
+          labelCtx.textBaseline = 'bottom';
+
+          metaSets[0].data.forEach((_, index) => {
+            let total = 0;
+            let topY = Infinity;
+            let centerX = 0;
+
+            chart.data.datasets.forEach((dataset, datasetIndex) => {
+              const meta = metaSets[datasetIndex];
+              if (!meta || meta.hidden) return;
+              const value = Number(dataset.data[index]) || 0;
+              total += value;
+              const bar = meta.data[index];
+              if (!bar) return;
+              centerX = bar.x;
+              topY = Math.min(topY, bar.y);
+            });
+
+            if (total <= 0 || !Number.isFinite(topY)) return;
+            labelCtx.fillText(String(total), centerX, topY - 6);
+          });
+
+          labelCtx.restore();
+        },
+      };
+
+      const foodChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: [],
+          datasets: [{
+            label: 'Qty Alert',
+            data: [],
+            backgroundColor: 'rgba(255, 0, 0, 0.6)',
+            stack: 'Stack 0'
+          }, {
+            label: 'Quantity',
+            data: [],
+            backgroundColor: [],
+            stack: 'Stack 0'
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          layout: {
+            padding: {
+              top: 24
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              stacked: true,
+              ticks: { color: '#171717' },
+              grid: { color: 'rgba(0, 0, 0, 0.08)' },
+              border: { color: 'rgba(0, 0, 0, 0.15)' }
+            },
+            x: {
+              stacked: true,
+              ticks: { color: '#171717' },
+              grid: { color: 'rgba(0, 0, 0, 0.08)' },
+              border: { color: 'rgba(0, 0, 0, 0.15)' }
+            }
+          },
+          plugins: {
+            legend: {
+              labels: {
+                color: '#171717'
+              }
+            }
+          }
+        },
+        plugins: [stackedTotalLabelsPlugin]
+      });
+
+      addItemBtn.addEventListener('click', function() {
+        addItemForm.classList.toggle('hidden');
+      });
+
+      confirmBtn.addEventListener('click', function() {
+        const selectedItem = itemSelect.value;
+        const subcategory = subcategoryInput.value.trim();
+        const quantity = parseInt(quantityInput.value);
+        const minQuantity = parseInt(minQuantityInput.value) || 0;
+        const weight = parseFloat(weightInput.value) || 0;
+        const weightUnit = weightUnitSelect.value;
+        const date = dateInput.value;
+        const color = colorPicker.value;
+        const categoryKey = `${selectedItem}-${subcategory}`;
+
+        if (selectedItem && quantity) {
+          const existingCard = document.querySelector(`.card[data-category="${categoryKey}"]`);
+          if (existingCard) {
+            const existingQuantityInput = existingCard.querySelector('.editable-quantity');
+            const existingWeightInput = existingCard.querySelector('.editable-weight');
+            const existingQuantity = parseInt(existingQuantityInput.value);
+            const existingWeight = parseFloat(existingWeightInput.value);
+            existingQuantityInput.value = existingQuantity + quantity;
+            existingWeightInput.value = existingWeight + weight;
+
+            // Update the chart data
+            const index = foodChart.data.labels.indexOf(categoryKey);
+            if (index !== -1) {
+              foodChart.data.datasets[1].data[index] += quantity;
+              foodChart.data.datasets[0].data[index] = minQuantity;
+              foodChart.data.datasets[1].backgroundColor[index] = color;
+            }
+          } else {
+            const card = document.createElement('div');
+            card.className = 'card inventory-card bg-base-100 shadow-md p-4 mb-4';
+            card.setAttribute('data-category', categoryKey);
+            card.style.borderTop = `4px solid ${color}`;
+            card.innerHTML = `
+              <div class="flex justify-between items-center mb-4">
+                <input type="text" value="${selectedItem}" class="input w-full max-w-xs editable-title" readonly />
+                <input type="text" value="${subcategory}" class="input w-full max-w-xs editable-subcategory ml-2" />
+                <button class="btn btn-circle btn-ghost close-btn">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+              <h1 class="text-3xl">
+                <input type="number" value="${quantity}" class="input editable-quantity" />
+              </h1>
+              <p>Date: <input type="date" value="${date}" class="input editable-date" /></p>
+              <div class="flex items-center">
+                <p>Qty Alert: </p>
+                <input type="number" value="${minQuantity}" class="input editable-min-quantity ml-2" />
+              </div>
+              <div class="flex items-center">
+                <p>Weight: </p>
+                <input type="number" value="${weight}" class="input editable-weight ml-2" /> 
+                <select class="input editable-weight-unit ml-2">
+                  <option value="kg" ${weightUnit === 'kg' ? 'selected' : ''}>kg</option>
+                  <option value="g" ${weightUnit === 'g' ? 'selected' : ''}>g</option>
+                  <option value="lb" ${weightUnit === 'lb' ? 'selected' : ''}>lb</option>
+                  <option value="oz" ${weightUnit === 'oz' ? 'selected' : ''}>oz</option>
+                </select>
+              </div>
+              <div class="flex items-center mt-4">
+                <button class="btn btn-circle btn-ghost color-picker-btn">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                    <path fill-rule="evenodd" d="M2.25 4.125c0-1.036.84-1.875 1.875-1.875h5.25c1.036 0 1.875.84 1.875 1.875V17.25a4.5 4.5 0 1 1-9 0V4.125Zm4.5 14.25a1.125 1.125 0 1 0 0-2.25 1.125 1.125 0 0 0 0 2.25Z" clip-rule="evenodd" />
+                    <path d="M10.719 21.75h9.156c1.036 0 1.875-.84 1.875-1.875v-5.25c0-1.036-.84-1.875-1.875-1.875h-.14l-8.742 8.743c-.09.089-.18.175-.274.257ZM12.738 17.625l6.474-6.474a1.875 1.875 0 0 0 0-2.651L15.5 4.787a1.875 1.875 0 0 0-2.651 0l-.1.099V17.25c0 .126-.003.251-.01.375Z" />
+                  </svg>
+                </button>
+                <input type="color" class="hidden color-picker" value="${color}" />
+              </div>
+            `;
+
+            card.querySelector('.close-btn').addEventListener('click', function() {
+              card.remove();
+              const index = foodChart.data.labels.indexOf(categoryKey);
+              if (index !== -1) {
+                foodChart.data.labels.splice(index, 1);
+                foodChart.data.datasets[1].data.splice(index, 1);
+                foodChart.data.datasets[0].data.splice(index, 1);
+                foodChart.data.datasets[1].backgroundColor.splice(index, 1);
+                foodChart.update();
+              }
+            });
+
+            card.querySelector('.color-picker-btn').addEventListener('click', function() {
+              const colorPickerInput = this.nextElementSibling;
+              colorPickerInput.click();
+            });
+
+            card.querySelector('.color-picker').addEventListener('input', function() {
+              const newColor = this.value;
+              card.style.borderTop = `4px solid ${newColor}`;
+              const index = foodChart.data.labels.indexOf(categoryKey);
+              if (index !== -1) {
+                foodChart.data.datasets[1].backgroundColor[index] = newColor;
+                foodChart.update();
+              }
+            });
+
+            card.querySelector('.editable-quantity').addEventListener('input', function() {
+              const newQuantity = parseInt(this.value);
+              const index = foodChart.data.labels.indexOf(categoryKey);
+              if (index !== -1) {
+                foodChart.data.datasets[1].data[index] = newQuantity;
+                foodChart.update();
+              }
+            });
+
+            card.querySelector('.editable-min-quantity').addEventListener('input', function() {
+              const newMinQuantity = parseInt(this.value);
+              const index = foodChart.data.labels.indexOf(categoryKey);
+              if (index !== -1) {
+                foodChart.data.datasets[0].data[index] = newMinQuantity;
+                foodChart.update();
+              }
+            });
+
+            card.querySelector('.editable-weight').addEventListener('input', function() {
+              const newWeight = parseFloat(this.value);
+              const index = foodChart.data.labels.indexOf(categoryKey);
+              if (index !== -1) {
+                foodChart.data.datasets[1].data[index] = newWeight;
+                foodChart.update();
+              }
+            });
+
+            cardContainer.appendChild(card);
+
+            // Add new data to the chart
+            foodChart.data.labels.push(categoryKey);
+            foodChart.data.datasets[1].data.push(quantity);
+            foodChart.data.datasets[1].backgroundColor.push(color);
+            foodChart.data.datasets[0].data.push(minQuantity);
+          }
+
+          foodChart.update();
+          addItemForm.classList.add('hidden');
+          showSuccessToast();
+        }
+      });
+
+      addCategoryChartBtn.addEventListener('click', function() {
+        const selectedCategory = categoryChartSelect.value;
+        if (selectedCategory) {
+          const categoryData = foodChart.data.labels
+            .map((label, index) => ({
+              label,
+              quantity: foodChart.data.datasets[1].data[index],
+              minQuantity: foodChart.data.datasets[0].data[index],
+              color: foodChart.data.datasets[1].backgroundColor[index]
+            }))
+            .filter((row) => row.label.startsWith(selectedCategory));
+          if (categoryData.length) {
+            const categoryChartCard = document.createElement('div');
+            categoryChartCard.className = 'category-chart-card card bg-base-100 shadow-md p-4 mb-4 resizable';
+            categoryChartCard.innerHTML = `
+              <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-bold">${selectedCategory} Quantity</h2>
+                <button class="btn btn-circle btn-ghost close-category-chart">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+              <div class="chart-canvas-wrap">
+                <canvas class="category-chart"></canvas>
+              </div>
+            `;
+            secondaryChartsContainer.appendChild(categoryChartCard);
+            const categoryCtx = categoryChartCard.querySelector('.category-chart').getContext('2d');
+            const secondaryCategoryChart = new Chart(categoryCtx, {
+              type: 'bar',
+              data: {
+                labels: categoryData.map(data => data.label),
+                datasets: [{
+                  label: 'Qty Alert',
+                  data: categoryData.map(data => data.minQuantity),
+                  backgroundColor: 'rgba(255, 0, 0, 0.6)',
+                  stack: 'Stack 0'
+                }, {
+                  label: 'Quantity',
+                  data: categoryData.map(data => data.quantity),
+                  backgroundColor: categoryData.map(data => data.color),
+                  stack: 'Stack 0'
+                }]
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                layout: {
+                  padding: {
+                    top: 24
+                  }
+                },
+                scales: {
+                  y: {
+                    beginAtZero: true,
+                    stacked: true,
+                    ticks: { color: '#171717' },
+                    grid: { color: 'rgba(0, 0, 0, 0.08)' },
+                    border: { color: 'rgba(0, 0, 0, 0.15)' }
+                  },
+                  x: {
+                    stacked: true,
+                    ticks: { color: '#171717' },
+                    grid: { color: 'rgba(0, 0, 0, 0.08)' },
+                    border: { color: 'rgba(0, 0, 0, 0.15)' }
+                  }
+                },
+                plugins: {
+                  legend: {
+                    labels: {
+                      color: '#171717'
+                    }
+                  }
+                }
+              },
+              plugins: [stackedTotalLabelsPlugin]
+            });
+            applyChartTheme(
+              secondaryCategoryChart,
+              document.documentElement.getAttribute('data-theme') === 'dark'
+            );
+            categoryChartCard.querySelector('.close-category-chart').addEventListener('click', function() {
+              categoryChartCard.remove();
+            });
+
+            // Make the category chart resizable
+            new Resizable(categoryChartCard, {
+              handles: 'e, w'
+            });
+          }
+        }
+      });
+
+      autoPopulateBtn.addEventListener('click', function() {
+        const categories = [
+          { name: 'Fruits', subcategories: ['Apples', 'Bananas', 'Oranges', 'Berries'], quantityRange: [100, 200], weightRange: [20, 50] },
+          { name: 'Vegetables', subcategories: ['Carrots', 'Broccoli', 'Spinach', 'Bell Peppers'], quantityRange: [50, 100], weightRange: [50, 100] },
+          { name: 'Dairy', subcategories: ['Milk', 'Cheese', 'Yogurt', 'Butter'], quantityRange: [10, 20], weightRange: [50, 100] },
+          { name: 'Meat', subcategories: ['Chicken', 'Beef', 'Pork', 'Lamb'], quantityRange: [50, 100], weightRange: [100, 200] }
+        ];
+
+        for (let i = 0; i < 3; i++) {
+          categories.forEach((category) => {
+            const subcategory = category.subcategories[Math.floor(Math.random() * category.subcategories.length)];
+            const quantity = Math.floor(Math.random() * (category.quantityRange[1] - category.quantityRange[0] + 1)) + category.quantityRange[0];
+            const weight = Math.floor(Math.random() * (category.weightRange[1] - category.weightRange[0] + 1)) + category.weightRange[0];
+            const minQuantity = Math.floor(Math.random() * 10);
+            const date = new Date().toISOString().split('T')[0];
+            const color = randomHexColor();
+            const categoryKey = `${category.name}-${subcategory}`;
+            const existingCard = cardContainer.querySelector(`.card[data-category="${categoryKey}"]`);
+
+            if (existingCard) {
+              const existingQuantityInput = existingCard.querySelector('.editable-quantity');
+              const existingWeightInput = existingCard.querySelector('.editable-weight');
+              const existingQuantity = parseInt(existingQuantityInput.value, 10) || 0;
+              const existingWeight = parseFloat(existingWeightInput.value) || 0;
+              existingQuantityInput.value = existingQuantity + quantity;
+              existingWeightInput.value = existingWeight + weight;
+
+              const index = foodChart.data.labels.indexOf(categoryKey);
+              if (index !== -1) {
+                foodChart.data.datasets[1].data[index] += quantity;
+                foodChart.data.datasets[0].data[index] = minQuantity;
+                foodChart.data.datasets[1].backgroundColor[index] = color;
+                existingCard.style.borderTop = `4px solid ${color}`;
+                const picker = existingCard.querySelector('.color-picker');
+                if (picker) picker.value = color;
+              }
+            } else {
+              const card = document.createElement('div');
+              card.className = 'card inventory-card bg-base-100 shadow-md p-4 mb-4';
+              card.setAttribute('data-category', categoryKey);
+              card.style.borderTop = `4px solid ${color}`;
+              card.innerHTML = `
+                <div class="flex justify-between items-center mb-4">
+                  <input type="text" value="${category.name}" class="input w-full max-w-xs editable-title" readonly />
+                  <input type="text" value="${subcategory}" class="input w-full max-w-xs editable-subcategory ml-2" />
+                  <button class="btn btn-circle btn-ghost close-btn" type="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
+                <h1 class="text-3xl">
+                  <input type="number" value="${quantity}" class="input editable-quantity" />
+                </h1>
+                <p>Date: <input type="date" value="${date}" class="input editable-date" /></p>
+                <div class="flex items-center">
+                  <p>Qty Alert: </p>
+                  <input type="number" value="${minQuantity}" class="input editable-min-quantity ml-2" />
+                </div>
+                <div class="flex items-center">
+                  <p>Weight: </p>
+                  <input type="number" value="${weight}" class="input editable-weight ml-2" />
+                  <select class="input editable-weight-unit ml-2">
+                    <option value="kg">kg</option>
+                    <option value="g">g</option>
+                    <option value="lb">lb</option>
+                    <option value="oz">oz</option>
+                  </select>
+                </div>
+                <div class="flex items-center mt-4">
+                  <button class="btn btn-circle btn-ghost color-picker-btn" type="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                      <path fill-rule="evenodd" d="M2.25 4.125c0-1.036.84-1.875 1.875-1.875h5.25c1.036 0 1.875.84 1.875 1.875V17.25a4.5 4.5 0 1 1-9 0V4.125Zm4.5 14.25a1.125 1.125 0 1 0 0-2.25 1.125 1.125 0 0 0 0 2.25Z" clip-rule="evenodd" />
+                      <path d="M10.719 21.75h9.156c1.036 0 1.875-.84 1.875-1.875v-5.25c0-1.036-.84-1.875-1.875-1.875h-.14l-8.742 8.743c-.09.089-.18.175-.274.257ZM12.738 17.625l6.474-6.474a1.875 1.875 0 0 0 0-2.651L15.5 4.787a1.875 1.875 0 0 0-2.651 0l-.1.099V17.25c0 .126-.003.251-.01.375Z" />
+                    </svg>
+                  </button>
+                  <input type="color" class="hidden color-picker" value="${color}" />
+                </div>
+              `;
+
+              card.querySelector('.close-btn').addEventListener('click', function() {
+                card.remove();
+                const index = foodChart.data.labels.indexOf(categoryKey);
+                if (index !== -1) {
+                  foodChart.data.labels.splice(index, 1);
+                  foodChart.data.datasets[1].data.splice(index, 1);
+                  foodChart.data.datasets[0].data.splice(index, 1);
+                  foodChart.data.datasets[1].backgroundColor.splice(index, 1);
+                  foodChart.update();
+                }
+                notifyParentHeight();
+              });
+
+              card.querySelector('.color-picker-btn').addEventListener('click', function() {
+                this.nextElementSibling.click();
+              });
+
+              card.querySelector('.color-picker').addEventListener('input', function() {
+                const newColor = this.value;
+                card.style.borderTop = `4px solid ${newColor}`;
+                const index = foodChart.data.labels.indexOf(categoryKey);
+                if (index !== -1) {
+                  foodChart.data.datasets[1].backgroundColor[index] = newColor;
+                  foodChart.update();
+                }
+              });
+
+              card.querySelector('.editable-quantity').addEventListener('input', function() {
+                const newQuantity = parseInt(this.value, 10);
+                const index = foodChart.data.labels.indexOf(categoryKey);
+                if (index !== -1) {
+                  foodChart.data.datasets[1].data[index] = newQuantity;
+                  foodChart.update();
+                }
+              });
+
+              card.querySelector('.editable-min-quantity').addEventListener('input', function() {
+                const newMinQuantity = parseInt(this.value, 10);
+                const index = foodChart.data.labels.indexOf(categoryKey);
+                if (index !== -1) {
+                  foodChart.data.datasets[0].data[index] = newMinQuantity;
+                  foodChart.update();
+                }
+              });
+
+              card.querySelector('.editable-weight').addEventListener('input', function() {
+                const newWeight = parseFloat(this.value);
+                const index = foodChart.data.labels.indexOf(categoryKey);
+                if (index !== -1) {
+                  foodChart.data.datasets[1].data[index] = newWeight;
+                  foodChart.update();
+                }
+              });
+
+              cardContainer.appendChild(card);
+              foodChart.data.labels.push(categoryKey);
+              foodChart.data.datasets[1].data.push(quantity);
+              foodChart.data.datasets[1].backgroundColor.push(color);
+              foodChart.data.datasets[0].data.push(minQuantity);
+            }
+          });
+        }
+
+        foodChart.update();
+        foodChart.resize();
+        notifyParentHeight();
+      });
+
+      function showSuccessToast() {
+        const toast = document.createElement('div');
+        toast.className = 'toast toast-success fixed top-4 right-4';
+        toast.innerText = 'Item added successfully!';
+        document.body.appendChild(toast);
+
+        setTimeout(() => {
+          toast.remove();
+        }, 3000);
+      }
+
+      function applyChartTheme(chart, isDark) {
+        if (!chart?.options?.scales) return;
+
+        const textColor = isDark ? '#f4f4f5' : '#171717';
+        const mutedText = isDark ? '#d4d4d8' : '#525252';
+        const gridColor = isDark ? 'rgba(255, 255, 255, 0.28)' : 'rgba(0, 0, 0, 0.08)';
+        const borderColor = isDark ? 'rgba(255, 255, 255, 0.4)' : 'rgba(0, 0, 0, 0.15)';
+        const alertColor = isDark ? 'rgba(255, 110, 110, 0.95)' : 'rgba(255, 0, 0, 0.6)';
+
+        // Only mutate leaf values. Reassigning Chart.js option proxies
+        // (ticks/grid/labels objects) re-wraps them and causes
+        // "Recursion detected: _scriptable->_scriptable" + a blank canvas.
+        chart.options.plugins.legend.labels.color = textColor;
+        chart.options.scales.y.ticks.color = mutedText;
+        chart.options.scales.x.ticks.color = mutedText;
+        chart.options.scales.y.grid.color = gridColor;
+        chart.options.scales.x.grid.color = gridColor;
+        if (chart.options.scales.y.border) chart.options.scales.y.border.color = borderColor;
+        if (chart.options.scales.x.border) chart.options.scales.x.border.color = borderColor;
+
+        if (chart.data.datasets[0]) {
+          chart.data.datasets[0].backgroundColor = alertColor;
+        }
+
+        chart.update();
+      }
+
+      function updateChartTheme() {
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        applyChartTheme(foodChart, isDark);
+        document.querySelectorAll('.category-chart').forEach((canvas) => {
+          applyChartTheme(Chart.getChart(canvas), isDark);
+        });
+      }
+
+      function updateIconColors() {
+        const icons = document.querySelectorAll('.navbar svg');
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const strokeColor = currentTheme === 'dark' ? '#f4f4f5' : '#171717';
+        icons.forEach(icon => {
+          icon.style.stroke = strokeColor;
+        });
+      }
+
+      // Pre-populate date field with today's date
+      const today = new Date().toISOString().split('T')[0];
+      dateInput.value = today;
+
+      // Initialize Sortable for secondary charts
+      if (typeof Sortable !== 'undefined') {
+        new Sortable(secondaryChartsContainer, {
+          animation: 150,
+          ghostClass: 'sortable-ghost'
+        });
+      }
+
+      function saveUserSettings(settings) {
+        try {
+          localStorage.setItem(
+            'foodtrack-settings',
+            JSON.stringify(settings || {})
+          );
+        } catch (error) {
+          console.error('Error saving settings:', error);
+        }
+      }
+
+      function loadUserSettings() {
+        try {
+          const raw = localStorage.getItem('foodtrack-settings');
+          if (!raw) return;
+          const settings = JSON.parse(raw);
+          if (settings && settings.theme) {
+            const theme = settings.theme;
+            document.documentElement.setAttribute(themeAttribute, theme);
+            themeSwitch.checked = theme === darkTheme;
+            updateChartTheme();
+            updateIconColors();
+          }
+        } catch (error) {
+          console.error('Error loading settings:', error);
+        }
+      }
+
+      loadUserSettings();
+      notifyParentHeight();
+      window.addEventListener('load', notifyParentHeight);
+      new ResizeObserver(() => notifyParentHeight()).observe(document.body);
+      // Observe card/chart insertions so the parent iframe can hug content.
+      new MutationObserver(() => {
+        requestAnimationFrame(notifyParentHeight);
+      }).observe(cardContainer, { childList: true });
+      new MutationObserver(() => {
+        requestAnimationFrame(notifyParentHeight);
+      }).observe(secondaryChartsContainer, { childList: true });
+    });
+  </script>
+</body>
+</html>

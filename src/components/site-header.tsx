@@ -9,6 +9,7 @@ import { SiteBreadcrumb } from "@/components/site-breadcrumb";
 import { Separator } from "@/components/ui/separator";
 import { TextSizeControl } from "@/components/text-size-control";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { buttonVariants } from "@/lib/button-variants";
 import { cn } from "@/lib/utils";
 
 const nav = [
@@ -42,26 +43,27 @@ export function SiteHeader() {
 
   return (
     <>
-      <header className="sticky top-0 z-[60] bg-transparent">
-        <div className="relative mx-auto max-w-6xl min-h-[6.25rem] py-6 md:min-h-[6.75rem] md:py-8">
-          <div className="absolute left-6 top-6 right-auto bottom-auto z-10 flex w-fit max-w-[calc(100%-3rem)] shrink items-center gap-3 rounded-3xl bg-background/95 p-3 pr-[calc(0.75rem+8px)] backdrop-blur-sm md:left-10 md:max-w-[calc(100%-5rem)] md:gap-4">
-            <button
-              type="button"
-              onClick={() => setOpen((v) => !v)}
-              className="inline-flex size-11 shrink-0 items-center justify-center rounded-xl bg-transparent text-foreground transition-colors hover:bg-foreground hover:text-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-              aria-expanded={open}
-              aria-controls="site-nav"
-              aria-label={open ? "Close menu" : "Open menu"}
-            >
-              {open ? (
-                <X className="size-6" strokeWidth={1.5} aria-hidden />
-              ) : (
-                <Menu className="size-6" strokeWidth={1.5} aria-hidden />
-              )}
-            </button>
-            <div className="min-w-0 shrink">
-              <SiteBreadcrumb />
-            </div>
+      <header className="sticky top-0 z-[60] w-full border-b border-border/40 bg-background/95 backdrop-blur-sm supports-[backdrop-filter]:bg-background/80">
+        <div className="flex w-full min-h-14 items-center gap-3 px-6 py-3 md:min-h-16 md:gap-4 md:px-10 md:py-3.5 lg:px-14">
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            className={cn(
+              buttonVariants({ variant: "ghost", size: "lg" }),
+              "h-11 w-11 shrink-0 p-0"
+            )}
+            aria-expanded={open}
+            aria-controls="site-nav"
+            aria-label={open ? "Close menu" : "Open menu"}
+          >
+            {open ? (
+              <X className="size-5" strokeWidth={1.5} aria-hidden />
+            ) : (
+              <Menu className="size-5" strokeWidth={1.5} aria-hidden />
+            )}
+          </button>
+          <div className="min-w-0 flex-1">
+            <SiteBreadcrumb />
           </div>
         </div>
       </header>
