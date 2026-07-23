@@ -205,19 +205,19 @@ export const project: PastProject = {
               "Thirty patients at a glance \u2014 search by name or PTN and track therapy progress across the portfolio.",
           },
           {
-            src: "/projects/cell-gene-therapy/product-journey.png",
+            src: "/projects/cell-gene-therapy/product-journey-wb.png",
             alt: "Patient overview showing completed scheduling through product receipt with events calendar.",
-            width: 1440,
-            height: 1024,
+            width: 1024,
+            height: 728,
             title: "Treatment journey",
             caption:
               "Scheduling, biospecimen, manufacturing, and product receipt on one timeline \u2014 with contacts and upcoming events.",
           },
           {
-            src: "/projects/cell-gene-therapy/product-onboard-therapy.png",
+            src: "/projects/cell-gene-therapy/product-onboard-therapy-wb.png",
             alt: "Patient therapy onboarding step one: choose from available CAR T-cell therapies.",
-            width: 1440,
-            height: 1024,
+            width: 1024,
+            height: 728,
             title: "Choose therapy",
             caption:
               "Onboarding starts by selecting an available commercial or clinical therapy before patient search.",
@@ -232,10 +232,10 @@ export const project: PastProject = {
               "Pickup and delivery details reviewed, then dual e-signatures before the order is locked.",
           },
           {
-            src: "/projects/cell-gene-therapy/product-receipt.png",
+            src: "/projects/cell-gene-therapy/product-receipt-wb.png",
             alt: "Product receipt confirm product summary with bag IDs and dual e-signature workflow.",
-            width: 1440,
-            height: 1647,
+            width: 895,
+            height: 1024,
             title: "Product receipt",
             caption:
               "Verify bag IDs and condition, then approve and verify before therapy can be administered.",
@@ -250,10 +250,10 @@ export const project: PastProject = {
             defaultOpen: true,
             slides: [
               {
-                src: "/projects/cell-gene-therapy/product-onboard-details.png",
+                src: "/projects/cell-gene-therapy/product-onboard-details-wb.png",
                 alt: "Patient info form with eligibility screening and infectious disease monitoring checklists.",
-                width: 1440,
-                height: 1857,
+                width: 794,
+                height: 1024,
                 title: "Patient details",
                 caption:
                   "Demographics, biomarkers, and IDM confirmation \u2014 mandatory fields before e-signature.",

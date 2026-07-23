@@ -66,6 +66,9 @@ export function ExpandableImage({
           className="h-auto w-full rounded-lg transition-[filter] duration-200 group-hover:brightness-[0.98]"
           sizes={sizes}
           priority={priority}
+          // Match the lightbox native <img> so carousel and full screen
+          // always show the same public asset (no optimizer cache drift).
+          unoptimized
         />
         <span
           className="pointer-events-none absolute bottom-2 right-2 flex items-center gap-1 rounded-md bg-background/90 px-2 py-1 text-xs font-medium text-foreground shadow-sm opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100"
