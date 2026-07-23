@@ -1,0 +1,19 @@
+import type { PastProject } from "@/data/past-projects";
+import { project as additiveMfgRoi } from "@/data/showcase/additive-mfg-roi";
+import { project as cellGeneTherapy } from "@/data/showcase/cell-gene-therapy";
+import { project as chemicalCx } from "@/data/showcase/chemical-cx";
+import { project as additiveMfgCxData } from "@/data/showcase/additive-mfg-cx-data";
+import { project as dialysisManagement } from "@/data/showcase/dialysis-management";
+import { project as connectPoolRobot } from "@/data/showcase/connect-pool-robot";
+import { project as additiveMfgPrintSimScan } from "@/data/showcase/additive-mfg-print-sim-scan";
+
+/** Showcase order matches the September 2024 portfolio page. */
+export const PORTFOLIO_SHOWCASE_PROJECTS: PastProject[] = [
+  additiveMfgRoi,
+  cellGeneTherapy,
+  chemicalCx,
+  additiveMfgCxData,
+  dialysisManagement,
+  connectPoolRobot,
+  additiveMfgPrintSimScan,
+];

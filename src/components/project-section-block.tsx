@@ -4,6 +4,7 @@ import { ExpandableImage } from "@/components/expandable-image";
 import { FeatureRankingCharts } from "@/components/feature-ranking-charts";
 import type { ProjectSection } from "@/data/past-projects";
 import { ProjectJourneyMapping } from "@/components/project-journey-mapping";
+import { ProjectProductShowcase } from "@/components/project-product-showcase";
 import { ProjectUserFlowTabs } from "@/components/project-user-flow-tabs";
 import { ResearchInsights } from "@/components/research-insights";
 import { cn } from "@/lib/utils";
@@ -90,9 +91,41 @@ export function ProjectSectionBlock({
               );
             })}
           </div>
+          {section.topicGroups && section.topicGroups.length > 0 ? (
+            <div className="mt-10 space-y-10 md:mt-12 md:space-y-12">
+              {section.topicGroups.map((group) => (
+                <div key={group.title}>
+                  <h3 className="font-heading text-lg font-semibold tracking-tight text-foreground md:text-xl">
+                    {group.title}
+                  </h3>
+                  <div className="mt-5 grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-8">
+                    {group.items.map((item) => (
+                      <div
+                        key={item.title}
+                        className="border-t border-border pt-4"
+                      >
+                        <p className="text-sm font-medium text-foreground md:text-base">
+                          {item.title}
+                        </p>
+                        <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground md:text-base">
+                          {item.body}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : null}
           {section.userFlowTabs && section.userFlowTabs.length > 0 ? (
             <ProjectUserFlowTabs
               tabs={section.userFlowTabs}
+              className="mt-10 md:mt-12"
+            />
+          ) : null}
+          {section.productShowcase ? (
+            <ProjectProductShowcase
+              showcase={section.productShowcase}
               className="mt-10 md:mt-12"
             />
           ) : null}
@@ -102,6 +135,28 @@ export function ProjectSectionBlock({
               className="mt-10 md:mt-12"
               tabsListAriaLabel="Experience"
             />
+          ) : null}
+          {section.stats && section.stats.length > 0 ? (
+            <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-10 md:mt-12">
+              {section.stats.map((stat) => (
+                <div
+                  key={`${stat.label}-${stat.value}`}
+                  className="border-t border-border pt-4"
+                >
+                  <p className="font-heading text-2xl font-bold tracking-tight text-foreground md:text-3xl">
+                    {stat.value}
+                  </p>
+                  <p className="mt-1.5 text-sm font-medium text-foreground md:text-base">
+                    {stat.label}
+                  </p>
+                  {stat.detail ? (
+                    <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+                      {stat.detail}
+                    </p>
+                  ) : null}
+                </div>
+              ))}
+            </div>
           ) : null}
           {section.table ? (
             <div className="mt-8 overflow-x-auto">

@@ -24,6 +24,7 @@ import { PETRICOR_IMPLEMENT_TABS } from "@/data/petricor-implement-tabs";
 import { PETRICOR_USER_FLOW_TABS } from "@/data/petricor-user-flows";
 import type { ResearchInsightsData } from "@/data/headlines-research-insights";
 import { HEADLINES_RESEARCH_INSIGHTS } from "@/data/headlines-research-insights";
+import { PORTFOLIO_SHOWCASE_PROJECTS } from "@/data/portfolio-showcase-projects";
 
 /** Wireframe or screen image inside a user-flow tab panel. */
 export type ProjectUserFlowImage = {
@@ -42,6 +43,37 @@ export type ProjectUserFlowTab = {
   liveDemo?: "headlines" | "foodtrack";
 };
 
+/** One slide in a product / case-study image carousel. */
+export type ProjectCarouselSlide = {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  /** Short label above the caption (e.g. screen name). */
+  title?: string;
+  /** Supporting line under the image. */
+  caption?: string;
+};
+
+/** Accordion panel that contains its own image carousel. */
+export type ProjectShowcaseAccordionItem = {
+  value: string;
+  title: string;
+  description?: string;
+  slides: readonly ProjectCarouselSlide[];
+  /** Open this panel by default. */
+  defaultOpen?: boolean;
+};
+
+/**
+ * Product story presentation: a primary carousel, plus optional accordion
+ * panels each with an additional carousel of supporting screens.
+ */
+export type ProjectProductShowcase = {
+  slides: readonly ProjectCarouselSlide[];
+  accordion?: readonly ProjectShowcaseAccordionItem[];
+};
+
 /** Inline figure after a paragraph (e.g. case-study diagram). */
 export type ProjectSectionFigure = {
   /** Render immediately after the paragraph at this index (0-based). */
@@ -58,6 +90,18 @@ export type ProjectSectionTable = {
   rows: readonly { col1: string; col2: string }[];
   /** Accessible name for the table (defaults to a generic label). */
   ariaLabel?: string;
+};
+
+/** One titled point in a native topic grid (replaces multi-column benefit slides). */
+export type ProjectTopicItem = {
+  title: string;
+  body: string;
+};
+
+/** Grouped topic grid under a section heading (e.g. manufacturing vs business benefits). */
+export type ProjectTopicGroup = {
+  title: string;
+  items: readonly ProjectTopicItem[];
 };
 
 /** One column in a journey map grid (stages across; aspect labels in first column when used). */
@@ -105,11 +149,24 @@ function journeyColumnsFromCocoData(
 }
 
 /** One case-study block: top rule, section title, body copy; optional Role/Scope (e.g. Overview). */
+export type ProjectStat = {
+  value: string;
+  label: string;
+  detail?: string;
+};
+
 export type ProjectSection = {
   title: string;
   paragraphs: readonly string[];
   /** Optional table after paragraphs. */
   table?: ProjectSectionTable;
+  /** Highlight metrics rendered as a native grid (replaces simple metrics slides). */
+  stats?: readonly ProjectStat[];
+  /**
+   * Grouped title + body grids (replaces multi-column benefit / context slides).
+   * Rendered after paragraphs, before stats/table.
+   */
+  topicGroups?: readonly ProjectTopicGroup[];
   /** Images or diagrams inserted after specific paragraphs (non-journey sections). */
   figures?: readonly ProjectSectionFigure[];
   /** Layout for figures that share an `afterParagraphIndex` (default stacks). */
@@ -126,6 +183,11 @@ export type ProjectSection = {
   researchInsights?: ResearchInsightsData;
   /** Tabbed high-fidelity screens (Coco Implement). */
   implementTabs?: readonly ProjectUserFlowTab[];
+  /**
+   * Primary image carousel + optional accordion carousels for product story
+   * screens (preferred over dense implementTabs when many screens).
+   */
+  productShowcase?: ProjectProductShowcase;
   /**
    * Interleaved prose and journey-map accordions (Coco). When set, replaces the
    * default paragraphs + table layout for this section.
@@ -416,6 +478,7 @@ export const pastProjects: PastProject[] = [
 
 /** Newer work (add entries here; slugs must be unique across all project lists). */
 export const recentProjects2023_2026: PastProject[] = [
+  ...PORTFOLIO_SHOWCASE_PROJECTS,
   {
     slug: "coco",
     title: "Coco",
@@ -1787,6 +1850,13 @@ export const PAST_PROJECT_GRID_ORDER: readonly string[] = [
 
 /** Optional manual order for the 2023–2026 grid (same pattern as past projects). */
 export const RECENT_PROJECT_GRID_ORDER: readonly string[] = [
+  "additive-mfg-roi-dashboard",
+  "cell-gene-therapy-platform",
+  "chemical-cx-platform",
+  "additive-mfg-cx-data-platform",
+  "dialysis-management",
+  "connect-pool-robot-app",
+  "additive-mfg-print-sim-scan",
   "coco",
   "petricor",
   "aureum",
