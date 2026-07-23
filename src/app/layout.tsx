@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 
+import { ProjectUnlockProvider } from "@/components/project-unlock-provider";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { TextScaleProvider } from "@/components/text-scale-provider";
@@ -39,9 +40,11 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col antialiased">
         <ThemeProvider>
           <TextScaleProvider>
-            <SiteHeader />
-            <main className="flex-1">{children}</main>
-            <SiteFooter />
+            <ProjectUnlockProvider>
+              <SiteHeader />
+              <main className="flex-1">{children}</main>
+              <SiteFooter />
+            </ProjectUnlockProvider>
           </TextScaleProvider>
         </ThemeProvider>
       </body>

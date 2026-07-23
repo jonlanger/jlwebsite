@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { PageShell } from "@/components/page-shell";
 import { ProjectDetailImage } from "@/components/project-detail-image";
 import { ProjectSectionBlock } from "@/components/project-section-block";
+import { ProjectUnlockGate } from "@/components/project-unlock-gate";
 import {
   getPastProject,
   getPastProjectSlugs,
@@ -53,53 +54,55 @@ export default async function PastProjectPage({ params }: Props) {
 
   return (
     <PageShell>
-      <div className={contentColumnClass}>
-        <Link
-          href="/projects"
-          className={cn(
-            buttonVariants({ variant: "link", size: "lg" }),
-            "mb-8 gap-2 text-base"
-          )}
-        >
-          <ArrowLeft className="size-4" aria-hidden />
-          All projects
-        </Link>
+      <ProjectUnlockGate slug={slug}>
+        <div className={contentColumnClass}>
+          <Link
+            href="/projects"
+            className={cn(
+              buttonVariants({ variant: "link", size: "lg" }),
+              "mb-8 gap-2 text-base"
+            )}
+          >
+            <ArrowLeft className="size-4" aria-hidden />
+            All projects
+          </Link>
 
-        <h1 className="w-full font-heading text-3xl font-extrabold tracking-tight md:text-4xl">
-          {project.title}
-        </h1>
-        <p className="mt-4 w-full text-muted-foreground leading-relaxed">
-          {project.description}
-        </p>
+          <h1 className="w-full font-heading text-3xl font-extrabold tracking-tight md:text-4xl">
+            {project.title}
+          </h1>
+          <p className="mt-4 w-full text-muted-foreground leading-relaxed">
+            {project.description}
+          </p>
 
-        {detailSections.map((b, i) => (
-          <ProjectSectionBlock
-            key={b.id}
-            section={b.section}
-            headingId={b.id}
-            isFirst={i === 0}
-          />
-        ))}
-      </div>
-
-      {/* Board image only for image-only projects; structured case studies already tell the story. */}
-      {detailSections.length === 0 &&
-      project.image &&
-      project.alt != null &&
-      project.width &&
-      project.height ? (
-        <div className={projectDetailImageWrapClass}>
-          <ProjectDetailImage
-            src={project.image}
-            alt={project.alt}
-            width={project.width}
-            height={project.height}
-            sizes="(max-width: 900px) 100vw, 900px"
-            quality={90}
-            priority
-          />
+          {detailSections.map((b, i) => (
+            <ProjectSectionBlock
+              key={b.id}
+              section={b.section}
+              headingId={b.id}
+              isFirst={i === 0}
+            />
+          ))}
         </div>
-      ) : null}
+
+        {/* Board image only for image-only projects; structured case studies already tell the story. */}
+        {detailSections.length === 0 &&
+        project.image &&
+        project.alt != null &&
+        project.width &&
+        project.height ? (
+          <div className={projectDetailImageWrapClass}>
+            <ProjectDetailImage
+              src={project.image}
+              alt={project.alt}
+              width={project.width}
+              height={project.height}
+              sizes="(max-width: 900px) 100vw, 900px"
+              quality={90}
+              priority
+            />
+          </div>
+        ) : null}
+      </ProjectUnlockGate>
     </PageShell>
   );
 }

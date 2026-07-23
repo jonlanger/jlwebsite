@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 import {
   Card,
@@ -10,6 +11,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { useProjectUnlock } from "@/components/project-unlock-provider";
 import { Skeleton } from "@/components/ui/skeleton";
 import type { PastProject } from "@/data/past-projects";
 import { cn } from "@/lib/utils";
@@ -37,13 +39,31 @@ const INITIAL_VISIBLE = 9;
 const LOAD_MORE_STEP = 9;
 
 function PastProjectCard({ project }: { project: PastProject }) {
+  const router = useRouter();
+  const { unlocked, isProtected, requestAccess } = useProjectUnlock();
   const [imageReady, setImageReady] = useState(false);
+  const [awaitingUnlock, setAwaitingUnlock] = useState(false);
+  const href = `/projects/${project.slug}`;
+
+  useEffect(() => {
+    if (!awaitingUnlock || !unlocked) return;
+    setAwaitingUnlock(false);
+    router.push(href);
+  }, [awaitingUnlock, unlocked, href, router]);
 
   return (
     <Link
-      href={`/projects/${project.slug}`}
+      href={href}
       aria-label={`View project: ${project.title}`}
       className="group min-w-0 block rounded-xl outline-none transition-shadow focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+      onClick={(event) => {
+        if (!isProtected(project.slug) || unlocked) return;
+        event.preventDefault();
+        setAwaitingUnlock(true);
+        requestAccess({
+          onCancel: () => setAwaitingUnlock(false),
+        });
+      }}
     >
       <Card
         size="sm"
