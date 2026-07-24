@@ -38,12 +38,12 @@ export default function ProjectsPage() {
         </p>
 
         <h2 className="mt-12 font-heading text-xl font-bold tracking-tight md:text-2xl">
-          Projects 2023-2026
+          Software &amp; Platforms
         </h2>
         <PastProjectsGrid projects={recentGridProjects} />
 
         <h2 className="mt-14 font-heading text-xl font-bold tracking-tight md:text-2xl">
-          Projects 2012-2022
+          Connected Devices &amp; Hardware
         </h2>
         <PastProjectsGrid projects={pastGridProjects} />
       </div>

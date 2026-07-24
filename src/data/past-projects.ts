@@ -245,16 +245,6 @@ export const pastProjects: PastProject[] = [
     height: 10514,
   },
   {
-    slug: "animation-physics",
-    title: "Animation & physics simulations",
-    description:
-      "A grid of physics-based animation studies including fluids, cloth, rigid bodies, and particles.",
-    image: "/projects/animation-physics.png",
-    alt: "Grid of animation and physics simulation thumbnails.",
-    width: 1960,
-    height: 9230,
-  },
-  {
     slug: "e-syringe",
     title: "Electronic syringe",
     description:
@@ -415,16 +405,6 @@ export const pastProjects: PastProject[] = [
     height: 9938,
   },
   {
-    slug: "teleoperation-station",
-    title: "Teleoperation System",
-    description:
-      "Modular remote operation workstations for vehicles and robots, from use cases to scalable room layouts.",
-    image: "/projects/teleoperation-station.png",
-    alt: "Teleoperation station for vehicles and robotics case study.",
-    width: 1960,
-    height: 12142,
-  },
-  {
     slug: "uav-humanitarian-delivery",
     title: "Human-centric UAV delivery",
     description:
@@ -453,16 +433,6 @@ export const pastProjects: PastProject[] = [
     alt: "Alternate vaccine transport for mobile Africa case study board.",
     width: 1960,
     height: 12904,
-  },
-  {
-    slug: "voxelplm",
-    title: "Voxel PLM",
-    description:
-      "Product lifecycle and 3D data workflow concept visualization.",
-    image: "/projects/autonomous-shipping.png",
-    alt: "Voxel PLM software and process case study.",
-    width: 1960,
-    height: 12218,
   },
   {
     slug: "mdx",
@@ -1825,6 +1795,36 @@ export const recentProjects2023_2026: PastProject[] = [
       },
     ],
   },
+  {
+    slug: "teleoperation-station",
+    title: "Teleoperation System",
+    description:
+      "Modular remote operation workstations for vehicles and robots, from use cases to scalable room layouts.",
+    image: "/projects/teleoperation-station.png",
+    alt: "Teleoperation station for vehicles and robotics case study.",
+    width: 1960,
+    height: 12142,
+  },
+  {
+    slug: "voxelplm",
+    title: "Voxel PLM",
+    description:
+      "Product lifecycle and 3D data workflow concept visualization.",
+    image: "/projects/autonomous-shipping.png",
+    alt: "Voxel PLM software and process case study.",
+    width: 1960,
+    height: 12218,
+  },
+  {
+    slug: "animation-physics",
+    title: "Animation & physics simulations",
+    description:
+      "A grid of physics-based animation studies including fluids, cloth, rigid bodies, and particles.",
+    image: "/projects/animation-physics.png",
+    alt: "Grid of animation and physics simulation thumbnails.",
+    width: 1960,
+    height: 9230,
+  },
 ];
 
 const bySlug = new Map(
@@ -1842,13 +1842,11 @@ export const PAST_PROJECT_GRID_ORDER: readonly string[] = [
   "smart-hydration-platform",
   "solar-field-installation",
   "medical-recovery-systems",
-  "teleoperation-station",
-  "voxelplm",
   "mdx",
   "lllt-knee-osteoarthritis",
 ];
 
-/** Optional manual order for the 2023–2026 grid (same pattern as past projects). */
+/** Optional manual order for the Software grid (same pattern as past projects). */
 export const RECENT_PROJECT_GRID_ORDER: readonly string[] = [
   "additive-mfg-roi-dashboard",
   "cell-gene-therapy-platform",
@@ -1864,6 +1862,9 @@ export const RECENT_PROJECT_GRID_ORDER: readonly string[] = [
   "studioflow",
   "headlines",
   "foodtrack",
+  "teleoperation-station",
+  "voxelplm",
+  "animation-physics",
 ];
 
 export function sortPastProjectsForGrid(
