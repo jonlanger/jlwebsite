@@ -1848,6 +1848,9 @@ export const PAST_PROJECT_GRID_ORDER: readonly string[] = [
 
 /** Optional manual order for the Software grid (same pattern as past projects). */
 export const RECENT_PROJECT_GRID_ORDER: readonly string[] = [
+  "roadway-mobile-ticket",
+  "project-speed-signs",
+  "consultants-portal",
   "additive-mfg-roi-dashboard",
   "cell-gene-therapy-platform",
   "chemical-cx-platform",
