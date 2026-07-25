@@ -130,6 +130,11 @@ export function ProjectImageCarousel({
             sizes="(max-width: 900px) 100vw, 900px"
             className="rounded-lg"
             priority={safeIndex === 0}
+            previewFit="cover"
+            previewAspectClassName="aspect-video"
+            previewObjectPositionClassName={
+              slide.height > slide.width * 1.15 ? "object-top" : "object-center"
+            }
           />
         </figure>
 

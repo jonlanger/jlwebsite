@@ -9,9 +9,11 @@ import { project as additiveMfgPrintSimScan } from "@/data/showcase/additive-mfg
 import { project as consultantsPortal } from "@/data/showcase/consultants-portal";
 import { project as projectSpeedSigns } from "@/data/showcase/project-speed-signs";
 import { project as roadwayMobileTicket } from "@/data/showcase/roadway-mobile-ticket";
+import { project as appliedAiMarketplace } from "@/data/showcase/applied-ai-marketplace";
 
 /** Showcase order matches the September 2024 portfolio page. */
 export const PORTFOLIO_SHOWCASE_PROJECTS: PastProject[] = [
+  appliedAiMarketplace,
   roadwayMobileTicket,
   projectSpeedSigns,
   consultantsPortal,

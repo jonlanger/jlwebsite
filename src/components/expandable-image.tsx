@@ -15,6 +15,12 @@ export function ExpandableImage({
   className,
   sizes = "(max-width: 900px) 100vw, 900px",
   priority,
+  /** Carousel preview: crop to a fixed frame. Lightbox always shows the full image. */
+  previewFit = "natural",
+  /** Used when previewFit is cover (default 16/9). */
+  previewAspectClassName = "aspect-video",
+  /** object-position for cover previews (e.g. object-top for tall screens). */
+  previewObjectPositionClassName = "object-center",
 }: {
   src: string;
   alt: string;
@@ -23,10 +29,14 @@ export function ExpandableImage({
   className?: string;
   sizes?: string;
   priority?: boolean;
+  previewFit?: "natural" | "cover";
+  previewAspectClassName?: string;
+  previewObjectPositionClassName?: string;
 }) {
   const titleId = useId();
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const cover = previewFit === "cover";
 
   useEffect(() => {
     setMounted(true);
@@ -54,24 +64,40 @@ export function ExpandableImage({
         className={cn(
           "group relative block w-full max-w-full overflow-hidden rounded-lg p-0 text-left outline-none",
           "cursor-zoom-in focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+          cover && previewAspectClassName,
           className
         )}
         aria-label={`View larger: ${alt}`}
       >
-        <Image
-          src={src}
-          alt={alt}
-          width={width}
-          height={height}
-          className="h-auto w-full rounded-lg transition-[filter] duration-200 group-hover:brightness-[0.98]"
-          sizes={sizes}
-          priority={priority}
-          // Match the lightbox native <img> so carousel and full screen
-          // always show the same public asset (no optimizer cache drift).
-          unoptimized
-        />
+        {cover ? (
+          <Image
+            src={src}
+            alt={alt}
+            fill
+            className={cn(
+              "rounded-lg object-cover transition-[filter] duration-200 group-hover:brightness-[0.98]",
+              previewObjectPositionClassName
+            )}
+            sizes={sizes}
+            priority={priority}
+            unoptimized
+          />
+        ) : (
+          <Image
+            src={src}
+            alt={alt}
+            width={width}
+            height={height}
+            className="h-auto w-full rounded-lg transition-[filter] duration-200 group-hover:brightness-[0.98]"
+            sizes={sizes}
+            priority={priority}
+            // Match the lightbox native <img> so carousel and full screen
+            // always show the same public asset (no optimizer cache drift).
+            unoptimized
+          />
+        )}
         <span
-          className="pointer-events-none absolute bottom-2 right-2 flex items-center gap-1 rounded-md bg-background/90 px-2 py-1 text-xs font-medium text-foreground shadow-sm opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100"
+          className="pointer-events-none absolute bottom-2 right-2 z-[1] flex items-center gap-1 rounded-md bg-background/90 px-2 py-1 text-xs font-medium text-foreground shadow-sm opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100"
           aria-hidden
         >
           <Maximize2 className="size-3.5" />
@@ -104,7 +130,7 @@ export function ExpandableImage({
               >
                 <X className="size-5" />
               </button>
-              <div className="pointer-events-none absolute inset-0 flex items-center justify-center p-4 pt-16">
+              <div className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-auto p-4 pt-16">
                 {/*
                   Native img scales to the viewport. next/image width/height was
                   capping lightbox size at the asset's intrinsic pixels (~1152px).
