@@ -207,6 +207,8 @@ export type PastProject = {
   /** Intrinsic pixel size of the case-study PNG (used for layout + `next/image`). */
   width?: number;
   height?: number;
+  /** Optional public live demo / product URL shown on the detail page. */
+  liveUrl?: string;
   /** First narrative section (often Overview; may include role/scope). */
   overview?: ProjectSection;
   /** Further sections in the same layout, after overview. */
@@ -1848,6 +1850,7 @@ export const PAST_PROJECT_GRID_ORDER: readonly string[] = [
 
 /** Optional manual order for the Software grid (same pattern as past projects). */
 export const RECENT_PROJECT_GRID_ORDER: readonly string[] = [
+  "climate-sync",
   "applied-ai-marketplace",
   "roadway-mobile-ticket",
   "project-speed-signs",

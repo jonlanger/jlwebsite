@@ -17,7 +17,7 @@ import {
   projectDetailImageWrapClass,
 } from "@/lib/content-layout";
 import { cn } from "@/lib/utils";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ExternalLink } from "lucide-react";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -73,6 +73,22 @@ export default async function PastProjectPage({ params }: Props) {
           <p className="mt-4 w-full text-muted-foreground leading-relaxed">
             {project.description}
           </p>
+          {project.liveUrl ? (
+            <p className="mt-4">
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={cn(
+                  buttonVariants({ variant: "link", size: "lg" }),
+                  "gap-2 px-0 text-base"
+                )}
+              >
+                Visit live site
+                <ExternalLink className="size-4" aria-hidden />
+              </a>
+            </p>
+          ) : null}
 
           {detailSections.map((b, i) => (
             <ProjectSectionBlock
