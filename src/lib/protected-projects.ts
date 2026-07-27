@@ -1,5 +1,6 @@
 /** Showcase case studies that require a shared password to view. */
 export const PROTECTED_PROJECT_SLUGS = new Set([
+  "proposalpal",
   "applied-ai-marketplace",
   "roadway-mobile-ticket",
   "project-speed-signs",

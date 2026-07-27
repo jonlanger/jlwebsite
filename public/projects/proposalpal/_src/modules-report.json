@@ -1,0 +1,429 @@
+{
+  "workspaceUrl": "https://proposalpal-v2.vercel.app/proposal/prop-1785188562157/dashboard",
+  "workspaceText": "ProposalPal\nDetails\n7-Eleven USA - ERP Digital Transformation - 405020-70\nData Sources\nProposal Overview\nRegenerate\nBookmarks\nExport\nGlobal Data Sources\nClose\n×\nAdded Sources\n0\n\nNo Sources Added Yet\n\nAdd sources from available files below\n\nAvailable Sources\n0\n\nNo sources available\n\nGenerate relevant data sources for your proposal\n\nPulling Relevant Sources...\nOverview\nClient Research\nClient Engagement\nTeam Formation\nTopic Research\nStoryline & Proposal\nCommercial Approach\nPolish Proposal\nPractice Pitch\nWelcome to ERP Digital Transformation\n\nLet's build a compelling proposal for 7-Eleven USA.\n\nI have full context of your proposal details and can help you develop comprehensive client research, commercial approaches, storylines, and more. Select a module from the left or ask me anything to get started!",
+  "structure": [
+    {
+      "tag": "A",
+      "text": "Details",
+      "aria": null,
+      "href": "/proposal/prop-1785188562157/setup"
+    },
+    {
+      "tag": "BUTTON",
+      "text": "",
+      "aria": "Switch to dark mode",
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Data Sources",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Proposal Overview",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Regenerate",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Bookmarks",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Export",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Close×",
+      "aria": "Close panel",
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Pulling Relevant Sources...",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Overview",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Client Research",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Client Engagement",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Team Formation",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Topic Research",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Storyline & Proposal",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Commercial Approach",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Polish Proposal",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Practice Pitch",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Deep Research",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Analyst Reports",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Value Science Portal",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Contextual Overview",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Industry and Competitors",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Financial Information",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Company Portfolio & Offerings",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Latest News & Publications (Client & Leadership)",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Client Executive Profiles & Background",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Company/Client Priorities",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Sources",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Pricing Strategy",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Investment Framing",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Delivery Model",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Competitive Edge",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Risks & Watchouts",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Expert Contacts",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Hypotheses & Perspectives",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Why BCG & Value",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Project Approach",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Teaming",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Pricing",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Presence & Engagement",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Areas for Improvement",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Sources",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Sections",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Methods & Tools",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Industry Primer",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Past Proposal",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Credentials",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Vignettes",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Experts",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Benchmarks",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Client References",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Hypothesis & Perspective",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Why BCG & Value",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Approach & Methodology",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Team & Experience",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Executive Summary",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Top 5 Questions the Client Will Ask",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Persona-Specific Questions",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Slide-Specific or Role-Play Questions",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Relationship Mapping Overview",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Recommended Engagement Team Pairings",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Prior Engagements & Context Summary",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Industry Trends & Thought Leadership",
+      "aria": null,
+      "href": null
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Engagement Cadence & Follow-Up Plan",
+      "aria": null,
+      "href": null
+    }
+  ],
+  "module_client-research": {
+    "url": "https://proposalpal-v2.vercel.app/proposal/prop-1785188562157/dashboard",
+    "text": "ProposalPal\nDetails\n7-Eleven USA - ERP Digital Transformation - 405020-70\nData Sources\nProposal Overview\nRegenerate\nBookmarks\nExport\nGlobal Data Sources\nClose\n×\nAdded Sources\n0\n\nNo Sources Added Yet\n\nAdd sources from available files below\n\nAvailable Sources\n0\n\nNo sources available\n\nGenerate relevant data sources for your proposal\n\nPulling Relevant Sources...\nClient Research\nClient Research\nClient Engagement\nTeam Formation\nTopic Research\nStoryline & Proposal\nCommercial Approach\nPolish Proposal\nPractice Pitch\nClient Research\n\nI'll gather and synthesize the most relevant client insights from your uploads and targeted research pulls. Expect a clear view of priorities, pressures, initiatives, and organizational context.\n\nDeep Research\nAnalyst Reports\nValue Science Portal\nContextual Overview\nIndustry and Competitors\nFinancial Information\nCompany Portfolio & Offerings\nLatest News & Publications (Client & Leadership)\nClient Executive Profiles & Background\nCompany/Client Priorities\nSources\n\nGather comprehensive intelligence about your client including industry analysis, competitive landscape, financial data, and executive profiles.\n\nBuild the optimal project team by matching required skills with expert consultants based on experience, availability, and past performance."
+  },
+  "module_client-engagement": {
+    "url": "https://proposalpal-v2.vercel.app/proposal/prop-1785188562157/dashboard",
+    "text": "ProposalPal\nDetails\n7-Eleven USA - ERP Digital Transformation - 405020-70\nData Sources\nProposal Overview\nRegenerate\nBookmarks\nExport\nGlobal Data Sources\nClose\n×\nAdded Sources\n0\n\nNo Sources Added Yet\n\nAdd sources from available files below\n\nAvailable Sources\n0\n\nNo sources available\n\nGenerate relevant data sources for your proposal\n\nPulling Relevant Sources...\nClient Engagement\nClient Research\nClient Engagement\nTeam Formation\nTopic Research\nStoryline & Proposal\nCommercial Approach\nPolish Proposal\nPractice Pitch\nClient Engagement\n\nI'll map the client's decision-makers, motivations, concerns, and influence patterns. Use this to refine how you frame messages and anticipate reactions in the room.\n\nRelationship Mapping Overview\nRecommended Engagement Team Pairings\nPrior Engagements & Context Summary\nIndustry Trends & Thought Leadership\nEngagement Cadence & Follow-Up Plan\n\nDesign strategic stakeholder engagement plans with tailored meeting agendas, communication strategies, and relationship-building approaches."
+  },
+  "module_team-formation": {
+    "url": "https://proposalpal-v2.vercel.app/proposal/prop-1785188562157/dashboard",
+    "text": "ProposalPal\nDetails\n7-Eleven USA - ERP Digital Transformation - 405020-70\nData Sources\nProposal Overview\nRegenerate\nBookmarks\nExport\nGlobal Data Sources\nClose\n×\nAdded Sources\n0\n\nNo Sources Added Yet\n\nAdd sources from available files below\n\nAvailable Sources\n0\n\nNo sources available\n\nGenerate relevant data sources for your proposal\n\nPulling Relevant Sources...\nTeam Formation\nClient Research\nClient Engagement\nTeam Formation\nTopic Research\nStoryline & Proposal\nCommercial Approach\nPolish Proposal\nPractice Pitch\nTeam Formation\n\nI'll shape a tailored delivery team—roles, responsibilities, seniority mix, and time allocation. If you've uploaded bios, I'll incorporate them into the recommended structure.\n\nBuild the optimal project team by matching required skills with expert consultants based on experience, availability, and past performance."
+  },
+  "module_topic-research": {
+    "url": "https://proposalpal-v2.vercel.app/proposal/prop-1785188562157/dashboard",
+    "text": "ProposalPal\nDetails\n7-Eleven USA - ERP Digital Transformation - 405020-70\nData Sources\nProposal Overview\nRegenerate\nBookmarks\nExport\nGlobal Data Sources\nClose\n×\nAdded Sources\n0\n\nNo Sources Added Yet\n\nAdd sources from available files below\n\nAvailable Sources\n0\n\nNo sources available\n\nGenerate relevant data sources for your proposal\n\nPulling Relevant Sources...\nBCG Research\nClient Research\nClient Engagement\nTeam Formation\nTopic Research\nStoryline & Proposal\nCommercial Approach\nPolish Proposal\nPractice Pitch\nTopic Research\n\nI'll surface the most relevant thought leadership, benchmarks, and case examples. You can ask for summaries, citations, or slide-ready points aligned to your proposal.\n\nSources\nSections\nMethods & Tools\nIndustry Primer\nPast Proposal\nCredentials\nVignettes\nExperts\nBenchmarks\nClient References\n\nAccess relevant BCG knowledge including internal frameworks, past project insights, industry reports, and proprietary research materials."
+  },
+  "module_storyline-proposal": {
+    "url": "https://proposalpal-v2.vercel.app/proposal/prop-1785188562157/dashboard",
+    "text": "ProposalPal\nDetails\n7-Eleven USA - ERP Digital Transformation - 405020-70\nData Sources\nProposal Overview\nRegenerate\nBookmarks\nExport\nGlobal Data Sources\nClose\n×\nAdded Sources\n0\n\nNo Sources Added Yet\n\nAdd sources from available files below\n\nAvailable Sources\n0\n\nNo sources available\n\nGenerate relevant data sources for your proposal\n\nPulling Relevant Sources...\nStoryline & Proposal\nClient Research\nClient Engagement\nTeam Formation\nTopic Research\nStoryline & Proposal\nCommercial Approach\nPolish Proposal\nPractice Pitch\nStoryline & Proposal\n\nI'll assemble a structured proposal storyline across all key sections. If earlier modules aren't filled, I'll pull or generate the content needed to complete the narrative.\n\nProposal Sections\nHypothesis & Perspective\nWhy BCG & Value\nApproach & Methodology\nTeam & Experience\nExecutive Summary\nClient Research Required\n\nClient Research must be completed before generating storyline content. Please navigate to the Client Research module and run it first. (Found 0/8 sections)\n\n💡 Tip: Click the \"Client Research\" module card to run it, then return here to generate storyline content.\n\nCraft compelling proposal narratives with structured storylines, executive summaries, and persuasive content that resonates with clients.\n\nEnhance proposal quality through AI-powered analysis of clarity, persuasiveness, structure, and alignment with client requirements."
+  },
+  "module_commercial-approach": {
+    "url": "https://proposalpal-v2.vercel.app/proposal/prop-1785188562157/dashboard",
+    "text": "ProposalPal\nDetails\n7-Eleven USA - ERP Digital Transformation - 405020-70\nData Sources\nProposal Overview\nRegenerate\nBookmarks\nExport\nGlobal Data Sources\nClose\n×\nAdded Sources\n0\n\nNo Sources Added Yet\n\nAdd sources from available files below\n\nAvailable Sources\n0\n\nNo sources available\n\nGenerate relevant data sources for your proposal\n\nPulling Relevant Sources...\nCommercial Approach\nClient Research\nClient Engagement\nTeam Formation\nTopic Research\nStoryline & Proposal\nCommercial Approach\nPolish Proposal\nPractice Pitch\nCommercial Approach\n\nI'll help define pricing logic, phasing, value articulation, and investment framing. Ask for alternative pricing shapes, benchmarks, or sensitivities anytime.\n\nPricing Strategy\nInvestment Framing\nDelivery Model\nCompetitive Edge\nRisks & Watchouts\nExpert Contacts\n\nDefine winning pricing strategies, commercial terms, and value-based positioning that align with client expectations and project scope."
+  },
+  "module_polish-proposal": {
+    "url": "https://proposalpal-v2.vercel.app/proposal/prop-1785188562157/dashboard",
+    "text": "ProposalPal\nDetails\n7-Eleven USA - ERP Digital Transformation - 405020-70\nData Sources\nProposal Overview\nRegenerate\nBookmarks\nExport\nGlobal Data Sources\nClose\n×\nAdded Sources\n0\n\nNo Sources Added Yet\n\nAdd sources from available files below\n\nAvailable Sources\n0\n\nNo sources available\n\nGenerate relevant data sources for your proposal\n\nPulling Relevant Sources...\nPolish Proposal\nClient Research\nClient Engagement\nTeam Formation\nTopic Research\nStoryline & Proposal\nCommercial Approach\nPolish Proposal\nPractice Pitch\nPolish Proposal\n\nI'll refine your slides or text for clarity, tone, tension, and executive readability—ensuring your proposal feels coherent, crisp, and BCG-polished.\n\nHypotheses & Perspectives\nWhy BCG & Value\nProject Approach\nTeaming\nPricing\nPresence & Engagement\nAreas for Improvement\n\nEnhance proposal quality through AI-powered analysis of clarity, persuasiveness, structure, and alignment with client requirements."
+  },
+  "module_practice-pitch": {
+    "url": "https://proposalpal-v2.vercel.app/proposal/prop-1785188562157/dashboard",
+    "text": "ProposalPal\nDetails\n7-Eleven USA - ERP Digital Transformation - 405020-70\nData Sources\nProposal Overview\nRegenerate\nBookmarks\nExport\nGlobal Data Sources\nClose\n×\nAdded Sources\n0\n\nNo Sources Added Yet\n\nAdd sources from available files below\n\nAvailable Sources\n0\n\nNo sources available\n\nGenerate relevant data sources for your proposal\n\nPulling Relevant Sources...\nPractice Pitch\nClient Research\nClient Engagement\nTeam Formation\nTopic Research\nStoryline & Proposal\nCommercial Approach\nPolish Proposal\nPractice Pitch\nPractice Pitch\n\nI'll simulate tough stakeholders, identify gaps, and strengthen your delivery. Ask for persona-driven Q&A or a realistic client challenge session.\n\nTop 5 Questions the Client Will Ask\nPersona-Specific Questions\nSlide-Specific or Role-Play Questions\n\nPrepare for client presentations with simulated Q&A scenarios, delivery tips, and anticipated stakeholder concerns."
+  },
+  "chat": "ProposalPal\nDetails\n7-Eleven USA - ERP Digital Transformation - 405020-70\nData Sources\nProposal Overview\nRegenerate\nBookmarks\nExport\nGlobal Data Sources\nClose\n×\nAdded Sources\n0\n\nNo Sources Added Yet\n\nAdd sources from available files below\n\nAvailable Sources\n0\n\nNo sources available\n\nGenerate relevant data sources for your proposal\n\nPulling Relevant Sources...\nOverview\nClient Research\nClient Engagement\nTeam Formation\nTopic Research\nStoryline & Proposal\nCommercial Approach\nPolish Proposal\nPractice Pitch\nWelcome to ERP Digital Transformation\n\nLet's build a compelling proposal for 7-Eleven USA.\n\nI have full context of your proposal details and can help you develop comprehensive client research, commercial approaches, storylines, and more. Select a module from the left or ask me anything to get started!\n\nWhat win themes should we lead with for this 7-Eleven ERP proposal?\n\n⏳ Rate Limit Reached\n\nPlease wait 2 seconds before sending another message.\n\nTry again in 2 seconds."
+}

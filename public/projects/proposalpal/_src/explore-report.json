@@ -1,0 +1,1004 @@
+{
+  "setup": {
+    "url": "https://proposalpal-v2.vercel.app/proposal/demo-proposal-1/setup",
+    "headings": [
+      "NAV: ",
+      "H1: Proposal Details",
+      "H3: Required Information",
+      "H3: Proposal Details",
+      "H3: Team Members"
+    ],
+    "buttons": [
+      "Go to Proposal Workspace",
+      "Edit"
+    ],
+    "links": [
+      {
+        "text": "",
+        "href": "/"
+      },
+      {
+        "text": "",
+        "href": "/"
+      },
+      {
+        "text": "",
+        "href": "/help"
+      }
+    ],
+    "tabs": [],
+    "bodyPreview": "ProposalPal\nProposal Details\nGo to Proposal Workspace\nRequired Information\n\nEssential details to start your proposal\n\nEdit\nOpportunity ID\n—\nClient Name\n—\nProposal Name\n—\nRFP\n—\nDraft Proposal\n—\nProposal Context\n—\nProposal Details\n\nClient information, additional context, and details\n\nEdit\nIndustry Practice Areas\n—\nFunctional Practice Areas\n—\nProposal Due Date\n—\nProposal Description\n—\nCompetitive Landscape\n—\nTopic Expert\n—\nAdditional Files\n—\nTeam Members\n\nAdd team members to the proposal\n\nEdit\nTeam Members"
+  },
+  "proposalLinksFromSetup": [],
+  "stageProbes": {
+    "setup": {
+      "status": 200,
+      "is404": false,
+      "url": "https://proposalpal-v2.vercel.app/proposal/demo-proposal-1/setup"
+    },
+    "intake": {
+      "status": 404,
+      "is404": true,
+      "url": "https://proposalpal-v2.vercel.app/proposal/demo-proposal-1/intake"
+    },
+    "research": {
+      "status": 404,
+      "is404": true,
+      "url": "https://proposalpal-v2.vercel.app/proposal/demo-proposal-1/research"
+    },
+    "storyline": {
+      "status": 404,
+      "is404": true,
+      "url": "https://proposalpal-v2.vercel.app/proposal/demo-proposal-1/storyline"
+    },
+    "story": {
+      "status": 404,
+      "is404": true,
+      "url": "https://proposalpal-v2.vercel.app/proposal/demo-proposal-1/story"
+    },
+    "content": {
+      "status": 404,
+      "is404": true,
+      "url": "https://proposalpal-v2.vercel.app/proposal/demo-proposal-1/content"
+    },
+    "draft": {
+      "status": 404,
+      "is404": true,
+      "url": "https://proposalpal-v2.vercel.app/proposal/demo-proposal-1/draft"
+    },
+    "workspace": {
+      "status": 404,
+      "is404": true,
+      "url": "https://proposalpal-v2.vercel.app/proposal/demo-proposal-1/workspace"
+    },
+    "overview": {
+      "status": 404,
+      "is404": true,
+      "url": "https://proposalpal-v2.vercel.app/proposal/demo-proposal-1/overview"
+    },
+    "team": {
+      "status": 404,
+      "is404": true,
+      "url": "https://proposalpal-v2.vercel.app/proposal/demo-proposal-1/team"
+    },
+    "commercial": {
+      "status": 404,
+      "is404": true,
+      "url": "https://proposalpal-v2.vercel.app/proposal/demo-proposal-1/commercial"
+    },
+    "teaming": {
+      "status": 404,
+      "is404": true,
+      "url": "https://proposalpal-v2.vercel.app/proposal/demo-proposal-1/teaming"
+    },
+    "strategy": {
+      "status": 404,
+      "is404": true,
+      "url": "https://proposalpal-v2.vercel.app/proposal/demo-proposal-1/strategy"
+    },
+    "outline": {
+      "status": 404,
+      "is404": true,
+      "url": "https://proposalpal-v2.vercel.app/proposal/demo-proposal-1/outline"
+    },
+    "sections": {
+      "status": 404,
+      "is404": true,
+      "url": "https://proposalpal-v2.vercel.app/proposal/demo-proposal-1/sections"
+    },
+    "documents": {
+      "status": 404,
+      "is404": true,
+      "url": "https://proposalpal-v2.vercel.app/proposal/demo-proposal-1/documents"
+    },
+    "files": {
+      "status": 404,
+      "is404": true,
+      "url": "https://proposalpal-v2.vercel.app/proposal/demo-proposal-1/files"
+    },
+    "chat": {
+      "status": 404,
+      "is404": true,
+      "url": "https://proposalpal-v2.vercel.app/proposal/demo-proposal-1/chat"
+    },
+    "agents": {
+      "status": 404,
+      "is404": true,
+      "url": "https://proposalpal-v2.vercel.app/proposal/demo-proposal-1/agents"
+    },
+    "review": {
+      "status": 404,
+      "is404": true,
+      "url": "https://proposalpal-v2.vercel.app/proposal/demo-proposal-1/review"
+    },
+    "export": {
+      "status": 404,
+      "is404": true,
+      "url": "https://proposalpal-v2.vercel.app/proposal/demo-proposal-1/export"
+    },
+    "insights": {
+      "status": 404,
+      "is404": true,
+      "url": "https://proposalpal-v2.vercel.app/proposal/demo-proposal-1/insights"
+    },
+    "client": {
+      "status": 404,
+      "is404": true,
+      "url": "https://proposalpal-v2.vercel.app/proposal/demo-proposal-1/client"
+    },
+    "intelligence": {
+      "status": 404,
+      "is404": true,
+      "url": "https://proposalpal-v2.vercel.app/proposal/demo-proposal-1/intelligence"
+    },
+    "rfp": {
+      "status": 404,
+      "is404": true,
+      "url": "https://proposalpal-v2.vercel.app/proposal/demo-proposal-1/rfp"
+    },
+    "analysis": {
+      "status": 404,
+      "is404": true,
+      "url": "https://proposalpal-v2.vercel.app/proposal/demo-proposal-1/analysis"
+    },
+    "approach": {
+      "status": 404,
+      "is404": true,
+      "url": "https://proposalpal-v2.vercel.app/proposal/demo-proposal-1/approach"
+    },
+    "value": {
+      "status": 404,
+      "is404": true,
+      "url": "https://proposalpal-v2.vercel.app/proposal/demo-proposal-1/value"
+    },
+    "pricing": {
+      "status": 404,
+      "is404": true,
+      "url": "https://proposalpal-v2.vercel.app/proposal/demo-proposal-1/pricing"
+    },
+    "orals": {
+      "status": 404,
+      "is404": true,
+      "url": "https://proposalpal-v2.vercel.app/proposal/demo-proposal-1/orals"
+    },
+    "win-themes": {
+      "status": 404,
+      "is404": true,
+      "url": "https://proposalpal-v2.vercel.app/proposal/demo-proposal-1/win-themes"
+    },
+    "win-theme": {
+      "status": 404,
+      "is404": true,
+      "url": "https://proposalpal-v2.vercel.app/proposal/demo-proposal-1/win-theme"
+    },
+    "winthemes": {
+      "status": 404,
+      "is404": true,
+      "url": "https://proposalpal-v2.vercel.app/proposal/demo-proposal-1/winthemes"
+    },
+    "guardrails": {
+      "status": 404,
+      "is404": true,
+      "url": "https://proposalpal-v2.vercel.app/proposal/demo-proposal-1/guardrails"
+    },
+    "context": {
+      "status": 404,
+      "is404": true,
+      "url": "https://proposalpal-v2.vercel.app/proposal/demo-proposal-1/context"
+    }
+  },
+  "stage_setup": {
+    "url": "https://proposalpal-v2.vercel.app/proposal/demo-proposal-1/setup",
+    "headings": [
+      "NAV: ",
+      "H1: Proposal Details",
+      "H3: Required Information",
+      "H3: Proposal Details",
+      "H3: Team Members"
+    ],
+    "buttons": [
+      "Go to Proposal Workspace",
+      "Edit"
+    ],
+    "links": [
+      {
+        "text": "",
+        "href": "/"
+      },
+      {
+        "text": "",
+        "href": "/"
+      },
+      {
+        "text": "",
+        "href": "/help"
+      }
+    ],
+    "tabs": [],
+    "bodyPreview": "ProposalPal\nProposal Details\nGo to Proposal Workspace\nRequired Information\n\nEssential details to start your proposal\n\nEdit\nOpportunity ID\n—\nClient Name\n—\nProposal Name\n—\nRFP\n—\nDraft Proposal\n—\nProposal Context\n—\nProposal Details\n\nClient information, additional context, and details\n\nEdit\nIndustry Practice Areas\n—\nFunctional Practice Areas\n—\nProposal Due Date\n—\nProposal Description\n—\nCompetitive Landscape\n—\nTopic Expert\n—\nAdditional Files\n—\nTeam Members\n\nAdd team members to the proposal\n\nEdit\nTeam Members"
+  },
+  "navItems": [
+    {
+      "text": "",
+      "href": "/",
+      "role": null
+    },
+    {
+      "text": "",
+      "href": "/help",
+      "role": null
+    }
+  ],
+  "buttonTexts": [
+    "Go to Proposal Workspace",
+    "Edit",
+    "Edit",
+    "Edit"
+  ],
+  "helpExpanded": {
+    "url": "https://proposalpal-v2.vercel.app/help",
+    "headings": [
+      "NAV: ",
+      "H1: Instructions & Support",
+      "H2: Overview",
+      "H3: What is ProposalPal?",
+      "H3: What can ProposalPal do?",
+      "H2: Access",
+      "H3: Who can access ProposalPal?",
+      "H3: I can't find my team member",
+      "H3: I can't open ProposalPal on my phone?",
+      "H2: Creating a new proposal",
+      "H3: How can I create a new proposal?",
+      "H3: How can I find a proposal my team created?",
+      "H3: Where can I find an old proposal?",
+      "H3: Can I upload more documents later?",
+      "H2: Security & Privacy",
+      "H3: How is confidential data handled?"
+    ],
+    "buttons": [
+      "FAQ",
+      "Support",
+      "What is ProposalPal?",
+      "What can ProposalPal do?",
+      "Who can access ProposalPal?",
+      "I can't find my team member",
+      "I can't open ProposalPal on my phone?",
+      "How can I create a new proposal?",
+      "How can I find a proposal my team created?",
+      "Where can I find an old proposal?",
+      "Can I upload more documents later?",
+      "How is confidential data handled?"
+    ],
+    "links": [
+      {
+        "text": "",
+        "href": "/"
+      },
+      {
+        "text": "",
+        "href": "/"
+      },
+      {
+        "text": "",
+        "href": "/help"
+      }
+    ],
+    "tabs": [
+      {
+        "text": "FAQ",
+        "href": null,
+        "role": "tab",
+        "state": "active"
+      },
+      {
+        "text": "Support",
+        "href": null,
+        "role": "tab",
+        "state": "inactive"
+      },
+      {
+        "text": "OverviewWhat is ProposalPal?What can ProposalPal do?Generate proposal outlines a",
+        "href": null,
+        "role": "tabpanel",
+        "state": "active"
+      },
+      {
+        "text": "What is ProposalPal?",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "What is ProposalPal?",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "What is ProposalPal?",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "What can ProposalPal do?Generate proposal outlines and content using AI assistan",
+        "href": null,
+        "role": null,
+        "state": "open"
+      },
+      {
+        "text": "What can ProposalPal do?",
+        "href": null,
+        "role": null,
+        "state": "open"
+      },
+      {
+        "text": "What can ProposalPal do?",
+        "href": null,
+        "role": null,
+        "state": "open"
+      },
+      {
+        "text": "Generate proposal outlines and content using AI assistanceManage team collaborat",
+        "href": null,
+        "role": "region",
+        "state": "open"
+      },
+      {
+        "text": "Who can access ProposalPal?",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Who can access ProposalPal?",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Who can access ProposalPal?",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "I can't find my team member",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "I can't find my team member",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "I can't find my team member",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "I can't open ProposalPal on my phone?ProposalPal is optimized for desktop and ta",
+        "href": null,
+        "role": null,
+        "state": "open"
+      },
+      {
+        "text": "I can't open ProposalPal on my phone?",
+        "href": null,
+        "role": null,
+        "state": "open"
+      },
+      {
+        "text": "I can't open ProposalPal on my phone?",
+        "href": null,
+        "role": null,
+        "state": "open"
+      },
+      {
+        "text": "ProposalPal is optimized for desktop and tablet use. While mobile viewing is sup",
+        "href": null,
+        "role": "region",
+        "state": "open"
+      },
+      {
+        "text": "How can I create a new proposal?",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "How can I create a new proposal?",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "How can I create a new proposal?",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "How can I find a proposal my team created?All proposals you're invited to will a",
+        "href": null,
+        "role": null,
+        "state": "open"
+      },
+      {
+        "text": "How can I find a proposal my team created?",
+        "href": null,
+        "role": null,
+        "state": "open"
+      },
+      {
+        "text": "How can I find a proposal my team created?",
+        "href": null,
+        "role": null,
+        "state": "open"
+      },
+      {
+        "text": "All proposals you're invited to will appear on your home page. You can also use ",
+        "href": null,
+        "role": "region",
+        "state": "open"
+      },
+      {
+        "text": "Where can I find an old proposal?",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Where can I find an old proposal?",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Where can I find an old proposal?",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Can I upload more documents later?",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Can I upload more documents later?",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Can I upload more documents later?",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "How is confidential data handled?",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "How is confidential data handled?",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "How is confidential data handled?",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      }
+    ],
+    "bodyPreview": "ProposalPal\nInstructions & Support\n\nLearn more about the proposal process and how to get product help\n\nFAQ\nSupport\nOverview\nWhat is ProposalPal?\nWhat can ProposalPal do?\nGenerate proposal outlines and content using AI assistance\nManage team collaboration and assign roles to team members\nResearch client information and competitive insights automatically\nCreate commercial approaches and pricing structures\nPolish and refine proposal language for maximum impact\nExport proposals in multiple formats (PDF, DOCX, PowerPoint)\nAccess\nWho can access ProposalPal?\nI can't find my team member\nI can't open ProposalPal on my phone?\nProposalPal is optimized for desktop and tablet use. While mobile viewing is supported, full editing capabilities work best on larger screens. For mobile access issues, ensure you're using a supported browser (Chrome, Safari, or Edge).\nCreating a new proposal\nHow can I create a new proposal?\nHow can I find a proposal my team created?\nAll proposals you're invited to will appear on your home page. You can also use the search bar to find proposals by client name, opportunity ID, or team member.\nWhere can I find an old proposal?\nCan I upload more documents later?\nSecurity & Privacy\nHow is confidential data handled?"
+  },
+  "afterWorkspace": {
+    "url": "https://proposalpal-v2.vercel.app/proposal/prop-1785187811398/dashboard",
+    "headings": [
+      "NAV: Details7-Eleven USA - ERP Digital Transformation - 405020-70",
+      "NAV: ",
+      "H3: Added Sources",
+      "H3: Available Sources",
+      "H3: Overview",
+      "H1: Welcome to ERP Digital Transformation",
+      "H3: Contextual Overview",
+      "H3: Industry and Competitors",
+      "H3: Financial Information",
+      "H3: Company Portfolio & Offerings",
+      "H3: Latest News & Publications (Client & Leadership)",
+      "H3: Client Executive Profiles & Background",
+      "H3: Company/Client Priorities",
+      "H3: Sources",
+      "H3: Pricing Strategy",
+      "H3: Investment Framing",
+      "H3: Delivery Model",
+      "H3: Competitive Edge",
+      "H3: Risks & Watchouts",
+      "H3: Expert Contacts",
+      "H3: Hypotheses & Perspectives",
+      "H3: Why BCG & Value",
+      "H3: Project Approach",
+      "H3: Teaming",
+      "H3: Pricing",
+      "H3: Presence & Engagement",
+      "H3: Areas for Improvement",
+      "H3: Methods & Tools",
+      "H3: Industry Primer",
+      "H3: Past Proposal",
+      "H3: Credentials",
+      "H3: Vignettes",
+      "H3: Experts",
+      "H3: Benchmarks",
+      "H3: Client References",
+      "H3: Proposal Sections",
+      "H3: Top 5 Questions the Client Will Ask",
+      "H3: Persona-Specific Questions",
+      "H3: Slide-Specific or Role-Play Questions",
+      "H3: Relationship Mapping Overview"
+    ],
+    "buttons": [
+      "Data Sources",
+      "Proposal Overview",
+      "Regenerate",
+      "Bookmarks",
+      "Export",
+      "Close×",
+      "Pulling Relevant Sources...",
+      "Overview",
+      "Client Research",
+      "Client Engagement",
+      "Team Formation",
+      "Topic Research",
+      "Storyline & Proposal",
+      "Commercial Approach",
+      "Polish Proposal",
+      "Practice Pitch",
+      "Deep Research",
+      "Analyst Reports",
+      "Value Science Portal",
+      "Contextual Overview",
+      "Industry and Competitors",
+      "Financial Information",
+      "Company Portfolio & Offerings",
+      "Latest News & Publications (Client & Leadership)",
+      "Client Executive Profiles & Background",
+      "Company/Client Priorities",
+      "Sources",
+      "Pricing Strategy",
+      "Investment Framing",
+      "Delivery Model",
+      "Competitive Edge",
+      "Risks & Watchouts",
+      "Expert Contacts",
+      "Hypotheses & Perspectives",
+      "Why BCG & Value",
+      "Project Approach",
+      "Teaming",
+      "Pricing",
+      "Presence & Engagement",
+      "Areas for Improvement",
+      "Sections",
+      "Methods & Tools",
+      "Industry Primer",
+      "Past Proposal",
+      "Credentials",
+      "Vignettes",
+      "Experts",
+      "Benchmarks",
+      "Client References",
+      "Hypothesis & Perspective"
+    ],
+    "links": [
+      {
+        "text": "",
+        "href": "/"
+      },
+      {
+        "text": "",
+        "href": "/"
+      },
+      {
+        "text": "Details",
+        "href": "/proposal/prop-1785187811398/setup"
+      },
+      {
+        "text": "",
+        "href": "/help"
+      }
+    ],
+    "tabs": [
+      {
+        "text": "Details",
+        "href": "/proposal/prop-1785187811398/setup",
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Data Sources",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Proposal Overview",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Regenerate",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Bookmarks",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Export",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "OverviewClient ResearchClient EngagementTeam FormationTopic ResearchStoryline & ",
+        "href": null,
+        "role": null,
+        "state": "open"
+      },
+      {
+        "text": "Overview",
+        "href": null,
+        "role": null,
+        "state": "open"
+      },
+      {
+        "text": "Overview",
+        "href": null,
+        "role": null,
+        "state": "open"
+      },
+      {
+        "text": "Client ResearchClient EngagementTeam FormationTopic ResearchStoryline & Proposal",
+        "href": null,
+        "role": "region",
+        "state": "open"
+      },
+      {
+        "text": "Client Research",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Client Engagement",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Team Formation",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Topic Research",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Storyline & Proposal",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Commercial Approach",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Polish Proposal",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Practice Pitch",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Deep Research",
+        "href": null,
+        "role": "tab",
+        "state": "active"
+      },
+      {
+        "text": "Analyst Reports",
+        "href": null,
+        "role": "tab",
+        "state": "inactive"
+      },
+      {
+        "text": "Value Science Portal",
+        "href": null,
+        "role": "tab",
+        "state": "inactive"
+      },
+      {
+        "text": "Contextual OverviewIndustry and CompetitorsFinancial InformationCompany Portfoli",
+        "href": null,
+        "role": "tabpanel",
+        "state": "active"
+      },
+      {
+        "text": "Contextual Overview",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Contextual Overview",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Industry and Competitors",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Industry and Competitors",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Financial Information",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Financial Information",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Company Portfolio & Offerings",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Company Portfolio & Offerings",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Latest News & Publications (Client & Leadership)",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Latest News & Publications (Client & Leadership)",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Client Executive Profiles & Background",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Client Executive Profiles & Background",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Company/Client Priorities",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Company/Client Priorities",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Sources",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Sources",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Pricing Strategy",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Pricing Strategy",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Investment Framing",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Investment Framing",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Delivery Model",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Delivery Model",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Competitive Edge",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Competitive Edge",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Risks & Watchouts",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Risks & Watchouts",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Expert Contacts",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Expert Contacts",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Hypotheses & Perspectives",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Hypotheses & Perspectives",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Why BCG & Value",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Why BCG & Value",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Project Approach",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Project Approach",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Teaming",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Teaming",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Pricing",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      },
+      {
+        "text": "Pricing",
+        "href": null,
+        "role": null,
+        "state": "closed"
+      }
+    ],
+    "bodyPreview": "ProposalPal\nDetails\n7-Eleven USA - ERP Digital Transformation - 405020-70\nData Sources\nProposal Overview\nRegenerate\nBookmarks\nExport\nGlobal Data Sources\nClose\n×\nAdded Sources\n0\n\nNo Sources Added Yet\n\nAdd sources from available files below\n\nAvailable Sources\n0\n\nNo sources available\n\nGenerate relevant data sources for your proposal\n\nPulling Relevant Sources...\nOverview\nClient Research\nClient Engagement\nTeam Formation\nTopic Research\nStoryline & Proposal\nCommercial Approach\nPolish Proposal\nPractice Pitch\nWelcome to ERP Digital Transformation\n\nLet's build a compelling proposal for 7-Eleven USA.\n\nI have full context of your proposal details and can help you develop comprehensive client research, commercial approaches, storylines, and more. Select a module from the left or ask me anything to get started!"
+  }
+}
