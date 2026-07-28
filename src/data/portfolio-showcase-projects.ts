@@ -12,9 +12,11 @@ import { project as roadwayMobileTicket } from "@/data/showcase/roadway-mobile-t
 import { project as appliedAiMarketplace } from "@/data/showcase/applied-ai-marketplace";
 import { project as proposalpal } from "@/data/showcase/proposalpal";
 import { project as climateSync } from "@/data/showcase/climate-sync";
+import { project as productbench } from "@/data/showcase/productbench";
 
 /** Showcase order matches the September 2024 portfolio page. */
 export const PORTFOLIO_SHOWCASE_PROJECTS: PastProject[] = [
+  productbench,
   climateSync,
   proposalpal,
   appliedAiMarketplace,

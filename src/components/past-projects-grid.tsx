@@ -19,6 +19,8 @@ import { cn } from "@/lib/utils";
 const THUMB_EXTRA_RAISE_SLUGS = new Set(["ai-camera-nodit", "voxelplm"]);
 /** Recent projects use dedicated hero art; older cards crop tall case-study boards. */
 const HERO_CARD_SLUGS = new Set([
+  "productbench",
+  "climate-sync",
   "proposalpal",
   "applied-ai-marketplace",
   "roadway-mobile-ticket",
