@@ -4,7 +4,7 @@ export const project: PastProject = {
   slug: "productbench",
   title: "ProductBench",
   description:
-    "Living research library of real software products — UX patterns, workflows, and architecture — so design and product teams can learn from what already ships.",
+    "Living research library that turns competitive benchmarking into structured, reusable product records — instead of screenshot folders that reset every project.",
   image: "/projects/productbench/productbench_card.png",
   alt: "ProductBench home with living research library headline and design-system category tiles.",
   width: 1280,
@@ -13,18 +13,19 @@ export const project: PastProject = {
   overview: {
     title: "Overview",
     paragraphs: [
-      "Product and design teams rarely lack inspiration — they lack structure. Screenshots pile up in folders, competitive notes live in one-off decks, and the useful details (navigation models, workflow steps, density choices, IA depth) get lost before the next kickoff.",
-      "ProductBench is a living research library of enterprise, consumer, and industrial software. Each product is documented as a comparable record — surfaces, workflows, feature inventory, and architecture signals — so teams can filter, cite, and carry findings into briefs, critiques, and handoff conversations.",
+      "Product and design teams don’t lack inspiration — they lack structure. Every competitive review starts the same way: a folder of screenshots, a one-off deck, a Notion page that goes stale the moment the project ends. The useful details — how the navigation is actually organized, how dense the UI is, what workflow a feature really supports — get lost, and the next project rebuilds the same research from scratch.",
+      "ProductBench is a living research library of enterprise, consumer, and industrial software, built to fix that. Each product is documented as a structured, comparable record — not a screenshot dump — so the research accumulates instead of resetting every time.",
     ],
-    role: "Lead Designer — Product Design, Interaction Design, Engineering (solo build)",
+    role: "Lead Designer — product design, interaction design, and engineering (solo build)",
     scope:
-      "Web research catalog — searchable product library, filterable catalog, product briefs with UX / screens / workflows / architecture, contribution flow, member unlock for deeper galleries",
+      "Web research catalog: filterable product library, structured product briefs (UX, screens, workflows, architecture), a capture pipeline for consistent screenshots, and a contribution flow to keep the catalog growing.",
   },
   sections: [
     {
       title: "Context",
       paragraphs: [
-        "Secondary research for product work usually collapses into bookmarks and moodboards. Those artifacts show how a product looks — not how it is structured, what roles it serves, or which workflow patterns actually transfer. The design problem was to make real-world product craft searchable and deep enough to shape decisions, without turning the tool into another dump of screenshots.",
+        "Benchmarking is a core part of the design process — before sketching a flow or defending a pattern, you look at how mature products already solve the same problem. But doing this well takes real time, and most of that time gets thrown away.",
+        "ProductBench treats benchmarking as infrastructure, not a one-time task: every product captured becomes a persistent, structured record — not a report that gets filed away and forgotten.",
       ],
       figures: [
         {
@@ -45,19 +46,19 @@ export const project: PastProject = {
       figuresLayout: "grid-2",
       topicGroups: [
         {
-          title: "Why inspiration stalls",
+          title: "Why benchmarking stalls",
           items: [
             {
               title: "Unstructured capture",
-              body: "Folders of screenshots and Notion dumps are hard to filter, compare, or cite once a project moves on.",
+              body: "Screenshots in folders are hard to filter, compare, or cite once the project moves on.",
             },
             {
               title: "Looks without structure",
-              body: "Hero shots hide navigation models, density choices, role splits, and workflow depth that teams actually need.",
+              body: "A hero shot doesn’t tell you the navigation model, the density choices, or how deep a workflow actually goes.",
             },
             {
               title: "One-off audits",
-              body: "Competitive teardowns go stale. Teams rebuild the same research for the next initiative instead of revisiting a shared library.",
+              body: "Competitive teardowns go stale fast, and the next team starts over instead of building on what was already learned.",
             },
           ],
         },
@@ -66,15 +67,15 @@ export const project: PastProject = {
           items: [
             {
               title: "Comparable records",
-              body: "Every product needed the same lenses — UX, screens, workflows, features, architecture — so cross-product reading stayed honest.",
+              body: "Every product needed the same lenses (UX, screens, workflows, features, architecture) so cross-product comparisons stay honest rather than apples-to-oranges.",
             },
             {
               title: "Fast discovery",
-              body: "Category, segment, platform, and semantic search had to surface the right peer in seconds, not a scroll marathon.",
+              body: "Category, segment, platform, and search need to surface the right peer in seconds, not after a scroll marathon.",
             },
             {
               title: "Depth with a gate",
-              body: "Guests get a useful preview; members unlock the full captured gallery so the public surface stays lean and the research layer stays rich.",
+              body: "Guests get a useful preview of each product record; logging in unlocks the full captured gallery, so the public surface stays lean while the research layer underneath stays rich.",
             },
           ],
         },
@@ -83,12 +84,12 @@ export const project: PastProject = {
         {
           value: "500",
           label: "Products in catalog",
-          detail: "Enterprise, consumer, industrial, and developer tools with structured records.",
+          detail: "Documented across categories, segments, and platforms.",
         },
         {
           value: "7",
           label: "Analysis lenses",
-          detail: "UX analysis, screens, workflows, features, live capture, stack notes, and architecture.",
+          detail: "UX analysis, screens, workflows, features, live capture, tech stack, and architecture.",
         },
         {
           value: "Live",
@@ -100,8 +101,9 @@ export const project: PastProject = {
     {
       title: "Approach",
       paragraphs: [
-        "The product is organized as a research system, not a gallery. A filterable catalog leads into product briefs that pair narrative craft notes with measurable structure — page and screen counts, IA depth, roles, competitive set — then open into captured surfaces and role-based workflows.",
-        "Search is treated as a first-class research tool: typed queries resolve across products, companies, features, and related concepts so teams can ask “how do they do X?” without knowing the exact product name up front.",
+        "The hard part of ProductBench isn’t the catalog UI — it’s making product capture consistent and structured enough to actually compare across 500+ very different products, from a Salesforce dashboard to a Spotify player to an ERP system.",
+        "That’s handled by a Playwright-based capture pipeline that runs against a defined taxonomy — surface, component, state, structure, and source — so every screenshot is tagged by what it actually shows, not just when it was taken. Products that need non-standard handling (heavier JS apps, unusual auth flows, etc.) get their own capture playbook rather than forcing one generic script to work everywhere.",
+        "The result is a dataset that can answer questions a screenshot folder can’t: which products in a category use a similar navigation pattern, how page count scales with product complexity, which role-based workflows repeat across tools that have nothing else in common.",
       ],
       figures: [
         {
@@ -114,19 +116,35 @@ export const project: PastProject = {
       ],
       topicGroups: [
         {
-          title: "Research model",
+          title: "Seven lenses, one record",
           items: [
             {
-              title: "Catalog → brief → depth",
-              body: "Browse or filter the library, open a product record, then move through screens, workflows, and architecture tabs without losing context.",
+              title: "UX analysis",
+              body: "Navigation model, density, interaction patterns.",
             },
             {
-              title: "Structured capture",
-              body: "Surfaces are tagged by kind (homepage, product UI, components, supporting) so galleries stay navigable as the library grows.",
+              title: "Screens",
+              body: "The captured surfaces themselves.",
             },
             {
-              title: "Contribute & grow",
-              body: "A contribution path lets teams submit products with UX, workflow, and stack detail — keeping the database living instead of frozen at launch.",
+              title: "Workflows",
+              body: "Role-based flows through the product.",
+            },
+            {
+              title: "Features",
+              body: "Capability inventory.",
+            },
+            {
+              title: "Live capture",
+              body: "The raw, tagged screenshots behind each record.",
+            },
+            {
+              title: "Tech stack",
+              body: "What the product is actually built with.",
+            },
+            {
+              title: "Architecture",
+              body: "Page count, IA depth, platform coverage.",
             },
           ],
         },
@@ -135,7 +153,7 @@ export const project: PastProject = {
     {
       title: "Product",
       paragraphs: [
-        "The product story runs from the full research-library home into featured catalog, semantic search, and product briefs — then through captured surfaces, workflows, analysis, About, and Process. Screens below are from the live ProductBench experience.",
+        "The live product runs from research-library home into featured catalog, search, and structured product briefs — then through captured surfaces, workflows, analysis, About, and Process. Screens below are from productbench.vercel.app.",
       ],
       productShowcase: {
         slides: [
@@ -308,28 +326,28 @@ export const project: PastProject = {
     {
       title: "Outcome",
       paragraphs: [
-        "ProductBench turns scattered product inspiration into a living library teams can search, filter, and cite. The public app ships a 500-product catalog with structured briefs, captured surfaces, and workflow analysis — so secondary research stops being a one-off scavenger hunt and becomes a reusable layer across the product journey.",
+        "ProductBench turns benchmarking from a one-off scramble into a reusable layer of research. The catalog currently documents 500 products across categories, segments, and platforms, with structured briefs and captured surfaces behind each one.",
       ],
       stats: [
+        {
+          value: "500",
+          label: "Products documented",
+          detail: "Across categories, segments, and platforms.",
+        },
         {
           value: "Live",
           label: "Public web app",
           detail: "Shipped at productbench.vercel.app.",
         },
         {
-          value: "500",
-          label: "Documented products",
-          detail: "Structured records across categories, segments, and platforms.",
-        },
-        {
           value: "Solo",
           label: "Design-led build",
-          detail: "Lead designer through product, interaction, and engineering.",
+          detail: "Product, interaction, and engineering.",
         },
         {
           value: "Open",
           label: "Contribution path",
-          detail: "Teams can submit products to keep the research library growing.",
+          detail: "So the catalog keeps growing.",
         },
       ],
     },
