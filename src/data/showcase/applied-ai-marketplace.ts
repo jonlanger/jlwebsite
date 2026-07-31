@@ -464,9 +464,9 @@ export const project: PastProject = {
           detail: "Unifying what was previously 10+ separate repositories.",
         },
         {
-          value: "9,564",
+          value: "11,220",
           label: "Active unique users (Q3)",
-          detail: "~23% of the 41,766-person eligible population.",
+          detail: "~27% of the 41,766-person eligible population.",
         },
         {
           value: "Under 2 min",
