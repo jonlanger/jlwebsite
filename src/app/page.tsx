@@ -50,24 +50,34 @@ export default function HomePage() {
       <PageShell className="border-t border-border/30 py-24 md:py-32">
         <div className={contentColumnClass}>
           <p className="font-heading text-2xl font-light leading-snug tracking-tight text-foreground md:text-3xl">
-            Portfolio, case studies &amp; projects
+            Get in touch
           </p>
           <p className="mt-8 text-lg leading-relaxed text-muted-foreground md:text-xl">
-            The following projects are grounded in real-world research and
-            experience. Client details and personal information have been adjusted
-            for privacy. Every project starts with people — their journeys,
-            motivations, and contexts shape the design language, workflows, copy,
-            and implementation strategy from the ground up.
+            Open to conversations about product design, research, and building
+            things that ship.
           </p>
-          <Link
-            href="/projects"
-            className={cn(
-              buttonVariants({ size: "lg" }),
-              "mt-12 h-11 px-6 text-base"
-            )}
-          >
-            Open projects
-          </Link>
+          <div className="mt-12 flex flex-wrap gap-4">
+            <a
+              href="mailto:jlanger1@gmail.com"
+              className={cn(
+                buttonVariants({ size: "lg" }),
+                "h-11 px-6 text-base"
+              )}
+            >
+              jlanger1@gmail.com
+            </a>
+            <a
+              href="https://www.linkedin.com/in/jonlanger/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cn(
+                buttonVariants({ variant: "outline", size: "lg" }),
+                "h-11 px-6 text-base"
+              )}
+            >
+              LinkedIn
+            </a>
+          </div>
         </div>
       </PageShell>
     </>
