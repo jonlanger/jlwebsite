@@ -93,11 +93,19 @@ export function ProjectPasswordModal({
           </span>
           <div>
             <h2 id={titleId} className="font-heading text-lg font-semibold tracking-tight">
-              Password required
+              Private case study
             </h2>
             <p id={descId} className="mt-1 text-sm leading-relaxed text-muted-foreground">
-              Enter the password to view this project. One unlock opens all
-              protected case studies.
+              Client and internal work stays behind access shared directly. If
+              connected through an application or conversation,{" "}
+              <a
+                href="mailto:jlanger1@gmail.com?subject=Portfolio%20access"
+                className="font-medium text-foreground underline underline-offset-2 hover:text-foreground/80"
+              >
+                email
+              </a>{" "}
+              or message for the password. One unlock opens all protected case
+              studies.
             </p>
           </div>
         </div>

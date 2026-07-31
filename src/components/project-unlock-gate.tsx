@@ -30,11 +30,11 @@ export function ProjectUnlockGate({
     return (
       <div className="mx-auto max-w-lg py-16 text-center" aria-busy={!ready}>
         <p className="font-heading text-xl font-semibold tracking-tight">
-          Protected project
+          Private case study
         </p>
         <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
           {ready
-            ? "Enter the password to view this case study."
+            ? "Client and internal work stays behind access shared directly. If connected through an application or conversation, email or message for the password."
             : "Checking access…"}
         </p>
       </div>
