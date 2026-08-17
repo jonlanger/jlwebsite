@@ -1,4 +1,5 @@
 import type { PastProject } from "@/data/past-projects";
+import { project as careshift } from "@/data/showcase/careshift";
 import { project as additiveMfgRoi } from "@/data/showcase/additive-mfg-roi";
 import { project as cellGeneTherapy } from "@/data/showcase/cell-gene-therapy";
 import { project as chemicalCx } from "@/data/showcase/chemical-cx";
@@ -16,6 +17,7 @@ import { project as productbench } from "@/data/showcase/productbench";
 
 /** Showcase order matches the September 2024 portfolio page. */
 export const PORTFOLIO_SHOWCASE_PROJECTS: PastProject[] = [
+  careshift,
   productbench,
   climateSync,
   proposalpal,
