@@ -2,6 +2,7 @@ import type { PastProject } from "@/data/past-projects";
 
 export const project: PastProject = {
   slug: "careshift",
+  category: "software",
   title: "Careshift",
   description:
     "A 90-second shift-handoff ritual for caregivers, grounded in clinical handoff research — what changed, what's due, then ready, with a safety gate that keeps a flagged incident from getting rushed past.",

@@ -13,7 +13,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import { getPastProject } from "@/data/past-projects";
+import { PROJECT_TITLES } from "@/data/project-titles";
 
 const SEGMENT_LABEL: Record<string, string> = {
   projects: "Projects",
@@ -59,7 +59,7 @@ export function SiteBreadcrumb() {
             const href = `/${segments.slice(0, i + 1).join("/")}`;
             const label =
               i > 0 && segments[i - 1] === "projects"
-                ? (getPastProject(segment)?.title ?? labelForSegment(segment))
+                ? (PROJECT_TITLES[segment] ?? labelForSegment(segment))
                 : labelForSegment(segment);
             const isLast = i === segments.length - 1;
 

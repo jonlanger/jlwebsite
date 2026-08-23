@@ -2,6 +2,7 @@ import type { PastProject } from "@/data/past-projects";
 
 export const project: PastProject = {
   slug: "proposalpal",
+  category: "software",
   title: "ProposalPal",
   description:
     "AI-powered proposal development agent that turns fragmented RFPs, notes, and BCG IP into a structured, high-quality first draft \u2014 in hours, not days.",

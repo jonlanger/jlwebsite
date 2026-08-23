@@ -25,6 +25,8 @@ import { PETRICOR_USER_FLOW_TABS } from "@/data/petricor-user-flows";
 import type { ResearchInsightsData } from "@/data/headlines-research-insights";
 import { HEADLINES_RESEARCH_INSIGHTS } from "@/data/headlines-research-insights";
 import { PORTFOLIO_SHOWCASE_PROJECTS } from "@/data/portfolio-showcase-projects";
+import type { ProjectCategory } from "@/data/project-categories";
+import { PROJECT_TITLES } from "@/data/project-titles";
 
 /** Wireframe or screen image inside a user-flow tab panel. */
 export type ProjectUserFlowImage = {
@@ -200,13 +202,21 @@ export type ProjectSection = {
 export type PastProject = {
   slug: string;
   title: string;
+  /** Which grid on /projects this appears in. */
+  category: ProjectCategory;
   description: string;
-  /** Case-study board; omit when there is no artwork yet. */
+  /** 16:9 card art for the grid; omit when there is no artwork yet. */
   image?: string;
   alt?: string;
-  /** Intrinsic pixel size of the case-study PNG (used for layout + `next/image`). */
+  /** Intrinsic pixel size of the card art (used for layout + `next/image`). */
   width?: number;
   height?: number;
+  /**
+   * Tall case-study board shown on the detail page, for image-only projects.
+   * Pre-generated at 1920 wide by scripts/generate-legacy-project-assets.py so
+   * next/image never hits libwebp's 16383px dimension limit.
+   */
+  board?: { src: string; width: number; height: number };
   /** Optional public live demo / product URL shown on the detail page. */
   liveUrl?: string;
   /** First narrative section (often Overview; may include role/scope). */
@@ -218,233 +228,371 @@ export type PastProject = {
 export const pastProjects: PastProject[] = [
   {
     slug: "accessible-fastener",
+    category: "hardware",
     title: "Accessible fastening system",
     description:
       "A magnetic-assisted fastening system for people with dexterity challenges, from research through prototyping.",
-    image: "/projects/accessible-fastener.png",
+    image: "/projects/accessible-fastener/accessible-fastener_card.webp",
     alt: "Case study board for an accessible clothing fastener alternative to zippers.",
-    width: 1960,
-    height: 10650,
+    width: 1024,
+    height: 576,
+    board: {
+      src: "/projects/accessible-fastener/accessible-fastener_board.webp",
+      width: 1920,
+      height: 10433,
+    },
   },
   {
     slug: "ai-camera-nodit",
+    category: "hardware",
     title: "Nodit AI Camera",
     description:
       "Camera and sensing concept integrating AI-assisted capture and hardware layout.",
-    image: "/projects/voxelplm.png",
+    image: "/projects/ai-camera-nodit/ai-camera-nodit_card.webp",
     alt: "Nodit AI camera product case study.",
-    width: 1960,
-    height: 9278,
+    width: 1024,
+    height: 576,
+    board: {
+      src: "/projects/ai-camera-nodit/ai-camera-nodit_board.webp",
+      width: 1920,
+      height: 9089,
+    },
   },
   {
     slug: "h2-audio",
+    category: "hardware",
     title: "H2 Audio",
     description:
       "Audio product and hardware exploration—from use cases through industrial design and visualization.",
-    image: "/projects/ai-camera-nodit.png",
+    image: "/projects/h2-audio/h2-audio_card.webp",
     alt: "H2 Audio product case study board.",
-    width: 1960,
-    height: 10514,
+    width: 1024,
+    height: 576,
+    board: {
+      src: "/projects/h2-audio/h2-audio_board.webp",
+      width: 1920,
+      height: 10299,
+    },
   },
   {
     slug: "e-syringe",
+    category: "hardware",
     title: "Electronic syringe",
     description:
       "Medical injection device concept with digital interface and ergonomic hardware exploration.",
-    image: "/projects/e-syringe.png",
+    image: "/projects/e-syringe/e-syringe_card.webp",
     alt: "Electronic syringe product design case study.",
-    width: 1960,
-    height: 7482,
+    width: 1024,
+    height: 576,
+    board: {
+      src: "/projects/e-syringe/e-syringe_board.webp",
+      width: 1920,
+      height: 7329,
+    },
   },
   {
     slug: "ecowell-c79b",
+    category: "hardware",
     title: "Ecowell — case study (C79B)",
     description:
       "A custom sustainable drink machine—from sketches and renders to prototype in context.",
-    image: "/projects/ecowell-c79b.png",
+    image: "/projects/ecowell-c79b/ecowell-c79b_card.webp",
     alt: "Ecowell sustainable drink machine case study board.",
-    width: 1960,
-    height: 8256,
+    width: 1024,
+    height: 576,
+    board: {
+      src: "/projects/ecowell-c79b/ecowell-c79b_board.webp",
+      width: 1920,
+      height: 8088,
+    },
   },
   {
     slug: "ecowell-c8l9",
+    category: "hardware",
     title: "Ecowell — case study (C8L9)",
     description:
       "Alternate case-study layout for the Ecowell sustainable drink machine.",
-    image: "/projects/ecowell-c8l9.png",
+    image: "/projects/ecowell-c8l9/ecowell-c8l9_card.webp",
     alt: "Ecowell drink machine case study, alternate board.",
-    width: 1960,
-    height: 5072,
+    width: 1024,
+    height: 576,
+    board: {
+      src: "/projects/ecowell-c8l9/ecowell-c8l9_board.webp",
+      width: 1920,
+      height: 4968,
+    },
   },
   {
     slug: "footwear-sketches",
+    category: "hardware",
     title: "Footwear concept sketches",
     description:
       "Industrial design explorations for tech-forward footwear—silhouettes, materials, and assembly studies.",
-    image: "/projects/footwear-sketches.png",
+    image: "/projects/footwear-sketches/footwear-sketches_card.webp",
     alt: "Composite of hand-drawn futuristic footwear concept sketches.",
-    width: 1960,
-    height: 2860,
+    width: 1024,
+    height: 576,
+    board: {
+      src: "/projects/footwear-sketches/footwear-sketches_board.webp",
+      width: 1920,
+      height: 2802,
+    },
   },
   {
     slug: "laser-scalpel",
+    category: "hardware",
     title: "Laser scalpel",
     description:
       "Surgical laser instrument design with clinical context and mechanical detail.",
-    image: "/projects/laser-scalpel.png",
+    image: "/projects/laser-scalpel/laser-scalpel_card.webp",
     alt: "Laser scalpel medical device case study.",
-    width: 1960,
-    height: 5686,
+    width: 1024,
+    height: 576,
+    board: {
+      src: "/projects/laser-scalpel/laser-scalpel_board.webp",
+      width: 1920,
+      height: 5570,
+    },
   },
   {
     slug: "lllt-knee-brace-c1zug",
+    category: "hardware",
     title: "Low level laser therapy — knee brace study",
     description:
       "Wearable knee therapy device: research, hardware, app UI, and final renders.",
-    image: "/projects/lllt-knee-brace-c1zug.png",
+    image: "/projects/lllt-knee-brace-c1zug/lllt-knee-brace-c1zug_card.webp",
     alt: "LLLT knee brace case study with app and product renders.",
-    width: 1960,
-    height: 10010,
+    width: 1024,
+    height: 576,
+    board: {
+      src: "/projects/lllt-knee-brace-c1zug/lllt-knee-brace-c1zug_board.webp",
+      width: 1920,
+      height: 9806,
+    },
   },
   {
     slug: "lllt-knee-osteoarthritis",
+    category: "hardware",
     title: "Low level laser therapy",
     description:
       "Extended case study for knee osteoarthritis therapy—from anatomy and sketches to app and product.",
-    image: "/projects/lllt-knee-osteoarthritis.png",
+    image: "/projects/lllt-knee-osteoarthritis/lllt-knee-osteoarthritis_card.webp",
     alt: "LLLT knee osteoarthritis case study board.",
-    width: 1960,
-    height: 16384,
+    width: 1024,
+    height: 576,
+    board: {
+      src: "/projects/lllt-knee-osteoarthritis/lllt-knee-osteoarthritis_board.webp",
+      width: 1920,
+      height: 16050,
+    },
   },
   {
     slug: "medical-recovery-systems",
+    category: "hardware",
     title: "Medical Recovery & Rehabilitation System",
     description:
       "Clinical concepts spanning 3D scanning for recovery, pediatric therapeutic play, prosthetic training, and bed-side systems.",
-    image: "/projects/medical-recovery-systems.png",
+    image: "/projects/medical-recovery-systems/medical-recovery-systems_card.webp",
     alt: "Compilation of medical device and rehabilitation design projects.",
-    width: 1960,
-    height: 16384,
+    width: 1024,
+    height: 576,
+    board: {
+      src: "/projects/medical-recovery-systems/medical-recovery-systems_board.webp",
+      width: 1920,
+      height: 16050,
+    },
   },
   {
     slug: "medication-adherence",
+    category: "hardware",
     title: "Medication non-adherence research",
     description:
       "Stakeholder research, field methods, and visual synthesis on adherence in an aging population.",
-    image: "/projects/medication-adherence.png",
+    image: "/projects/medication-adherence/medication-adherence_card.webp",
     alt: "Infographic on medication non-adherence research and field study.",
-    width: 1960,
-    height: 4962,
+    width: 1024,
+    height: 576,
+    board: {
+      src: "/projects/medication-adherence/medication-adherence_board.webp",
+      width: 1920,
+      height: 4861,
+    },
   },
   {
     slug: "micro-windmill",
+    category: "hardware",
     title: "Micro windmill",
     description:
       "Small-scale wind energy harvesting concept and visualization.",
-    image: "/projects/micro-windmill.png",
+    image: "/projects/micro-windmill/micro-windmill_card.webp",
     alt: "Micro windmill energy concept case study.",
-    width: 1960,
-    height: 8528,
+    width: 1024,
+    height: 576,
+    board: {
+      src: "/projects/micro-windmill/micro-windmill_board.webp",
+      width: 1920,
+      height: 8354,
+    },
   },
   {
     slug: "moto-id",
+    category: "hardware",
     title: "Moto ID",
     description:
       "Vehicle and mobility identity system exploration.",
-    image: "/projects/moto-id.png",
+    image: "/projects/moto-id/moto-id_card.webp",
     alt: "Moto ID branding and mobility concept board.",
-    width: 1960,
-    height: 16384,
+    width: 1024,
+    height: 576,
+    board: {
+      src: "/projects/moto-id/moto-id_board.webp",
+      width: 1920,
+      height: 16050,
+    },
   },
   {
     slug: "oasis",
+    category: "hardware",
     title: "Oasis",
     description:
       "Product or environment concept for hydration, retail, or experiential design.",
-    image: "/projects/oasis.png",
+    image: "/projects/oasis/oasis_card.webp",
     alt: "Oasis project case study board.",
-    width: 1960,
-    height: 16384,
+    width: 1024,
+    height: 576,
+    board: {
+      src: "/projects/oasis/oasis_board.webp",
+      width: 1920,
+      height: 16050,
+    },
   },
   {
     slug: "smart-hydration-platform",
+    category: "hardware",
     title: "Smart Hydration",
     description:
       "Connected bottle, gym hardware, mechanical detail, and companion app UX for hydration and training.",
-    image: "/projects/smart-hydration-platform.png",
+    image: "/projects/smart-hydration-platform/smart-hydration-platform_card.webp",
     alt: "Smart connected hydration and fitness platform case study.",
-    width: 1960,
-    height: 16384,
+    width: 1024,
+    height: 576,
+    board: {
+      src: "/projects/smart-hydration-platform/smart-hydration-platform_board.webp",
+      width: 1920,
+      height: 16050,
+    },
   },
   {
     slug: "solar-field-installation",
+    category: "hardware",
     title: "Automated Solar Field",
     description:
       "Robotic solar deployment in the field, team operations, software dashboards, and system diagrams.",
-    image: "/projects/solar-field-installation.png",
+    image: "/projects/solar-field-installation/solar-field-installation_card.webp",
     alt: "Automated solar field installation system case study.",
-    width: 1960,
-    height: 16384,
+    width: 1024,
+    height: 576,
+    board: {
+      src: "/projects/solar-field-installation/solar-field-installation_board.webp",
+      width: 1920,
+      height: 16050,
+    },
   },
   {
     slug: "stemcell-spray",
+    category: "hardware",
     title: "Autonomous Shipping Systems for trackless trains",
     description:
       "Modular wheeled platforms for containerized freight, shown in environment, port loading, and component detail.",
-    image: "/projects/stemcell-spray.png",
+    image: "/projects/stemcell-spray/stemcell-spray_card.webp",
     alt: "Autonomous trackless train shipping and modular freight platforms case study.",
-    width: 1960,
-    height: 10606,
+    width: 1024,
+    height: 576,
+    board: {
+      src: "/projects/stemcell-spray/stemcell-spray_board.webp",
+      width: 1920,
+      height: 10390,
+    },
   },
   {
     slug: "stemcell-spray-alt",
+    category: "hardware",
     title: "Stemcell spray system",
     description:
       "Pain-free skin grafting workflow with device renders, cartridges, and mobile app screens.",
-    image: "/projects/stemcell-spray-alt.png",
+    image: "/projects/stemcell-spray-alt/stemcell-spray-alt_card.webp",
     alt: "Stemcell spray system for skin grafting case study.",
-    width: 1960,
-    height: 9938,
+    width: 1024,
+    height: 576,
+    board: {
+      src: "/projects/stemcell-spray-alt/stemcell-spray-alt_board.webp",
+      width: 1920,
+      height: 9735,
+    },
   },
   {
     slug: "uav-humanitarian-delivery",
+    category: "hardware",
     title: "Human-centric UAV delivery",
     description:
       "Aerial logistics for sparse infrastructure—operations, payload, testing, and modular airframe diagrams.",
-    image: "/projects/uav-humanitarian-delivery.png",
+    image: "/projects/uav-humanitarian-delivery/uav-humanitarian-delivery_card.webp",
     alt: "UAV humanitarian delivery case study with drone renders and process photos.",
-    width: 1960,
-    height: 16384,
+    width: 1024,
+    height: 576,
+    board: {
+      src: "/projects/uav-humanitarian-delivery/uav-humanitarian-delivery_board.webp",
+      width: 1920,
+      height: 16050,
+    },
   },
   {
     slug: "vaccine-transport",
+    category: "hardware",
     title: "Vaccine transport for mobile Africa",
     description:
       "Cold-chain portable carrier inspired by real mobility constraints, from research through exploded technical views.",
-    image: "/projects/vaccine-transport.png",
+    image: "/projects/vaccine-transport/vaccine-transport_card.webp",
     alt: "Vaccine transport system for mobile Africa case study.",
-    width: 1960,
-    height: 13362,
+    width: 1024,
+    height: 576,
+    board: {
+      src: "/projects/vaccine-transport/vaccine-transport_board.webp",
+      width: 1920,
+      height: 13089,
+    },
   },
   {
     slug: "vaccine-transport-c23c1",
+    category: "hardware",
     title: "Vaccine transport — alternate board",
     description:
       "Alternate case-study layout for the mobile vaccine transport system.",
-    image: "/projects/vaccine-transport-c23c1.png",
+    image: "/projects/vaccine-transport-c23c1/vaccine-transport-c23c1_card.webp",
     alt: "Alternate vaccine transport for mobile Africa case study board.",
-    width: 1960,
-    height: 12904,
+    width: 1024,
+    height: 576,
+    board: {
+      src: "/projects/vaccine-transport-c23c1/vaccine-transport-c23c1_board.webp",
+      width: 1920,
+      height: 12641,
+    },
   },
   {
     slug: "mdx",
+    category: "hardware",
     title: "MDX",
     description:
       "Medical Health Learning platform—research, UX, and system visualization for clinical education.",
-    image: "/projects/voxelplm-board-1.png",
+    image: "/projects/mdx/mdx_card.webp",
     alt: "MDX Medical Health Learning platform case study board.",
-    width: 1960,
-    height: 9068,
+    width: 1024,
+    height: 576,
+    board: {
+      src: "/projects/mdx/mdx_board.webp",
+      width: 1920,
+      height: 8883,
+    },
   },
 ];
 
@@ -453,6 +601,7 @@ export const recentProjects2023_2026: PastProject[] = [
   ...PORTFOLIO_SHOWCASE_PROJECTS,
   {
     slug: "coco",
+    category: "software",
     title: "Coco",
     description:
       "Fleet and waste management platform for drivers, collectors, and customers.",
@@ -629,6 +778,7 @@ export const recentProjects2023_2026: PastProject[] = [
   },
   {
     slug: "petricor",
+    category: "software",
     title: "Petricor",
     description:
       "Automated fungi and mold analysis platform for microbiology laboratories.",
@@ -810,6 +960,7 @@ export const recentProjects2023_2026: PastProject[] = [
   },
   {
     slug: "aureum",
+    category: "software",
     title: "Aureum AI",
     description:
       "Holistic AI-powered personal finance coach for budgeting, goals, and insights.",
@@ -1008,6 +1159,7 @@ export const recentProjects2023_2026: PastProject[] = [
   },
   {
     slug: "equipify",
+    category: "software",
     title: "Equipify",
     description:
       "Comprehensive industrial and business supply platform.",
@@ -1202,6 +1354,7 @@ export const recentProjects2023_2026: PastProject[] = [
   },
   {
     slug: "studioflow",
+    category: "software",
     title: "Studioflow",
     description:
       "Streamlined production management for creative studios.",
@@ -1405,6 +1558,7 @@ export const recentProjects2023_2026: PastProject[] = [
   },
   {
     slug: "headlines",
+    category: "software",
     title: "Headlines",
     description:
       "Direct high-level messaging from media outlets.",
@@ -1561,6 +1715,7 @@ export const recentProjects2023_2026: PastProject[] = [
   },
   {
     slug: "foodtrack",
+    category: "software",
     title: "Foodtrack",
     description:
       "Restaurant inventory management platform.",
@@ -1799,33 +1954,51 @@ export const recentProjects2023_2026: PastProject[] = [
   },
   {
     slug: "teleoperation-station",
+    category: "hardware",
     title: "Teleoperation System",
     description:
       "Modular remote operation workstations for vehicles and robots, from use cases to scalable room layouts.",
-    image: "/projects/teleoperation-station.png",
+    image: "/projects/teleoperation-station/teleoperation-station_card.webp",
     alt: "Teleoperation station for vehicles and robotics case study.",
-    width: 1960,
-    height: 12142,
+    width: 1024,
+    height: 576,
+    board: {
+      src: "/projects/teleoperation-station/teleoperation-station_board.webp",
+      width: 1920,
+      height: 11894,
+    },
   },
   {
     slug: "voxelplm",
+    category: "software",
     title: "Voxel PLM",
     description:
       "Product lifecycle and 3D data workflow concept visualization.",
-    image: "/projects/autonomous-shipping.png",
+    image: "/projects/voxelplm/voxelplm_card.webp",
     alt: "Voxel PLM software and process case study.",
-    width: 1960,
-    height: 12218,
+    width: 1024,
+    height: 576,
+    board: {
+      src: "/projects/voxelplm/voxelplm_board.webp",
+      width: 1920,
+      height: 11969,
+    },
   },
   {
     slug: "animation-physics",
+    category: "experiments",
     title: "Animation & physics simulations",
     description:
       "A grid of physics-based animation studies including fluids, cloth, rigid bodies, and particles.",
-    image: "/projects/animation-physics.png",
+    image: "/projects/animation-physics/animation-physics_card.webp",
     alt: "Grid of animation and physics simulation thumbnails.",
-    width: 1960,
-    height: 9230,
+    width: 1024,
+    height: 576,
+    board: {
+      src: "/projects/animation-physics/animation-physics_board.webp",
+      width: 1920,
+      height: 9042,
+    },
   },
 ];
 
@@ -1834,52 +2007,55 @@ const bySlug = new Map(
 );
 
 /**
- * Row-major order for the /projects grid (top-left → right, then next row).
- * Remaining projects follow in alphabetical order by title.
+ * Row-major order per category for the /projects grid (top-left -> right, then
+ * next row). Slugs not listed follow in alphabetical order by title.
  */
-export const PAST_PROJECT_GRID_ORDER: readonly string[] = [
-  "oasis",
-  "ai-camera-nodit",
-  "h2-audio",
-  "smart-hydration-platform",
-  "solar-field-installation",
-  "medical-recovery-systems",
-  "mdx",
-  "lllt-knee-osteoarthritis",
-];
+export const PROJECT_GRID_ORDER: Record<ProjectCategory, readonly string[]> = {
+  software: [
+    "careshift",
+    "productbench",
+    "climate-sync",
+    "proposalpal",
+    "applied-ai-marketplace",
+    "roadway-mobile-ticket",
+    "project-speed-signs",
+    "consultants-portal",
+    "additive-mfg-roi-dashboard",
+    "cell-gene-therapy-platform",
+    "chemical-cx-platform",
+    "additive-mfg-cx-data-platform",
+    "dialysis-management",
+    "connect-pool-robot-app",
+    "additive-mfg-print-sim-scan",
+    "coco",
+    "petricor",
+    "aureum",
+    "equipify",
+    "studioflow",
+    "headlines",
+    "foodtrack",
+    "voxelplm",
+  ],
+  hardware: [
+    "oasis",
+    "ai-camera-nodit",
+    "h2-audio",
+    "smart-hydration-platform",
+    "solar-field-installation",
+    "medical-recovery-systems",
+    "mdx",
+    "lllt-knee-osteoarthritis",
+    "teleoperation-station",
+  ],
+  experiments: [
+    "animation-physics",
+  ],
+};
 
-/** Optional manual order for the Software grid (same pattern as past projects). */
-export const RECENT_PROJECT_GRID_ORDER: readonly string[] = [
-  "careshift",
-  "productbench",
-  "climate-sync",
-  "proposalpal",
-  "applied-ai-marketplace",
-  "roadway-mobile-ticket",
-  "project-speed-signs",
-  "consultants-portal",
-  "additive-mfg-roi-dashboard",
-  "cell-gene-therapy-platform",
-  "chemical-cx-platform",
-  "additive-mfg-cx-data-platform",
-  "dialysis-management",
-  "connect-pool-robot-app",
-  "additive-mfg-print-sim-scan",
-  "coco",
-  "petricor",
-  "aureum",
-  "equipify",
-  "studioflow",
-  "headlines",
-  "foodtrack",
-  "teleoperation-station",
-  "voxelplm",
-  "animation-physics",
-];
 
 export function sortPastProjectsForGrid(
   projects: readonly PastProject[],
-  gridOrder: readonly string[] = PAST_PROJECT_GRID_ORDER
+  gridOrder: readonly string[] = []
 ): PastProject[] {
   const map = new Map(projects.map((p) => [p.slug, p]));
   const ordered: PastProject[] = [];
@@ -1897,10 +2073,38 @@ export function sortPastProjectsForGrid(
   return [...ordered, ...rest];
 }
 
+const ALL_PROJECTS: readonly PastProject[] = [
+  ...recentProjects2023_2026,
+  ...pastProjects,
+];
+
+/** Projects in one category, in grid order. */
+export function projectsInCategory(category: ProjectCategory): PastProject[] {
+  return sortPastProjectsForGrid(
+    ALL_PROJECTS.filter((p) => p.category === category),
+    PROJECT_GRID_ORDER[category]
+  );
+}
+
 export function getPastProject(slug: string): PastProject | undefined {
   return bySlug.get(slug);
 }
 
 export function getPastProjectSlugs(): string[] {
   return [...recentProjects2023_2026, ...pastProjects].map((p) => p.slug);
+}
+
+// The breadcrumb reads titles from the dependency-free project-titles.ts so it
+// does not drag every case-study body into the client bundle. Fail loudly in
+// development if the two drift apart.
+if (process.env.NODE_ENV !== "production") {
+  for (const project of ALL_PROJECTS) {
+    if (PROJECT_TITLES[project.slug] !== project.title) {
+      throw new Error(
+        `project-titles.ts is out of sync for "${project.slug}": ` +
+          `expected ${JSON.stringify(project.title)}, ` +
+          `got ${JSON.stringify(PROJECT_TITLES[project.slug])}`
+      );
+    }
+  }
 }

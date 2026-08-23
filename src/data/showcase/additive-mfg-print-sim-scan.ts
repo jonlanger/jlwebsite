@@ -3,6 +3,7 @@ import type { PastProject } from "@/data/past-projects";
 
 export const project: PastProject = {
   slug: "additive-mfg-print-sim-scan",
+  category: "software",
   title: "Additive Manufacturing Print, Sim, and Scan",
   description:
     "Markforged primary print workflow spanning part prep, simulation, and laser scan inspection for enterprise manufacturing.",

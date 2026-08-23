@@ -2,6 +2,7 @@ import type { PastProject } from "@/data/past-projects";
 
 export const project: PastProject = {
   slug: "climate-sync",
+  category: "software",
   title: "Climate Sync",
   description:
     "Interactive globe that links major cities by shared climate profiles—so adaptation ideas can travel between places facing similar weather, water, and risk.",

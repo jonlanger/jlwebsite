@@ -2,6 +2,7 @@ import type { PastProject } from "@/data/past-projects";
 
 export const project: PastProject = {
   slug: "consultants-portal",
+  category: "software",
   title: "Consultants Portal",
   description:
     "Compliance and materials-tracking software connecting government agencies, consulting firms, and contractors on roadway construction projects.",

@@ -1,0 +1,59 @@
+/**
+ * slug -> title, for the breadcrumb.
+ *
+ * Deliberately a dependency-free leaf module. `site-breadcrumb.tsx` is a client
+ * component and used to import `getPastProject` from `past-projects.ts`, which
+ * dragged all 48 case-study bodies (~80 KB gzipped) into the shared client
+ * bundle on every route. A dev-only invariant at the bottom of past-projects.ts
+ * fails the build if this map drifts out of sync.
+ */
+export const PROJECT_TITLES: Record<string, string> = {
+  "accessible-fastener": "Accessible fastening system",
+  "additive-mfg-cx-data-platform": "Additive Mfg & CX Data Platform",
+  "additive-mfg-print-sim-scan": "Additive Manufacturing Print, Sim, and Scan",
+  "additive-mfg-roi-dashboard": "Additive Mfg ROI Dashboard",
+  "ai-camera-nodit": "Nodit AI Camera",
+  "animation-physics": "Animation & physics simulations",
+  "applied-ai-marketplace": "Applied AI Marketplace",
+  "aureum": "Aureum AI",
+  "careshift": "Careshift",
+  "cell-gene-therapy-platform": "Cell Gene Therapy Platform",
+  "chemical-cx-platform": "Chemical CX Platform",
+  "climate-sync": "Climate Sync",
+  "coco": "Coco",
+  "connect-pool-robot-app": "Connected Pool Robot & App",
+  "consultants-portal": "Consultants Portal",
+  "dialysis-management": "Dialysis Management",
+  "e-syringe": "Electronic syringe",
+  "ecowell-c79b": "Ecowell — case study (C79B)",
+  "ecowell-c8l9": "Ecowell — case study (C8L9)",
+  "equipify": "Equipify",
+  "foodtrack": "Foodtrack",
+  "footwear-sketches": "Footwear concept sketches",
+  "h2-audio": "H2 Audio",
+  "headlines": "Headlines",
+  "laser-scalpel": "Laser scalpel",
+  "lllt-knee-brace-c1zug": "Low level laser therapy — knee brace study",
+  "lllt-knee-osteoarthritis": "Low level laser therapy",
+  "mdx": "MDX",
+  "medical-recovery-systems": "Medical Recovery & Rehabilitation System",
+  "medication-adherence": "Medication non-adherence research",
+  "micro-windmill": "Micro windmill",
+  "moto-id": "Moto ID",
+  "oasis": "Oasis",
+  "petricor": "Petricor",
+  "productbench": "ProductBench",
+  "project-speed-signs": "Project Speed & Signs",
+  "proposalpal": "ProposalPal",
+  "roadway-mobile-ticket": "Roadway Mobile Ticket Experience",
+  "smart-hydration-platform": "Smart Hydration",
+  "solar-field-installation": "Automated Solar Field",
+  "stemcell-spray": "Autonomous Shipping Systems for trackless trains",
+  "stemcell-spray-alt": "Stemcell spray system",
+  "studioflow": "Studioflow",
+  "teleoperation-station": "Teleoperation System",
+  "uav-humanitarian-delivery": "Human-centric UAV delivery",
+  "vaccine-transport": "Vaccine transport for mobile Africa",
+  "vaccine-transport-c23c1": "Vaccine transport — alternate board",
+  "voxelplm": "Voxel PLM",
+};

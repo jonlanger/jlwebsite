@@ -4,6 +4,7 @@ const BOARD = { width: 1800, height: 1013 } as const;
 
 export const project: PastProject = {
   slug: "roadway-mobile-ticket",
+  category: "software",
   title: "Roadway Mobile Ticket Experience",
   description:
     "A map-first mobile experience that puts project location data, multimedia, and ticket creation in the hands of contractors, admins, and field teams on roadway projects.",

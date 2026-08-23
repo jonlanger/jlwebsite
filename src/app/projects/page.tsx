@@ -2,27 +2,49 @@ import type { Metadata } from "next";
 
 import { PastProjectsGrid } from "@/components/past-projects-grid";
 import { PageShell } from "@/components/page-shell";
+import { ProjectCategoryNav } from "@/components/project-category-nav";
+import { projectsInCategory } from "@/data/past-projects";
 import {
-  pastProjects,
-  RECENT_PROJECT_GRID_ORDER,
-  recentProjects2023_2026,
-  sortPastProjectsForGrid,
-} from "@/data/past-projects";
+  DEFAULT_PROJECT_CATEGORY,
+  parseProjectCategory,
+  projectCategoryLabel,
+} from "@/data/project-categories";
 import { contentColumnClass } from "@/lib/content-layout";
 
-export const metadata: Metadata = {
-  title: "Projects",
-  description:
-    "Portfolio, case studies, and projects grounded in research and real-world experience.",
+type ProjectsPageProps = {
+  searchParams: Promise<{ view?: string | string[] }>;
 };
 
-const recentGridProjects = sortPastProjectsForGrid(
-  recentProjects2023_2026,
-  RECENT_PROJECT_GRID_ORDER
-);
-const pastGridProjects = sortPastProjectsForGrid(pastProjects);
+const CATEGORY_DESCRIPTION: Record<string, string> = {
+  software:
+    "Product design case studies for software platforms, dashboards, and connected applications.",
+  hardware:
+    "Industrial design and connected device work, from medical hardware to autonomous systems.",
+  experiments:
+    "Animation studies, physics simulations, data visualization, and other explorations.",
+};
 
-export default function ProjectsPage() {
+export async function generateMetadata({
+  searchParams,
+}: ProjectsPageProps): Promise<Metadata> {
+  const view = parseProjectCategory((await searchParams).view);
+  const isDefault = view === DEFAULT_PROJECT_CATEGORY;
+
+  return {
+    title: isDefault ? "Projects" : `Projects — ${projectCategoryLabel(view)}`,
+    description: CATEGORY_DESCRIPTION[view],
+    alternates: {
+      canonical: isDefault ? "/projects" : `/projects?view=${view}`,
+    },
+  };
+}
+
+export default async function ProjectsPage({
+  searchParams,
+}: ProjectsPageProps) {
+  const view = parseProjectCategory((await searchParams).view);
+  const projects = projectsInCategory(view);
+
   return (
     <PageShell>
       <div className={contentColumnClass}>
@@ -37,15 +59,12 @@ export default function ProjectsPage() {
           and implementation strategy from the ground up.
         </p>
 
-        <h2 className="mt-12 font-heading text-xl font-bold tracking-tight md:text-2xl">
-          Software &amp; Platforms
-        </h2>
-        <PastProjectsGrid projects={recentGridProjects} />
+        <ProjectCategoryNav active={view} />
 
-        <h2 className="mt-14 font-heading text-xl font-bold tracking-tight md:text-2xl">
-          Connected Devices &amp; Hardware
+        <h2 className="mt-10 font-heading text-xl font-bold tracking-tight md:text-2xl">
+          {projectCategoryLabel(view)}
         </h2>
-        <PastProjectsGrid projects={pastGridProjects} />
+        <PastProjectsGrid projects={projects} />
       </div>
     </PageShell>
   );

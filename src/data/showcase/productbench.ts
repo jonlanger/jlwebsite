@@ -2,6 +2,7 @@ import type { PastProject } from "@/data/past-projects";
 
 export const project: PastProject = {
   slug: "productbench",
+  category: "software",
   title: "ProductBench",
   description:
     "Living research library that turns competitive benchmarking into structured, reusable product records — instead of screenshot folders that reset every project.",

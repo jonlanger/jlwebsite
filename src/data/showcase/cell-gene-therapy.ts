@@ -2,6 +2,7 @@ import type { PastProject } from "@/data/past-projects";
 
 export const project: PastProject = {
   slug: "cell-gene-therapy-platform",
+  category: "software",
   title: "Cell Gene Therapy Platform",
   description:
     "Single-pane-of-glass platform for Roche cell and gene therapy manufacturing, treatment, and clinical operations.",

@@ -2,6 +2,7 @@ import type { PastProject } from "@/data/past-projects";
 
 export const project: PastProject = {
   slug: "applied-ai-marketplace",
+  category: "software",
   title: "Applied AI Marketplace",
   description:
     "AI-native asset catalog and discovery platform that unified 10+ internal repositories into a single, searchable source of truth for BCG's applied AI tools.",

@@ -4,6 +4,7 @@ const BOARD = { width: 1800, height: 1013 } as const;
 
 export const project: PastProject = {
   slug: "connect-pool-robot-app",
+  category: "software",
   title: "Connected Pool Robot & App",
   description:
     "Connected pool robot system and companion apps for pool owners and service providers \u2014 ID, UX, and software.",

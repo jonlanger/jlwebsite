@@ -101,20 +101,16 @@ export default async function PastProjectPage({ params }: Props) {
         </div>
 
         {/* Board image only for image-only projects; structured case studies already tell the story. */}
-        {detailSections.length === 0 &&
-        project.image &&
-        project.alt != null &&
-        project.width &&
-        project.height ? (
+        {detailSections.length === 0 && project.board && project.alt != null ? (
           <div className={projectDetailImageWrapClass}>
             <ProjectDetailImage
-              src={project.image}
+              src={project.board.src}
               alt={project.alt}
-              width={project.width}
-              height={project.height}
+              width={project.board.width}
+              height={project.board.height}
               sizes="(max-width: 900px) 100vw, 900px"
-              quality={90}
-              priority
+              quality={82}
+              eager
             />
           </div>
         ) : null}

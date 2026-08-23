@@ -2,6 +2,7 @@ import type { PastProject } from "@/data/past-projects";
 
 export const project: PastProject = {
   slug: "project-speed-signs",
+  category: "software",
   title: "Project Speed & Signs",
   description:
     "Roadway safety data made mappable — documenting speed reductions, signs, and work-zone hazards so navigation systems can warn drivers in real time.",

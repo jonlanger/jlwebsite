@@ -3,6 +3,7 @@ import type { PastProject } from "@/data/past-projects";
 
 export const project: PastProject = {
   slug: "chemical-cx-platform",
+  category: "software",
   title: "Chemical CX Platform",
   description:
     "Unified customer-experience dashboard that replaced five to six separate systems for chemical CX personnel.",

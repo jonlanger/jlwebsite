@@ -2,6 +2,7 @@ import type { PastProject } from "@/data/past-projects";
 
 export const project: PastProject = {
   slug: "dialysis-management",
+  category: "software",
   title: "Dialysis Management",
   description: "Fresenius PatientHub portal for treatments, supplies, appointments, lab results, and daily flowsheets.",
   image: "/projects/dialysis-management/dialysis-management_card.png",

@@ -3,6 +3,7 @@ import type { PastProject } from "@/data/past-projects";
 
 export const project: PastProject = {
   slug: "additive-mfg-cx-data-platform",
+  category: "software",
   title: "Additive Mfg & CX Data Platform",
   description:
     "Telemetry and CX data visualization for Markforged fleets — faster diagnosis, R&D, and partner troubleshooting.",

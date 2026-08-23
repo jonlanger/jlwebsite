@@ -80,7 +80,6 @@ export function ExpandableImage({
             )}
             sizes={sizes}
             priority={priority}
-            unoptimized
           />
         ) : (
           <Image
@@ -91,9 +90,8 @@ export function ExpandableImage({
             className="h-auto w-full rounded-lg transition-[filter] duration-200 group-hover:brightness-[0.98]"
             sizes={sizes}
             priority={priority}
-            // Match the lightbox native <img> so carousel and full screen
-            // always show the same public asset (no optimizer cache drift).
-            unoptimized
+            // The preview is optimized; the lightbox below deliberately loads
+            // the full-resolution original, and only once it is opened.
           />
         )}
         <span

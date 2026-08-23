@@ -122,32 +122,6 @@
   --sidebar-ring: var(--color-stone-500);
 }
 
-@layer utilities {
-  @keyframes skeleton-shimmer {
-    100% {
-      transform: translateX(100%);
-    }
-  }
-
-  .skeleton-shimmer {
-    overflow: hidden;
-  }
-
-  .skeleton-shimmer::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    transform: translateX(-100%);
-    background: linear-gradient(
-      90deg,
-      transparent,
-      color-mix(in oklch, var(--foreground) 10%, transparent),
-      transparent
-    );
-    animation: skeleton-shimmer 1.5s ease-in-out infinite;
-  }
-}
-
 @layer base {
   * {
     @apply border-border outline-ring/50;

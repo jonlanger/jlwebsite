@@ -2,6 +2,7 @@ import type { PastProject } from "@/data/past-projects";
 
 export const project: PastProject = {
   slug: "additive-mfg-roi-dashboard",
+  category: "software",
   title: "Additive Mfg ROI Dashboard",
   description: "Enterprise ROI calculator and utilization dashboards that quantify additive manufacturing cost and time savings.",
   image: "/projects/additive-mfg-roi/additive-mfg-roi_card.png",
