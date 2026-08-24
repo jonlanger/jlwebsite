@@ -10,6 +10,7 @@ export const project: PastProject = {
   alt: "Careshift Today dashboard with a caregiver greeting, an up-next brief, and a needs-attention delta card.",
   width: 1280,
   height: 720,
+  liveUrl: "https://careshift-gold.vercel.app/",
   overview: {
     title: "Overview",
     paragraphs: [
