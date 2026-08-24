@@ -1987,7 +1987,7 @@ export const recentProjects2023_2026: PastProject[] = [
   {
     slug: "animation-physics",
     category: "experiments",
-    title: "Animation & physics simulations",
+    title: "Pre 2020 Animation & physics simulations",
     description:
       "A grid of physics-based animation studies including fluids, cloth, rigid bodies, and particles.",
     image: "/projects/animation-physics/animation-physics_card.webp",
@@ -2048,6 +2048,7 @@ export const PROJECT_GRID_ORDER: Record<ProjectCategory, readonly string[]> = {
     "teleoperation-station",
   ],
   experiments: [
+    "fluidsim",
     "animation-physics",
   ],
 };

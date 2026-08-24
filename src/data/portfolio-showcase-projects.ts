@@ -14,9 +14,11 @@ import { project as appliedAiMarketplace } from "@/data/showcase/applied-ai-mark
 import { project as proposalpal } from "@/data/showcase/proposalpal";
 import { project as climateSync } from "@/data/showcase/climate-sync";
 import { project as productbench } from "@/data/showcase/productbench";
+import { project as fluidsim } from "@/data/showcase/fluidsim";
 
 /** Showcase order matches the September 2024 portfolio page. */
 export const PORTFOLIO_SHOWCASE_PROJECTS: PastProject[] = [
+  fluidsim,
   careshift,
   productbench,
   climateSync,
