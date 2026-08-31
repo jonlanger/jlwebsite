@@ -10,6 +10,7 @@ export const project: PastProject = {
   alt: "A sunflower head rendered as millions of coloured points, its disc florets standing individually off the receptacle.",
   width: 1024,
   height: 576,
+  liveUrl: "https://botanica-learn.vercel.app/",
   overview: {
     title: "Overview",
     paragraphs: [
@@ -152,7 +153,7 @@ export const project: PastProject = {
     {
       title: "Product",
       paragraphs: [
-        "The catalog is the way in and the plant is the payoff: a species page is a full-bleed point cloud with a research panel on the right and the guided tour pinned to the plant itself. Screens below are from the production build — the sunflower is the reference species, where every figure in the spec carries its source in a comment.",
+        "The catalog is the way in and the plant is the payoff: a species page is a full-bleed point cloud with a research panel on the right and the guided tour pinned to the plant itself. Screens below are from the live build — the sunflower is the reference species, where every figure in the spec carries its source in a comment.",
       ],
       productShowcase: {
         slides: [
@@ -352,6 +353,11 @@ export const project: PastProject = {
       ],
       stats: [
         {
+          value: "Live",
+          label: "Public web app",
+          detail: "Shipped at botanica-learn.vercel.app.",
+        },
+        {
           value: "26",
           label: "Species grown",
           detail: "Six families, four archetypes, no drafts left in the catalog.",
@@ -360,11 +366,6 @@ export const project: PastProject = {
           value: "390",
           label: "Anchored callouts",
           detail: "Fifteen per species, each with a fact and the camera framing to see it.",
-        },
-        {
-          value: "182",
-          label: "Baked photo swatches",
-          detail: "One or more per organ, each credited to a named photographer and licence.",
         },
         {
           value: "5 steps",

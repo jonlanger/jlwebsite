@@ -3,9 +3,11 @@ import { mkdir, readFile } from "node:fs/promises";
 import { createServer } from "node:http";
 import path from "node:path";
 
-// Botanica is a Vite SPA; the production build in its own repo is what gets
-// photographed, so the captures show shipping point budgets rather than a dev
-// server's. Served locally because the project has no public deployment.
+// Botanica is a Vite SPA. Its production build is what gets photographed, so
+// the captures show shipping point budgets rather than a dev server's — served
+// from disk rather than over the network because a ten-million-point plant is
+// slow enough to grow without waiting on a CDN for its swatches too. This is
+// the same bundle that is live at botanica-learn.vercel.app.
 const DIST = "/Users/jonlanger/Documents/Projects/Botanica/dist";
 const OUT = path.resolve("public/projects/botanica/_src");
 const PORT = 4319;
