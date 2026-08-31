@@ -16,6 +16,7 @@ export const PROJECT_TITLES: Record<string, string> = {
   "animation-physics": "Pre 2020 Animation & physics simulations",
   "applied-ai-marketplace": "Applied AI Marketplace",
   "aureum": "Aureum AI",
+  "botanica": "Botanica",
   "careshift": "Careshift",
   "cell-gene-therapy-platform": "Cell Gene Therapy Platform",
   "chemical-cx-platform": "Chemical CX Platform",

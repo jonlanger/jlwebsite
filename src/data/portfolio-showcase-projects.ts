@@ -15,9 +15,11 @@ import { project as proposalpal } from "@/data/showcase/proposalpal";
 import { project as climateSync } from "@/data/showcase/climate-sync";
 import { project as productbench } from "@/data/showcase/productbench";
 import { project as fluidsim } from "@/data/showcase/fluidsim";
+import { project as botanica } from "@/data/showcase/botanica";
 
 /** Showcase order matches the September 2024 portfolio page. */
 export const PORTFOLIO_SHOWCASE_PROJECTS: PastProject[] = [
+  botanica,
   fluidsim,
   careshift,
   productbench,
