@@ -5,6 +5,11 @@ Sources are 2880x1800 (1440x900 @2x) PNGs in public/projects/botanica/_src,
 written by scripts/capture-botanica.mjs. Slides go out as WebP at 1800 wide for
 the 900px content column at 2x; the two explainer diagrams are drawn here and
 stay PNG so their type holds up.
+
+Three further figures are built out of the stills the app bakes for itself —
+_src/process (the growth stages and the two A/B pairs) and _src/models (a render
+per species). Those are photographic rather than typographic, so they go out as
+WebP at 1800 wide like the slides do.
 """
 
 from __future__ import annotations
@@ -23,6 +28,10 @@ SLIDE_QUALITY = 84
 CARD_W, CARD_H = 1024, 576
 CARD_QUALITY = 86
 DIAG_W = 1200
+# The photographic figures are drawn at the slides' own width, so their type is
+# set at 2x for the 900px column rather than the diagrams' 1.33x.
+FIG_W = 1800
+FIG_QUALITY = 86
 
 # Botanica's own palette: paper background, deep leaf green, and the two colours
 # the sunflower actually renders in — disc gold and root ochre.
@@ -62,6 +71,64 @@ SLIDES = {
 # it, clear of the headline on the left and the page edge on the right.
 CARD_SRC = "01-home"
 CARD_CROP = (1330, 400, 1330 + 1240, 400 + 698)
+
+# The catalog as the registry reports it, grouped by the archetype each spec was
+# scaffolded from rather than alphabetically — four archetypes across twenty-six
+# species is the whole argument of the Outcome figure. Verbascum is the one
+# plant whose archetype does not follow its family: a Scrophulariaceae species
+# that grows as a raceme, which is why the scaffold picks on shape and not name.
+ARCHETYPES = [
+    (
+        "asteraceae-radiate",
+        "Ray florets around a disc",
+        [
+            ("bellis-perennis", "Bellis perennis"),
+            ("calendula-officinalis", "Calendula officinalis"),
+            ("centaurea-cyanus", "Centaurea cyanus"),
+            ("cichorium-intybus", "Cichorium intybus"),
+            ("echinacea-purpurea", "Echinacea purpurea"),
+            ("helianthus-annuus", "Helianthus annuus"),
+            ("leucanthemum-vulgare", "Leucanthemum vulgare"),
+            ("matricaria-chamomilla", "Matricaria chamomilla"),
+            ("rudbeckia-hirta", "Rudbeckia hirta"),
+            ("taraxacum-officinale", "Taraxacum officinale"),
+        ],
+    ),
+    (
+        "lamiaceae-spike",
+        "Whorls up a square stem",
+        [
+            ("lavandula-angustifolia", "Lavandula angustifolia"),
+            ("nepeta-cataria", "Nepeta cataria"),
+            ("origanum-vulgare", "Origanum vulgare"),
+            ("salvia-officinalis", "Salvia officinalis"),
+            ("salvia-rosmarinus", "Salvia rosmarinus"),
+            ("thymus-vulgaris", "Thymus vulgaris"),
+        ],
+    ),
+    (
+        "plantaginaceae-raceme",
+        "Flowers hung off a rachis",
+        [
+            ("antirrhinum-majus", "Antirrhinum majus"),
+            ("digitalis-purpurea", "Digitalis purpurea"),
+            ("linaria-vulgaris", "Linaria vulgaris"),
+            ("plantago-lanceolata", "Plantago lanceolata"),
+            ("verbascum-thapsus", "Verbascum thapsus"),
+        ],
+    ),
+    (
+        "papaveraceae-solitary",
+        "One flower on one stem",
+        [
+            ("aquilegia-vulgaris", "Aquilegia vulgaris"),
+            ("eschscholzia-californica", "Eschscholzia californica"),
+            ("papaver-rhoeas", "Papaver rhoeas"),
+            ("papaver-somniferum", "Papaver somniferum"),
+            ("ranunculus-acris", "Ranunculus acris"),
+        ],
+    ),
+]
 
 
 def font(size: int, bold: bool = False) -> ImageFont.FreeTypeFont:
@@ -394,11 +461,197 @@ def draw_channels() -> None:
     print(f"diagram {dest.name:37} {DIAG_W}x{height}")
 
 
+def still(name: str, box: tuple[int, int]) -> Image.Image:
+    """Loads a baked still, fits it to `box`, and rounds its corners."""
+    with Image.open(SRC / f"{name}.webp") as opened:
+        image = opened.convert("RGB")
+    width, height = box
+    fitted = image.resize((width, height), Image.Resampling.LANCZOS)
+    mask = Image.new("L", box, 0)
+    ImageDraw.Draw(mask).rounded_rectangle((0, 0, width - 1, height - 1), radius=12, fill=255)
+    plate = Image.new("RGB", box, BG)
+    plate.paste(fitted, (0, 0), mask)
+    return plate
+
+
+def heading(
+    draw: ImageDraw.ImageDraw, title: str, lead: str, *, width: int = 84
+) -> None:
+    """The title block every figure opens with, at the figures' 2x type scale."""
+    draw.text((48, 44), title, fill=INK, font=font(42, bold=True))
+    wrapped(draw, (48, 108), lead, width=width, size=26, leading=38)
+
+
+def build_growth() -> None:
+    """The four stages the builder emits in, as the app bakes them."""
+    stages = [
+        ("grow-stem", "1 · Stem", "A curve, not a line — the head's weight bends the top."),
+        ("grow-shoot", "2 · Leaves", "Sampled inside a blade outline, placed at 137.5°."),
+        ("grow-flower", "3 · Head", "21 ray florets around 720 disc florets."),
+        ("grow-full", "4 · Roots", "A 1.60 m taproot under a 1.85 m specimen."),
+    ]
+
+    gap = 20
+    panel_w = (FIG_W - 96 - gap * (len(stages) - 1)) // len(stages)
+    panel_h = round(panel_w * 1320 / 840)
+    top = 208
+    height = top + panel_h + 158
+
+    img = Image.new("RGB", (FIG_W, height), BG)
+    draw = ImageDraw.Draw(img)
+    heading(
+        draw,
+        "Grown organ by organ, in the order it happens",
+        "Four stages of the same cloud. Nothing here is sculpted — each organ is emitted straight "
+        "from the figures in the spec, at its own declared point spacing.",
+    )
+
+    for i, (name, label, body) in enumerate(stages):
+        x = 48 + i * (panel_w + gap)
+        img.paste(still(f"process/{name}", (panel_w, panel_h)), (x, top))
+        draw.rounded_rectangle(
+            (x, top, x + panel_w - 1, top + panel_h - 1), radius=12, outline=LINE, width=2
+        )
+        draw.text((x, top + panel_h + 22), label, fill=ACCENT, font=font(26, bold=True))
+        wrapped(draw, (x, top + panel_h + 58), body, width=34, size=23, leading=32)
+
+    dest = OUT / "figure-growth.webp"
+    save_webp(img, dest, FIG_QUALITY)
+    print(f"figure {dest.name:38} {FIG_W}x{height}")
+
+
+def build_gate_pairs() -> None:
+    """The two failures the gate exists to catch, each next to what passing looks like."""
+    rows = [
+        (
+            "The colour check",
+            "A missing swatch falls back to a flat organ colour and says nothing in the console. "
+            "Five of six species shipped that way.",
+            ("colour-flat", "Fallback — one colour per organ"),
+            ("colour-photo", "Sampled — a colour per point, off the photograph"),
+        ),
+        (
+            "The spacing check",
+            "Every organ declares how far apart its own points sit; the gate measures the finished "
+            "cloud against that. A poppy was drawing its ovary at sixty-five times its declaration.",
+            ("density-low", "600k points — the sprites read as discs"),
+            ("density-high", "10M points — the same view, resolved"),
+        ),
+    ]
+
+    gap = 24
+    panel_w = (FIG_W - 96 - gap) // 2
+    panel_h = round(panel_w * 1120 / 1440)
+    top = 208
+    row_h = 96 + panel_h + 96
+    height = top + row_h * len(rows) + 24
+
+    img = Image.new("RGB", (FIG_W, height), BG)
+    draw = ImageDraw.Draw(img)
+    heading(
+        draw,
+        "What a plant looks like when it is quietly wrong",
+        "Neither of these failures raises anything. The plant renders, the page loads, and the "
+        "only thing that catches them is a gate measuring the finished cloud.",
+    )
+
+    y = top
+    for title, body, left, right in rows:
+        draw.text((48, y), title, fill=INK, font=font(28, bold=True))
+        below = wrapped(draw, (48 + 300, y + 4), body, width=92, size=23, leading=32)
+        y = max(y + 76, below + 16)
+        for i, (name, caption) in enumerate((left, right)):
+            x = 48 + i * (panel_w + gap)
+            img.paste(still(f"process/{name}", (panel_w, panel_h)), (x, y))
+            draw.rounded_rectangle(
+                (x, y, x + panel_w - 1, y + panel_h - 1), radius=12, outline=LINE, width=2
+            )
+            draw.text(
+                (x, y + panel_h + 20),
+                caption,
+                fill=ACCENT if i else MUTED,
+                font=font(24, bold=True),
+            )
+        y += panel_h + 96
+
+    # Four dense point clouds at full width; the noise is what the figure is
+    # about, and it is also what WebP cannot compress. Dropped a few points off
+    # FIG_QUALITY so this one lands nearer the rest of the folder.
+    dest = OUT / "figure-gate.webp"
+    save_webp(img, dest, 76)
+    print(f"figure {dest.name:38} {FIG_W}x{height}")
+
+
+def build_catalog() -> None:
+    """Every species in the catalog, banded by the archetype it was scaffolded from."""
+    cols = 6
+    gap = 16
+    cell_w = (FIG_W - 96 - gap * (cols - 1)) // cols
+    cell_img_h = round(cell_w * 3 / 4)
+    cell_h = cell_img_h + 44
+    band_head_h = 62
+
+    total = sum(len(species) for _, _, species in ARCHETYPES)
+    grid_h = sum(
+        band_head_h + ((len(species) + cols - 1) // cols) * (cell_h + gap)
+        for _, _, species in ARCHETYPES
+    )
+    top = 218
+    height = top + grid_h + 84
+
+    img = Image.new("RGB", (FIG_W, height), BG)
+    draw = ImageDraw.Draw(img)
+    heading(
+        draw,
+        f"{total} species, one builder",
+        "Nothing in the builder is about sunflowers. Each of these is the same five steps run "
+        "against a different spec, grouped here by the archetype the scaffold picked for it.",
+    )
+
+    y = top
+    for archetype, gloss, species in ARCHETYPES:
+        draw.line([(48, y), (FIG_W - 48, y)], fill=LINE, width=2)
+        draw.text((48, y + 16), archetype, fill=ACCENT, font=font(26, bold=True))
+        label = f"{gloss}  ·  {len(species)} species"
+        draw.text(
+            (FIG_W - 48 - draw.textlength(label, font=font(24)), y + 18),
+            label,
+            fill=MUTED,
+            font=font(24),
+        )
+        y += band_head_h
+
+        for i, (slug, binomial) in enumerate(species):
+            x = 48 + (i % cols) * (cell_w + gap)
+            cy = y + (i // cols) * (cell_h + gap)
+            img.paste(still(f"models/{slug}", (cell_w, cell_img_h)), (x, cy))
+            draw.rounded_rectangle(
+                (x, cy, x + cell_w - 1, cy + cell_img_h - 1), radius=12, outline=LINE, width=2
+            )
+            draw.text((x + 2, cy + cell_img_h + 14), binomial, fill=INK, font=font(21))
+        y += ((len(species) + cols - 1) // cols) * (cell_h + gap)
+
+    draw.text(
+        (48, height - 60),
+        "Six families · four archetypes · fifteen anchored callouts each · every colour traceable "
+        "to a named photographer and licence.",
+        fill=MUTED,
+        font=font(24),
+    )
+
+    dest = OUT / "figure-catalog.webp"
+    save_webp(img, dest, FIG_QUALITY)
+    print(f"figure {dest.name:38} {FIG_W}x{height}")
+
+
 def main() -> None:
     build_slides()
     build_card()
     draw_pipeline()
     draw_channels()
+    build_growth()
+    build_gate_pairs()
+    build_catalog()
 
 
 if __name__ == "__main__":

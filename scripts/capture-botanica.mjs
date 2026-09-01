@@ -1,5 +1,5 @@
 import { chromium } from "/Users/jonlanger/Documents/Projects/careshift/node_modules/playwright/index.mjs";
-import { mkdir, readFile } from "node:fs/promises";
+import { copyFile, mkdir, readdir, readFile } from "node:fs/promises";
 import { createServer } from "node:http";
 import path from "node:path";
 
@@ -94,8 +94,39 @@ async function openSection(page, name, shotName) {
   await page.waitForTimeout(400);
 }
 
+/**
+ * Pulls across the stills the app already ships rather than re-photographing
+ * them through a browser.
+ *
+ * Botanica bakes these itself (`npm run thumbnails`): the four growth stages
+ * and the two A/B pairs its Process page uses, and a render per species. They
+ * are the same GPU output a capture would produce, on transparent-ish
+ * backgrounds and already framed — going through Chromium would only add a
+ * page's chrome and a scroll-reveal animation to wait out.
+ */
+async function copyStills() {
+  await mkdir(path.join(OUT, "process"), { recursive: true });
+  await mkdir(path.join(OUT, "models"), { recursive: true });
+
+  for (const name of await readdir(path.join(DIST, "process"))) {
+    if (!name.endsWith(".webp")) continue;
+    await copyFile(path.join(DIST, "process", name), path.join(OUT, "process", name));
+  }
+
+  const species = await readdir(path.join(DIST, "species"), { withFileTypes: true });
+  for (const entry of species) {
+    if (!entry.isDirectory()) continue;
+    await copyFile(
+      path.join(DIST, "species", entry.name, "model.webp"),
+      path.join(OUT, "models", `${entry.name}.webp`)
+    );
+  }
+  console.log("copied stills");
+}
+
 async function main() {
   await mkdir(OUT, { recursive: true });
+  await copyStills();
   const server = await serve();
   // Headed, deliberately: the detail page renders ten million points through a
   // real GPU path, and headless Chromium falls back to a software rasteriser

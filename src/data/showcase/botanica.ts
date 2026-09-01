@@ -14,8 +14,8 @@ export const project: PastProject = {
   overview: {
     title: "Overview",
     paragraphs: [
-      "Botanica takes the botanical record for a species — GBIF taxonomy, a Wikipedia morphological description, openly licensed iNaturalist photographs — and turns it into a plant you can fly a camera into. Real measurements drive the geometry, real photographs drive the colour, and the two never mix: ten million points in a single draw call, grown off the main thread, holding a hundred frames a second zoomed into one floret.",
-      "The point of it isn't the render. It's that a flower head is a claim you can check. A sunflower is not one flower with petals — it is a pseudanthium of 21 sterile ray florets around 720 fertile disc florets, each of which becomes a seed, placed by Vogel's model at the golden angle so the Fibonacci spirals appear without anyone drawing them. Botanica is built so that fact is something you look at rather than read: fifteen callouts per species, anchored to the geometry itself, each one flying the camera to the part of the plant it is talking about.",
+      "Botanica turns the botanical record for a species — GBIF taxonomy, a Wikipedia morphological description, openly licensed iNaturalist photographs — into a plant you can fly a camera into. Measurements drive the geometry, photographs drive the colour, and the two never mix: ten million points in a single draw call, grown off the main thread, holding a hundred frames a second zoomed into one floret.",
+      "The point isn't the render. It's that a flower head is a claim you can check. A sunflower is not one flower with petals — it is a pseudanthium of 21 sterile ray florets around 720 fertile disc florets, each placed by Vogel's model at the golden angle, so the Fibonacci spirals appear without anyone drawing them. Fifteen callouts per species anchor that fact to the geometry itself, each flying the camera to the part of the plant it is talking about.",
     ],
     role: "Solo build — research pipeline, morphology authoring, rendering, and interaction design",
     scope:
@@ -25,8 +25,8 @@ export const project: PastProject = {
     {
       title: "Context",
       paragraphs: [
-        "There are two ways to get a plant into 3D and neither is grounded in what is actually known about the species. Photogrammetry reconstructs one physical specimen from thirty-odd calibrated shots — accurate to that individual, and impossible from web photos, which are different plants at different scales in different light. Hand-modelling produces something that reads as a plant and asserts nothing: the floret count is whatever looked right, the taproot usually isn't there at all.",
-        "The record itself is a third option, and it is sitting in the open. Taxonomy is a GBIF query. A morphological description with real figures in it — head 7.5–12.5 cm, leaves alternate, stem rough-hairy — is a Wikipedia article. Thousands of research-grade photographs with usable licences are an iNaturalist API call away. The design problem is what to do with that: how much of a plant a published description actually pins down, what has to be read off a photograph by eye, and how to tell the difference between a model that is measured and one that merely looks measured.",
+        "There are two ways to get a plant into 3D and neither is grounded in what is known about the species. Photogrammetry reconstructs one physical specimen from thirty-odd calibrated shots — impossible from web photos, which are different plants at different scales in different light. Hand-modelling reads as a plant and asserts nothing: the floret count is whatever looked right, and the taproot usually isn't there at all.",
+        "The record itself is a third option, sitting in the open: taxonomy is a GBIF query, a description with real figures in it — head 7.5–12.5 cm, leaves alternate — is a Wikipedia article, and research-grade photographs with usable licences are an API call away. The design problem is what to do with that — how much a published description actually pins down, and how to tell a model that is measured from one that merely looks measured.",
       ],
       topicGroups: [
         {
@@ -85,9 +85,10 @@ export const project: PastProject = {
     {
       title: "Approach",
       paragraphs: [
-        "Adding a species is five steps, and the shape of the pipeline is the argument: the parts a machine can do reliably are commands, the two parts that need a person are small and explicit, and the last step is a gate rather than a report. Research pulls taxonomy, description, and photographs and clusters a colour palette out of them. Scaffold picks a morphological archetype from the GBIF family, reads what dimensions it can out of the article's own Description section, and writes a spec that typechecks and grows immediately — leaving a marker wherever a number needs someone with the photographs in front of them. What is left by hand is refining that spec and aiming the crops, and both are deliberately kept to the size of a diff.",
-        "Two channels feed every point and they stay separate all the way to the GPU. Geometry comes from the spec in metres: the stem is a curve rather than a line, so the head's weight bends the top and every leaf inherits the bend; leaves are rejection-sampled inside a blade outline and placed by phyllotaxis; disc florets sit at r = c√n, θ = n × 137.5°, which is why the parastichies emerge without being modelled. Colour comes from a 128-pixel crop of a real photograph, looked up at each point's own organ-space coordinates and linearised on the way in — so the disc reads dark at the centre and gold at the rim because the photograph does. The third channel is what makes the plant teachable: an annotation names an anchor like { on: \"disc\", r: 0.62 } that is resolved against the finished geometry, and states its camera framing as offsets from the organ's own facing, so \"look straight at it\" is one value rather than an angle the author has to work out for a leaf 190° around an alternate phyllotaxis.",
-        "The gate is where the project stopped being a renderer and started being reliable. Two things go wrong with a grown plant and neither is visible to a hash. It comes apart: the cloud gets voxelised at the sprite's own diameter and run through connected components, which found a lavender that was fourteen floating spikes over a root system touching none of them, and a foxglove hanging thirty-two flowers off forty centimetres of rachis that was never drawn. And it stops being a point cloud: every organ declares how far apart its own points sit, the gate measures the finished cloud against that declaration, and a poppy turned out to be drawing its ovary at sixty-five times its own spacing — a painted surface with a photograph stretched over it. A third check caught the quietest failure of all: a missing swatch fell back to a flat organ colour without a word in the console, so five of six species were shipping in six solid fills.",
+        "Adding a species is five steps, and the shape of the pipeline is the argument: what a machine does reliably is a command, the two parts that need a person are small and explicit, and the last step is a gate rather than a report.",
+        "Two channels feed every point and they stay separate all the way to the GPU. Geometry comes from the spec in metres — the stem is a curve rather than a line, so the head's weight bends the top and every leaf inherits the bend; disc florets sit at r = c√n, θ = n × 137.5°, which is why the parastichies emerge without being modelled. Colour comes from a 128-pixel crop of a real photograph, read at each point's own organ-space coordinates: the disc is dark at the centre and gold at the rim because the photograph is. A third channel carries the teaching — an anchor resolved against the finished geometry, so a callout follows the plant rather than a coordinate.",
+        "The builder itself knows nothing about sunflowers. It reads the spec and lays points down system by system, roots last and at the same scale as everything above them.",
+        "The gate is where the project stopped being a renderer and started being reliable. Two things go wrong with a grown plant and neither is visible to a hash: it comes apart, and it stops being a point cloud. Connected components over the voxelised cloud found a lavender that was fourteen floating spikes hanging over a root system touching none of them. A third check caught the quietest failure of all — a missing swatch falling back to a flat organ colour without a word in the console.",
       ],
       figures: [
         {
@@ -103,6 +104,20 @@ export const project: PastProject = {
           alt: "Diagram of three channels into one point: measurement to position, photograph to colour, and anchor to callout.",
           width: 1200,
           height: 956,
+        },
+        {
+          afterParagraphIndex: 2,
+          src: "/projects/botanica/figure-growth.webp",
+          alt: "Four stages of the sunflower growing as points: the bare curved stem, the stem with its leaves, the head added at the top, and the finished plant with its root system below the soil line.",
+          width: 1800,
+          height: 1012,
+        },
+        {
+          afterParagraphIndex: 3,
+          src: "/projects/botanica/figure-gate.webp",
+          alt: "Two side-by-side comparisons: a sunflower head in flat per-organ colour beside the same head coloured per point from a photograph, and the disc at 600k points where sprites read as discs beside the same view at ten million points.",
+          width: 1800,
+          height: 1922,
         },
       ],
       topicGroups: [
@@ -349,7 +364,17 @@ export const project: PastProject = {
     {
       title: "Outcome",
       paragraphs: [
-        "Botanica closes as a catalog of twenty-six species, all grown, all photographic, each carrying fifteen callouts anchored to its own geometry — and as a pipeline where adding the twenty-seventh is five steps rather than a modelling job. The design work that mattered turned out to be the boundaries: what a published description can be trusted to pin down, what has to be read off a photograph by eye, and what a machine should refuse to let through. The QC gate is the piece I would keep. A plant that has quietly come apart, or is drawing points sixty-five times their own spacing, or is filling every organ with a flat stand-in colour, looks completely fine — and shipped that way until something was measuring it.",
+        "Botanica closes as a catalog of twenty-six species — all grown, all photographic, each carrying fifteen callouts anchored to its own geometry — and as a pipeline where adding the twenty-seventh is five steps rather than a modelling job.",
+        "The design work that mattered turned out to be the boundaries: what a published description can be trusted to pin down, what has to be read off a photograph by eye, and what a machine should refuse to let through. The QC gate is the piece I would keep — a plant that has come apart, or is drawing a surface instead of points, or is filled with a flat stand-in colour looks completely fine, and shipped that way until something was measuring it.",
+      ],
+      figures: [
+        {
+          afterParagraphIndex: 0,
+          src: "/projects/botanica/figure-catalog.webp",
+          alt: "All twenty-six grown species as point clouds, grouped into four archetype bands: ten radiate Asteraceae heads, six Lamiaceae spikes, five Plantaginaceae racemes, and five solitary Papaveraceae flowers.",
+          width: 1800,
+          height: 1860,
+        },
       ],
       stats: [
         {
