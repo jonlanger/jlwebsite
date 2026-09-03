@@ -15,6 +15,7 @@ export const PROJECT_TITLES: Record<string, string> = {
   "ai-camera-nodit": "Nodit AI Camera",
   "animation-physics": "Pre 2020 Animation & physics simulations",
   "applied-ai-marketplace": "Applied AI Marketplace",
+  "atomicatlas": "AtomicAtlas",
   "aureum": "Aureum AI",
   "botanica": "Botanica",
   "careshift": "Careshift",

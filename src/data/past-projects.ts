@@ -2048,6 +2048,7 @@ export const PROJECT_GRID_ORDER: Record<ProjectCategory, readonly string[]> = {
     "teleoperation-station",
   ],
   experiments: [
+    "atomicatlas",
     "botanica",
     "fluidsim",
     "animation-physics",
