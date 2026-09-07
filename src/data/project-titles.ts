@@ -44,6 +44,7 @@ export const PROJECT_TITLES: Record<string, string> = {
   "micro-windmill": "Micro windmill",
   "moto-id": "Moto ID",
   "oasis": "Oasis",
+  "orchardhours": "Orchard Hours",
   "petricor": "Petricor",
   "productbench": "ProductBench",
   "project-speed-signs": "Project Speed & Signs",

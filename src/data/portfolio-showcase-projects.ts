@@ -17,9 +17,11 @@ import { project as productbench } from "@/data/showcase/productbench";
 import { project as fluidsim } from "@/data/showcase/fluidsim";
 import { project as botanica } from "@/data/showcase/botanica";
 import { project as atomicatlas } from "@/data/showcase/atomicatlas";
+import { project as orchardhours } from "@/data/showcase/orchardhours";
 
 /** Showcase order matches the September 2024 portfolio page. */
 export const PORTFOLIO_SHOWCASE_PROJECTS: PastProject[] = [
+  orchardhours,
   atomicatlas,
   botanica,
   fluidsim,
