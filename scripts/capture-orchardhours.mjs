@@ -29,9 +29,66 @@ const PHONE = { width: 430, height: 932 };
    most of these frames are set in one. */
 const ALLEY_Z = 13;
 
+/**
+ * Which frames this run writes.
+ *
+ * The orchard is planted from `Math.random()` on every load, so a full re-run
+ * plants a different orchard and re-frames every outdoor shot. When only part
+ * of the set needs replacing, name the groups by their filename prefix:
+ *
+ *   node scripts/capture-orchardhours.mjs b c g
+ *
+ * The run still walks the whole sequence, so the world arrives at each frame in
+ * the state a full run would leave it in — it just does not write the frames
+ * nobody asked for.
+ */
+const ONLY = process.argv.slice(2);
+const wanted = (name) => ONLY.length === 0 || ONLY.some((prefix) => name.startsWith(prefix));
+
 async function shot(page, name, options = {}) {
+  if (!wanted(name)) return;
   await page.screenshot({ path: path.join(OUT, `${name}.png`), type: "png", ...options });
   console.log("saved", name);
+}
+
+/**
+ * Put the bear on an exact spot — a loft deck or a barn floor — without the
+ * drop from six metres up that `place` uses to find the ground outdoors.
+ */
+async function stand_(page, x, y, z, ry = Math.PI) {
+  await page.evaluate((o) => {
+    window.OH.character.position.set(o.x, o.y, o.z);
+    window.OH.character.rotation.y = o.ry;
+  }, { x, y, z, ry });
+  await step(page, 0.5);
+}
+
+/**
+ * A longer lens on the same renderer.
+ *
+ * The orbit rig will not come closer than 3.6 m, which is too far back for a
+ * single apple or a bear's face. Narrowing the field of view is the honest way
+ * in: nothing about the scene changes, the camera just sees less of it. The
+ * game resets its own field of view on resize, so this is put back afterwards.
+ */
+const lens = (page, fov) =>
+  page.evaluate((f) => {
+    window.OH.camera.fov = f;
+    window.OH.camera.updateProjectionMatrix();
+  }, fov);
+
+/** Aim the frame at a point away from the bear — the rig's own pan, held still. */
+async function look(page, { yaw, pitch, dist, pan, frames = 90 }) {
+  await page.evaluate((o) => {
+    const { cam } = window.OH;
+    cam.yaw = o.yaw;
+    cam.pitch = o.pitch;
+    cam.dist = cam.distGoal = o.dist;
+  }, { yaw, pitch, dist });
+  for (let i = 0; i < frames; i++) {
+    await page.evaluate((p) => { window.OH.cam.pan.set(p[0], p[1], p[2]); }, pan);
+    await step(page, 1 / 60);
+  }
 }
 
 /** Advance the world by hand, in the game's own fixed step. */
@@ -175,6 +232,31 @@ async function main() {
     );
     await page.waitForTimeout(1800);
     await shot(page, "00-boot");
+    await context.close();
+  }
+
+  /* ---- and the curtain finished --------------------------------------
+     The last thing the loading screen does is fill in the line, pop three
+     apples onto the drawn tree, and lift. That finished state is the game's
+     wordmark, and it is on screen for 520 ms.
+     Rather than race it, this run stretches the boot curtain's own timers
+     eightfold before the bundle loads. Nothing about what is drawn changes
+     — the same DOM, the same CSS animation — it just holds long enough to
+     be photographed. */
+  if (wanted("g1-boot-final")) {
+    const context = await browser.newContext({ viewport: DESKTOP, deviceScaleFactor: 2 });
+    const page = await context.newPage();
+    await page.addInitScript(() => {
+      const real = window.setTimeout.bind(window);
+      window.setTimeout = (fn, delay, ...rest) => real(fn, (delay ?? 0) * 8, ...rest);
+    });
+    await page.goto(`${LIVE}/`, { waitUntil: "commit" });
+    await page.waitForFunction(
+      "document.querySelector('#boot.fruiting') !== null",
+      null, { timeout: 120_000, polling: "raf" }
+    );
+    await page.waitForTimeout(1400);   // let all three apples finish popping
+    await shot(page, "g1-boot-final");
     await context.close();
   }
 
@@ -381,6 +463,8 @@ async function main() {
     window.OH.economy.orderUpgrade("extension");
     window.OH.economy.orderPlot("meadow");
     window.OH.economy.orderMachine("press");
+    window.OH.economy.orderMachine("kettle");
+    window.OH.economy.orderMachine("rack");
     window.OH.economy.orderSaplings(3);
     window.OH.state.day += 1;
     window.OH.economy.overnight(window.OH.state.day);
@@ -398,6 +482,148 @@ async function main() {
   await page.waitForTimeout(800);
   await shot(page, "15-plan-grown");
   await page.evaluate(() => window.OH.closeMap());
+
+  /* ==== b: the barn, room by room ======================================
+     Almost all of the modelling is in here — two floors, a loft, a roof
+     deck and, once the extension is up, the old silo. The camera borrows a
+     closer, flatter frame indoors, so these are shot at whatever distance
+     the game itself picks for the room. */
+  await page.evaluate(() => {
+    // fill the store so the barrels, their chalked fill lines and the silo
+    // all have something in them to draw
+    Object.assign(window.OH.state.stored, { honeycrisp: 88, grannysmith: 61, golden: 94, rare: 21 });
+    window.OH.refreshBarrels();
+    window.OH.silo.refreshSilo();
+    window.OH.machines.refreshMachines();
+  });
+  await hour(page, 0.34);
+
+  /**
+   * Stand at one spot in the barn and look at another.
+   *
+   * Both are barn-local, because that is the frame everything indoors is
+   * built in — the barn itself sits at an angle to the world. The bear is
+   * turned to face the subject and the eye is put on the far side of it,
+   * which is the one bearing that is not looking at a wall.
+   */
+  async function frameOn(stand, target, { y = null, high = 0, dist = 3.6, pitch = 0.20, lift = 0.6 }) {
+    const aim = await page.evaluate((o) => {
+      const b = window.OH.barn.barnToWorld(o.sx, o.sz);
+      const t = window.OH.barn.barnToWorld(o.tx, o.tz);
+      return {
+        bx: b.x, bz: b.z,
+        face: Math.atan2(t.x - b.x, t.z - b.z),   // the bear looks at the subject
+        yaw: Math.atan2(b.x - t.x, b.z - t.z),    // the eye sits behind the bear
+      };
+    }, { sx: stand[0], sz: stand[1], tx: target[0], tz: target[1] });
+
+    if (y === null) await place(page, { x: aim.bx, z: aim.bz, ry: aim.face });
+    else await stand_(page, aim.bx, y, aim.bz, aim.face);
+    await frame(page, { yaw: aim.yaw, pitch, dist, panY: lift + high });
+  }
+
+  const loftY = await page.evaluate(() => window.OH.barn.LOFT_TOP + 0.12);
+  const floorY = await page.evaluate(() => window.OH.barn.FLOOR_TOP + 0.05);
+  const deckY = await page.evaluate(() => window.OH.barn.DECK_TOP + 0.12);
+
+  /* the loft: five metres deep with very little headroom, which is why the
+     rig pulls in to 3.9 m and flattens out up here */
+  await frameOn([-1.2, -3.0], [1.6, -3.4], { y: loftY, dist: 4.0, pitch: 0.16, lift: 0.4 });
+  await shot(page, "b1-loft");
+
+  /* the drying rack, which is up here because the warm air is */
+  await frameOn([1.6, -2.5], [1.6, -3.4], { y: loftY, dist: 3.2, pitch: 0.14, lift: 0.5 });
+  await shot(page, "b2-drying-rack");
+
+  /* the cider press and the preserving kettle, at opposite ends downstairs */
+  await frameOn([2.55, -2.05], [2.55, -3.05], { y: floorY, dist: 3.6, pitch: 0.16, lift: 0.5 });
+  await shot(page, "b3-press");
+
+  await frameOn([-2.20, 3.00], [-3.10, 3.00], { y: floorY, dist: 3.6, pitch: 0.18, lift: 0.4 });
+  await shot(page, "b4-kettle");
+
+  /* the chalkboard and the almanac bench, against the back wall */
+  await frameOn([-0.6, -5.2], [-0.6, -6.3], { y: floorY, dist: 3.6, pitch: 0.20, lift: 0.6 });
+  await shot(page, "b5-chalkboard");
+
+  /* the barrels along the west wall, one to a variety */
+  await frameOn([-2.1, -2.7], [-3.6, -2.7], { y: floorY, dist: 4.4, pitch: 0.18, lift: 0.5 });
+  await shot(page, "b6-barrel-row");
+
+  /* the barn end to end, from just inside the doors */
+  await frameOn([0, 3.4], [0, -5.0], { y: floorY, dist: 5.6, pitch: 0.22, lift: 1.0 });
+  await shot(page, "b7-barn-wide");
+
+  /* the silo — swept out and unboarded by the extension, with a chute run
+     through to it from the barn. Outdoors, so the frame is not clamped */
+  await frameOn([-12.5, -2.2], [-7.9, -2.2], { dist: 11, pitch: 0.26, lift: 3.6 });
+  await shot(page, "b8-silo");
+
+  /* the roof deck the stairs carry on up to, looking out over the rows. The
+     deck runs from the back wall to z -0.10, so anything in front of that is
+     off the edge; the eye is lifted well over the ridge behind it. */
+  await frameOn([0, -1.6], [0, 9.0], { y: deckY, dist: 7.0, pitch: 0.44, lift: 1.2 });
+  await shot(page, "b10-roof-deck");
+
+  /* ==== c: close up ====================================================
+     The rig will not come nearer than 3.6 m, so these are taken on a longer
+     lens rather than by walking the camera into the geometry. */
+  await lens(page, 20);
+  await frameOn([-2.1, -2.7], [-3.6, -2.7], { y: floorY, dist: 5.0, pitch: 0.14, lift: 0.55 });
+  await shot(page, "c3-barrels");
+  await lens(page, 44);
+
+  // outside, for the fruit and the bear
+  await place(page, { x: -4.5, z: ALLEY_Z, ry: -Math.PI / 2 });
+  await hour(page, 0.42);
+
+  /* a branch at its best.
+     Two things have to be arranged. Nothing on a fresh tree is ripe for the
+     first 45 seconds, so the schedule is wound forward on the fruit around
+     the subject rather than the world being stepped through three minutes of
+     real time. And the eye has to sit outside the canopy looking in, or the
+     shot is a wall of leaves — so the bearing is taken from the tree's own
+     trunk out through the apple. */
+  const fruit = await page.evaluate(() => {
+    const { apples, character } = window.OH;
+    const pick = apples
+      // crown height: fruit down on the low limbs sits under a leaf spur, and
+      // a long lens aimed at it photographs the leaf
+      .filter((a) => !a.picked && a.worldPos.y > 4.2 && a.worldPos.y < 5.6)
+      .sort((a, b) => a.worldPos.distanceTo(character.position) - b.worldPos.distanceTo(character.position))[0];
+    // everything on the same branch, so the marks read as a cluster
+    for (const a of apples) {
+      if (!a.picked && a.worldPos.distanceTo(pick.worldPos) < 1.8) { a.primeAt = 0; a.pastAt = 1e9; }
+    }
+    const trunk = pick.treeGroup.position;
+    const c = character.position;
+    return {
+      yaw: Math.atan2(pick.worldPos.x - trunk.x, pick.worldPos.z - trunk.z),
+      pan: [pick.worldPos.x - c.x, pick.worldPos.y - c.y - 1.45, pick.worldPos.z - c.z],
+    };
+  });
+  await step(page, 0.3);
+  await lens(page, 24);
+  await look(page, { yaw: fruit.yaw, pitch: 0.10, dist: 5.5, pan: fruit.pan });
+  await shot(page, "c1-apples");
+
+  /* and the bear itself, which is a dozen boxes and a hat. The rig aims a
+     head-height 1.45 m above the feet; on a long lens that is most of the
+     frame above the hat, so the target is pulled back down onto it. */
+  await lens(page, 24);
+  await look(page, {
+    yaw: await page.evaluate(() => window.OH.character.rotation.y + 0.7),
+    pitch: 0.12, dist: 3.7, pan: [0, -0.52, 0],
+  });
+  await shot(page, "c2-bear");
+  await lens(page, 44);
+
+  /* ==== g2: the menu, which is where the mark and the wordmark live ==== */
+  await page.click("#btnMenu");
+  await page.waitForTimeout(500);
+  await shot(page, "g2-menu");
+  await page.click("#menuClose");
+  await page.waitForTimeout(300);
 
   await context.close();
 

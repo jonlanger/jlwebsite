@@ -69,12 +69,31 @@ SLIDES = {
     "14-extension": "product-extension",
     "m-01-rows": "product-mobile-rows",
     "m-02-catalogue": "product-mobile-catalogue",
+    # the barn, room by room
+    "b1-loft": "product-loft",
+    "b2-drying-rack": "product-drying-rack",
+    "b3-press": "product-press",
+    "b4-kettle": "product-kettle",
+    "b5-chalkboard": "product-chalkboard",
+    "b6-barrel-row": "product-barrel-row",
+    "b7-barn-wide": "product-barn-wide",
+    "b8-silo": "product-silo",
+    "b10-roof-deck": "product-roof-deck",
+    # close up, and the mark
+    "c1-apples": "product-fruit",
+    "c3-barrels": "product-barrels-close",
+    "g2-menu": "product-menu",
 }
 
 # The sit is a pose, and a pose does not survive being published at the size
 # the rest of the orchard is published at.
 CROPPED = {
     "13-sit": ("product-sit", (700, 620, 2560, 1666)),
+    # the portrait is shot on a long lens and then squared up on the bear; the
+    # HUD panels live in the corners the crop drops
+    "c2-bear": ("product-bear", (620, 250, 2500, 1590)),
+    # the finished curtain is one small mark in the middle of a lot of paper
+    "g1-boot-final": ("product-wordmark", (760, 300, 2120, 1465)),
 }
 
 # The card: the alley at golden hour, cut clear of the HUD panels at both
@@ -240,73 +259,74 @@ def draw_day() -> None:
     Rows rather than columns: the page renders a figure at 900 CSS px, and a
     five-across flow puts the body copy under 9px on screen.
     """
-    height = 1222
-    img = Image.new("RGB", (DIAG_W, height), BG)
+    img = Image.new("RGB", (DIAG_W, 1600), BG)
     draw = ImageDraw.Draw(img)
 
     y = head(
         draw,
         "A day in the rows, and the night after it",
-        "Money is only ever made by selling, and fruit is capped by what one day's vigour can pick — "
-        "so every price on the catalogue page is denominated in reaching. Capacities are the whole "
-        "of the difficulty curve: nothing is locked, things are just too small until they are not.",
+        "Fruit comes in one way and leaves one way, and money only ever comes from selling — so "
+        "everything on the merchant's page is ultimately paid for in picking. Nothing is locked "
+        "behind a level; things are just too small until you buy bigger ones.",
     )
 
     steps = [
         (
             "1",
             "The rows",
-            "20 trees · 470-odd apples",
+            "20 trees · about 470 apples",
             CRISP,
-            "Four rows of five on nine-metre centres. Every apple runs one ripening cycle and only "
-            "one, and the wait is spread so wide against a 420-second day that roughly a tenth of a "
-            "tree is at its best at any moment. Picking is choosing which tenth.",
+            "Four rows of five, nine metres apart along a row. Every apple ripens once and only "
+            "once, and the wait is spread so wide against a 420-second day that only about a tenth "
+            "of a tree is worth picking at any moment.",
         ),
         (
             "2",
             "The basket",
             "24 · the barrow adds 72",
             GRANNY,
-            "What is on the bear. Anything above 2.5 metres from its feet needs the picking pole; "
-            "anything above 6.7 needs the ladder. A full basket is a walk back to the barn, unless "
-            "the barrow is parked nearby — which costs 38% of the pace to push.",
+            "What the bear is carrying. Anything above 2.5 metres from its feet needs the pole, "
+            "and above 6.7 the ladder. A full basket means a walk back to the barn, unless the "
+            "barrow is parked nearby — and a loaded barrow costs a third of your speed.",
         ),
         (
             "3",
             "The barrels",
             "60 a variety · 240 after the extension",
             GOLDEN,
-            "The barn, one barrel to the variety. Fruit is sold out of the barrels and never out of "
-            "the basket, so the tipping-in is a real step rather than a formality — and the store "
-            "filling up is what makes the barn extension worth 640 shillings.",
+            "In the barn, one barrel to a variety. Fruit is sold from the barrels and never from "
+            "the basket, so tipping it in is a real step rather than a formality — and a full barn "
+            "is what makes the 640-shilling extension worth buying.",
         ),
         (
             "4",
             "The desk",
             "sell, or load a machine",
             RUSSET,
-            "4, 3, 3 and 12 shillings an apple. Or 8 apples into the kettle for a 40sh jar of jelly, "
-            "12 into the press for an 84sh jug of cider, 20 onto the rack for a 120sh sack of rings "
-            "— each takes the cheapest fruit in the barrels first, and none will touch a russet.",
+            "Four, three, three and twelve shillings an apple. Or eight apples into the kettle for "
+            "a 40sh jar of jelly, twelve into the press for an 84sh jug of cider, twenty onto the "
+            "rack for a 120sh sack of rings. Each takes the cheapest fruit first, and none will "
+            "touch an Amber Russet.",
         ),
         (
             "5",
             "Overnight",
             "the post, the batches, the set",
             LEAF,
-            "Everything ordered arrives with the morning post, every loaded machine finishes, and "
-            "the compost heap goes out on the rows. Then each picked apple is set again — a 30% "
-            "chance on an ordinary tree, 75% on one opened up with the shears, plus whatever the "
-            "compost bought, capped at 96%. The day you spend picking is the day your order is on "
-            "the road.",
+            "Orders arrive with the post, loaded machines finish, and the compost goes out on the "
+            "rows. Then each picked apple gets a chance to set again — 30% on an ordinary tree, 75% "
+            "on one opened up with the shears, plus whatever the compost bought, up to 96%.",
         ),
     ]
 
     y += 26
     for num, title, meta, tone, body in steps:
-        box = (48, y, DIAG_W - 48, y + 152)
-        card(draw, box)
-        draw.rounded_rectangle((48, y, 54, y + 152), radius=3, fill=tone)
+        # sized to its own copy: a fixed height leaves the shorter steps
+        # sitting in a pool of slack
+        lines = len(textwrap.wrap(body, width=112))
+        h = 62 + lines * 21 + 24
+        card(draw, (48, y, DIAG_W - 48, y + h))
+        draw.rounded_rectangle((48, y, 54, y + h), radius=3, fill=tone)
         draw.ellipse((76, y + 26, 116, y + 66), fill=tone)
         nw = draw.textlength(num, font=sans(18, bold=True))
         draw.text((96 - nw / 2, y + 36), num, fill=(255, 255, 255), font=sans(18, bold=True))
@@ -314,23 +334,20 @@ def draw_day() -> None:
         tw = draw.textlength(title, font=font(22, bold=True))
         draw.text((140 + tw + 16, y + 32), meta, fill=MUTED, font=sans(14))
         wrapped(draw, (140, y + 62), body, width=112, size=14, leading=21)
-        y += 152 + 14
+        y += h + 14
 
     # the windfall loop, which is the only thing on the farm that runs sideways
-    box = (48, y + 8, DIAG_W - 48, y + 8 + 150)
-    draw.rounded_rectangle(box, radius=14, fill=DEEP, outline=LINE, width=2)
+    tail = ("Anything off the ground is bruised: the merchant will not take it and it will not keep. "
+            "It goes into the sack, which holds 40, and then into the compost barrel. Spread back on "
+            "the rows, each windfall adds a percentage point to every tree's chance of setting again "
+            "by morning, up to 34 points.")
+    tail_h = 72 + len(textwrap.wrap(tail, width=112)) * 21 + 22
+    draw.rounded_rectangle((48, y + 8, DIAG_W - 48, y + 8 + tail_h),
+                           radius=14, fill=DEEP, outline=LINE, width=2)
     draw.text((80, y + 34), "And the ones that hit the grass", fill=INK, font=font(22, bold=True))
-    wrapped(
-        draw,
-        (80, y + 72),
-        "Anything off the ground is bruised: the merchant will not have it and it will not keep. It "
-        "goes into the sack (40), then into the compost barrel, and spread back on the rows it buys "
-        "each tree one extra point of a percent of setting again by morning, up to 34.",
-        width=112,
-        size=14,
-        leading=21,
-    )
+    wrapped(draw, (80, y + 72), tail, width=112, size=14, leading=21)
 
+    img = img.crop((0, 0, DIAG_W, y + 8 + tail_h + 44))
     dest = OUT / "diagram-day.png"
     img.save(dest, "PNG", optimize=True)
     print(f"diagram {dest.name:36} {img.width}x{img.height}")
@@ -345,9 +362,9 @@ def draw_reach() -> None:
     y = head(
         draw,
         "The reach, and what it costs",
-        "Growers do not pull down on fruit: a yank takes the fruiting spur with it and costs next "
-        "year's crop. The apple is cupped, rolled upwards until the calyx points at the sky, and "
-        "given a small twist. Both animations below are that motion — one in a paw, one on a hoop.",
+        "Apples are not pulled down: a yank tears out the spur that fruits next year. The fruit is "
+        "cupped, rolled upwards until the stalk end points at the sky, and given a small twist. "
+        "Both animations below are that same motion — one in a paw, one on a hoop.",
     )
     y += 26
 
@@ -356,9 +373,9 @@ def draw_reach() -> None:
     draw.text((76, y + 24), "How high it gets", fill=INK, font=font(21, bold=True))
 
     bands = [
-        (0.0, 2.5, "By paw", "REACH_FROM_FEET 2.5 m", GRANNY),
-        (2.5, 6.7, "On the pole", "+ PICKER_BONUS 4.2 m", GOLDEN),
-        (6.7, 8.4, "Ladder work", "the middle of the tree", MUTED),
+        (0.0, 2.5, "By paw", "2.5 m from the bear's feet", GRANNY),
+        (2.5, 6.7, "On the pole", "the pole adds another 4.2 m", GOLDEN),
+        (6.7, 8.4, "Ladder work", "higher than the pole will go", MUTED),
     ]
     top, bottom = y + 70, y + 430
     scale = (bottom - top) / 8.4
@@ -409,10 +426,9 @@ def draw_reach() -> None:
     wrapped(
         draw,
         (bar_x0, sy + 4),
-        "The fruit is not simply moved to the paw: the limb is drawn down along the line of the "
-        "reach, up to 1.35 m of it, and the roll runs about the axis across that line — so the calyx "
-        "comes up the way a wrist would bring it. A bear that is worn out plays the whole sequence "
-        "at 0.72 speed, and stoops through it.",
+        "The fruit is not simply slid to the paw: the branch is drawn down towards the bear, up to "
+        "1.35 m of it, and the apple rolls about the line across the reach — the way a wrist would "
+        "turn it. A worn-out bear plays the whole sequence at 0.72 speed, and stoops through it.",
         width=74,
         size=14,
         leading=21,
@@ -421,13 +437,13 @@ def draw_reach() -> None:
     # ---- the vigour ledger ----------------------------------------------
     y2 = y + 500
     card(draw, (48, y2, DIAG_W - 48, y2 + 330))
-    draw.text((80, y2 + 26), "What comes out of the legs, and what puts it back",
+    draw.text((80, y2 + 26), "What the day takes out of the bear, and what puts it back",
               fill=INK, font=font(21, bold=True))
     wrapped(
         draw,
         (80, y2 + 62),
-        "Vigour runs 0 to 1 and a full day of steady picking spends most of it. It is the only thing "
-        "in the game that limits how much fruit a day can hold — which is what bounds the economy.",
+        "Vigour runs from 1 down to 0, and a full day of steady picking spends most of it. It is "
+        "the only thing limiting how much fruit a day can hold.",
         width=112, size=14, leading=21,
     )
 
@@ -450,8 +466,8 @@ def draw_reach() -> None:
 
     draw.text(
         (80, y2 + 268),
-        "Below 0.36 the bear stoops and slows; below 0.13 it will not run at all, and every reach "
-        "plays a third slower.",
+        "Below 0.36 the bear stoops and starts losing pace, down to about two thirds of it at empty. "
+        "Below 0.13 it will not run at all, and every reach plays at 0.72 speed.",
         fill=MUTED, font=sans(14),
     )
 
@@ -462,16 +478,15 @@ def draw_reach() -> None:
 
 def draw_ripening() -> None:
     """One apple, one cycle — and why only a tenth of a tree is ever worth it."""
-    height = 672
-    img = Image.new("RGB", (DIAG_W, height), BG)
+    img = Image.new("RGB", (DIAG_W, 900), BG)
     draw = ImageDraw.Draw(img)
 
     y = head(
         draw,
         "One apple, one cycle",
-        "Every apple that is set runs a single schedule: it colours up, comes to its best for a few "
-        "minutes, hangs on a little past it, and then the stem gives and it goes into the grass. "
-        "Nothing loops. A tree that has been picked over is picked over until morning.",
+        "Every apple runs a single schedule: it colours up, is at its best for a few minutes, hangs "
+        "on a little past that, and then falls into the grass. Nothing repeats during the day — a "
+        "tree that has been picked over stays picked over until morning.",
     )
     y += 34
 
@@ -507,25 +522,26 @@ def draw_ripening() -> None:
     notes = [
         (
             "Why the wait is spread so wide",
-            "A day is 420 seconds and a ripening wait is anywhere from 45 to 1500 of them. Set that "
-            "against a window at its best of two or three minutes and only about a tenth of a tree "
-            "is worth picking at once — which is the whole reason the ripe ones are marked, and the "
-            "whole reason the orchard plan is a map of where the fruit is rather than where the "
-            "trees are.",
+            "A day is 420 seconds; a ripening wait is anywhere from 45 to 1500 of them. Against a "
+            "best-of window only two or three minutes long, that leaves about a tenth of a tree "
+            "worth picking at once. It is why ripe apples are marked, and why the orchard plan "
+            "shows where the fruit is rather than where the trees are.",
         ),
         (
-            "Why the schedule is re-rolled, not reset",
-            "Overnight every apple is given a fresh, independently random schedule rather than the "
-            "one it had. Reusing it would make the rows tick in step within a couple of days: the "
-            "whole orchard ripe on one morning and bare on the next.",
+            "Why a fresh schedule each morning",
+            "An apple that sets again overnight gets a fresh random schedule rather than the one it "
+            "had. Reusing it would pull the rows into step within a couple of days — the whole "
+            "orchard ripe on one morning and bare the next.",
         ),
     ]
     for title, body in notes:
-        card(draw, (64, y, DIAG_W - 64, y + 150))
+        h = 58 + len(textwrap.wrap(body, width=110)) * 21 + 22
+        card(draw, (64, y, DIAG_W - 64, y + h))
         draw.text((96, y + 22), title, fill=INK, font=font(20, bold=True))
         wrapped(draw, (96, y + 58), body, width=110, size=14, leading=21)
-        y += 166
+        y += h + 16
 
+    img = img.crop((0, 0, DIAG_W, y + 28))
     dest = OUT / "diagram-ripening.png"
     img.save(dest, "PNG", optimize=True)
     print(f"diagram {dest.name:36} {img.width}x{img.height}")
