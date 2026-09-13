@@ -19,7 +19,7 @@ export default function HomePage() {
               craft.
             </p>
             <p className="text-[16px] leading-relaxed text-muted-foreground">
-              Research-led UX, UI, and industrial design — digital and physical.
+              Research-led Product Design, AI, and Platform Strategy — digital and physical.
               From discovery to shipped experiences, with cross-functional
               teams.
             </p>

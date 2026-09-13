@@ -6,7 +6,7 @@ export function SiteFooter() {
           Jon Langer
         </p>
         <p className="max-w-md text-sm leading-relaxed md:text-left">
-          UI · UX · Industrial design — people, systems, and craft.
+          Product Design, AI, and Platform Strategy — people, systems, and craft.
         </p>
       </div>
     </footer>

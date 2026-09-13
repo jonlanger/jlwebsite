@@ -18,7 +18,7 @@ const montserrat = Montserrat({
 
 export const metadata: Metadata = {
   title: {
-    default: "Jon Langer — UI, UX & Industrial Design",
+    default: "Jon Langer — Product Design, AI & Platform Strategy",
     template: "%s · Jon Langer",
   },
   description:

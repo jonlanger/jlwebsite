@@ -7,7 +7,7 @@ import { contentColumnClass } from "@/lib/content-layout";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "How Jon Langer approaches design, collaboration, and craft across UI, UX, and industrial design.",
+    "How Jon Langer approaches design, collaboration, and craft across Product Design, AI, and Platform Strategy.",
 };
 
 const experience = [
