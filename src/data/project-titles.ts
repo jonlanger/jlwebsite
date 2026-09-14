@@ -17,6 +17,7 @@ export const PROJECT_TITLES: Record<string, string> = {
   "applied-ai-marketplace": "Applied AI Marketplace",
   "atomicatlas": "AtomicAtlas",
   "aureum": "Aureum AI",
+  "blockscraper": "Blockscraper",
   "botanica": "Botanica",
   "careshift": "Careshift",
   "cell-gene-therapy-platform": "Cell Gene Therapy Platform",
