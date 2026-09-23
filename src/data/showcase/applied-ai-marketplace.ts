@@ -18,7 +18,7 @@ export const project: PastProject = {
     ],
     role: "UX Research, Product Design, UI Design, Stakeholder Alignment",
     scope:
-      "Enterprise web platform \u2014 AI chat search, faceted catalog, product detail pages, admin/submission tooling, responsive mobile",
+      "Enterprise web platform \u2014 AI chat and keyword search, faceted catalog, product detail pages, request and purchase checkout, AI-assisted asset submission, admin and System Admin tooling, responsive mobile",
   },
   sections: [
     {
@@ -152,16 +152,23 @@ export const project: PastProject = {
     {
       title: "Approach",
       paragraphs: [
-        "The IA splits into two entry paths that converge on the same catalog: a search/chat-first path for people who already know their task, and a curated browse path \u2014 Trending Assets, Curated Collections, and Browse Everything by Use Case, Case Stage, Industry, Function, or Asset Type \u2014 for people still exploring. Every asset, regardless of access model, resolves to the same Product Detail Page template.",
+        "The IA has three entry paths that converge on the same catalog: AI chat for people who can describe their task, keyword search (added in Q3, with type-ahead suggestions) for people who already know what they want by name, and a curated browse path \u2014 Assets Worth Knowing, Curated Collections, and Browse Everything by Use Case, Case Stage, Industry, Function, or Asset Type \u2014 for people still exploring. Every asset, regardless of access model, resolves to the same Product Detail Page template.",
         "That single PDP flexes its CTA and pricing block without changing the shell: free assets launch immediately, licensed or gated assets request access, and paid assets purchase through one-time, per-request/API, or per-seat recurring models \u2014 with 50+ products carrying live payment functionality.",
       ],
       figures: [
         {
           afterParagraphIndex: 0,
           src: "/projects/applied-ai-marketplace/product-ia.png",
-          alt: "Marketplace information architecture with Search/Chat and Browse paths converging into a unified catalog, PDP, and access-model CTAs.",
-          width: 1440,
-          height: 810,
+          alt: "Marketplace information architecture: AI chat, keyword search, and browse converge on a unified catalog, then the Product Detail Page, access-model CTAs, and request/purchase checkout.",
+          width: 1800,
+          height: 800,
+        },
+        {
+          afterParagraphIndex: 1,
+          src: "/projects/applied-ai-marketplace/diagram-system.png",
+          alt: "Marketplace system map: four role lanes (Discover, Request & buy, Approve & manage, Operate) over a shared platform of catalog, entitlements, billing, notifications, analytics, and scheduled jobs.",
+          width: 1800,
+          height: 1080,
         },
       ],
       topicGroups: [
@@ -187,125 +194,138 @@ export const project: PastProject = {
     {
       title: "Product",
       paragraphs: [
-        "The product story runs from a search-first homepage through AI chat and curated browsing into a single, flexible product template \u2014 then adapts that same core experience for mobile.",
+        "The product story follows one person from question to access: a search-first homepage, three ways to find (AI chat, keyword search, and browse), one product template, and a checkout that adapts to the access model.",
+        "Behind the storefront is the half of the platform most users never see: asset submission with AI-generated imagery, approvals, per-asset analytics, invoicing, and System Admin tools. Each workflow was designed story by story, with a happy path, edge states, and linked Jira tickets. Every screen shares the same shell and breadcrumbs, so admins always know where they are.",
       ],
       productShowcase: {
         slides: [
           {
-            src: "/projects/applied-ai-marketplace/product-homepage-full-v5.png",
-            alt: "Marketplace homepage with personalized search, Assets Worth Knowing, Curated Collections, and Browse Everything.",
-            width: 1988,
-            height: 3072,
+            src: "/projects/applied-ai-marketplace/flow-home-full.webp",
+            alt: "Marketplace homepage with personalized greeting, AI/keyword search bar, Assets Worth Knowing, Curated Collections, and Browse Everything.",
+            width: 1600,
+            height: 2382,
             title: "Search-first homepage",
-            caption:
-              "Assets Worth Knowing, Curated Collections, and Browse Everything \u2014 so people who already know their task and people still exploring land in the same catalog.",
+            caption: "One search bar for chat or keywords, then Assets Worth Knowing, Curated Collections, and Browse Everything. People who know their task and people still exploring land in the same catalog.",
           },
           {
-            src: "/projects/applied-ai-marketplace/product-chat-multitheme.png",
-            alt: "AI chat answering a slide-writing query with assets and collections results side by side.",
+            src: "/projects/applied-ai-marketplace/flow-search-ai-chat.webp",
+            alt: "AI chat answering \u201cShow me tools that help with slide writing\u201d with linked recommendations beside 18 matching assets and 24 collections.",
             width: 1800,
             height: 1013,
-            title: "Chat / AI search",
-            caption:
-              "Natural-language discovery with grouped multi-theme results \u2014 assets and collections that mirror how someone described their work.",
+            title: "AI chat",
+            caption: "Describe the work in plain language. Results come back grouped by theme, as assets and collections that mirror how the person described it.",
           },
           {
-            src: "/projects/applied-ai-marketplace/product-browse-filters.png",
-            alt: "Browse view with Use Case filter for Slide Creation and a grid of matching asset cards.",
+            src: "/projects/applied-ai-marketplace/flow-search-keyword-autocomplete.webp",
+            alt: "Homepage search bar in Keyword mode with type-ahead suggestions highlighting the matched text.",
+            width: 1800,
+            height: 1013,
+            title: "Keyword search",
+            caption: "A Keyword mode in the same bar, for people who already know the name. Type-ahead suggests matching asset and collection titles as they type.",
+          },
+          {
+            src: "/projects/applied-ai-marketplace/flow-browse-filters.webp",
+            alt: "Search page with the Asset Type filter panel open beside asset and collection cards, and the AI search panel alongside.",
             width: 1800,
             height: 1013,
             title: "Browse & filter",
-            caption:
-              "Full faceted filtering \u2014 Asset Type, Industry, Function, Use Case, Case Stage, Pricing \u2014 with grid and list toggle.",
+            caption: "Filter by Assets or Collections, Asset Type, IPA, FPA, and more, with grid and list views. The AI search panel stays open alongside the results.",
           },
           {
-            src: "/projects/applied-ai-marketplace/product-pdp-launch.png",
-            alt: "Product detail page for n8n Workflow Automation with Launch Asset CTA and no fee.",
-            width: 1800,
-            height: 1013,
+            src: "/projects/applied-ai-marketplace/flow-pdp-full.webp",
+            alt: "Full product detail page for Claude for Enterprise (Chat) with Purchase CTA and $48 monthly fee, metadata, description, admin details, rating details, and similar assets.",
+            width: 1600,
+            height: 2971,
             title: "Product Detail Page",
             caption:
-              "One consistent template \u2014 metadata, overview, and CTA \u2014 flexing across free, gated, and paid access models.",
+              "One template for every asset. Price and CTA sit up top, followed by metadata, the full description, admin details (owner, launches, GenAI allowance, cohort, region), ratings and reviews, and similar assets.",
           },
           {
-            src: "/projects/applied-ai-marketplace/product-mobile-pdp.png",
-            alt: "Mobile product detail page for Slide Generator by Deckster with Launch Asset CTA.",
+            src: "/projects/applied-ai-marketplace/flow-checkout-confirm-details.webp",
+            alt: "Purchase Request step two with users, start and end dates, and use case for Claude for Enterprise.",
             width: 1800,
             height: 1013,
-            title: "Mobile",
-            caption:
-              "Same discovery and detail patterns, responsively adapted for on-the-go case work.",
+            title: "Request & purchase checkout",
+            caption: "A three-step checkout: project code, confirm users and dates, review and submit. The asset's pricing stays pinned alongside.",
+          },
+          {
+            src: "/projects/applied-ai-marketplace/flow-responsive.webp",
+            alt: "Tablet and phone layouts of the homepage with keyword autocomplete open.",
+            width: 1800,
+            height: 1013,
+            title: "Responsive",
+            caption: "The same search, cards, and collections adapt down to tablet and phone for on-the-go case work.",
           },
         ],
         accordion: [
           {
             value: "homepage-sections",
             title: "Homepage sections",
-            description:
-              "Close-ups of the search hero, Assets Worth Knowing, Curated Collections, and Browse Everything.",
+            description: "Home: the search hero, Assets Worth Knowing, Curated Collections, and Browse Everything.",
             defaultOpen: true,
             slides: [
               {
-                src: "/projects/applied-ai-marketplace/product-homepage-hero.png",
-                alt: "Homepage hero with personalized greeting, search bar, and quick-start pills.",
-                width: 1988,
-                height: 507,
+                src: "/projects/applied-ai-marketplace/flow-home-hero.webp",
+                alt: "Homepage hero with personalized greeting, Keyword search bar, and quick-start pills.",
+                width: 1800,
+                height: 1013,
                 title: "Search hero",
-                caption:
-                  "\u201cWhat are you working on?\u201d \u2014 natural-language search plus quick paths for find, case, industry, and learn more.",
+                caption: "\u201cWhat are you working on?\u201d The search bar switches between AI and Keyword mode, with quick paths to find an asset, start from a case, browse by industry, or learn more.",
               },
               {
-                src: "/projects/applied-ai-marketplace/product-homepage-assets.png",
-                alt: "Assets Worth Knowing carousel with Popular and New tabs and launch metrics on each card.",
+                src: "/projects/applied-ai-marketplace/flow-home-assets.webp",
+                alt: "Assets Worth Knowing carousel with Popular, New, and Hidden Gems tabs and launch counts on each card.",
                 width: 1800,
                 height: 1013,
                 title: "Assets Worth Knowing",
-                caption:
-                  "Popular, New, and Hidden Gems \u2014 social proof on the cards so people see what BCGers actually use.",
+                caption: "Popular, New, and Hidden Gems, with launch counts on the cards so people see what BCGers actually use.",
               },
               {
-                src: "/projects/applied-ai-marketplace/product-homepage-collections.png",
-                alt: "Curated Collections cards for Proposal Kickstart, Slide Writing, Data Analysis, and Interviews.",
+                src: "/projects/applied-ai-marketplace/flow-home-collections.webp",
+                alt: "Curated Collections cards for Proposal Kickstart, Slide Writing, Data Analysis, User & Expert Interviews, and Email.",
                 width: 1800,
                 height: 1013,
                 title: "Curated Collections",
-                caption:
-                  "Themed packs of assets \u2014 proposal kickstart, slides, data analysis, interviews \u2014 for people still exploring.",
+                caption: "Themed packs of assets (proposal kickstart, slides, data analysis, interviews) for people still exploring.",
               },
               {
-                src: "/projects/applied-ai-marketplace/product-homepage-browse.png",
-                alt: "Browse Everything section with Use Case categories and facet tabs for Case Stage, Industry, Function, and Asset Type.",
+                src: "/projects/applied-ai-marketplace/flow-home-browse.webp",
+                alt: "Browse Everything with Use Case categories and tabs for Case Stage, Industry, Function, and Asset Type.",
                 width: 1800,
                 height: 1013,
                 title: "Browse Everything",
-                caption:
-                  "Faceted entry by Use Case, Case Stage, Industry, Function, or Asset Type \u2014 curated navigation over a flat list.",
+                caption: "Entry by Use Case, Case Stage, Industry, Function, or Asset Type: the curated navigation research asked for.",
               },
             ],
           },
           {
-            value: "chat-discovery",
-            title: "Chat & discovery",
-            description:
-              "Multi-theme results, related suggestions when an exact match misses, and graceful zero-result handling.",
+            value: "search",
+            title: "AI chat & keyword search",
+            description: "Two search modes in one bar: describe the task to AI, or type a name and pick from suggestions.",
             slides: [
+              {
+                src: "/projects/applied-ai-marketplace/flow-search-keyword-page.webp",
+                alt: "Search page in Keyword mode with autocomplete suggestions over a grid of asset cards.",
+                width: 1800,
+                height: 1013,
+                title: "Suggestions everywhere",
+                caption: "Keyword autocomplete works on the search page too. Suggestions are titles only, capped at five, and never create a chat record.",
+              },
+              {
+                src: "/projects/applied-ai-marketplace/flow-search-keyword-results.webp",
+                alt: "Keyword results for \u201coperating model\u201d showing 18 assets and 1 collection in list view.",
+                width: 1800,
+                height: 1013,
+                title: "Keyword results",
+                caption: "Results split into assets and collections, with counts, so people can scan a list instead of reading a chat reply.",
+              },
               {
                 src: "/projects/applied-ai-marketplace/product-chat-slide-writing.png",
                 alt: "Chat sidebar recommending slide tools with a filtered asset list on the right.",
                 width: 1800,
                 height: 1013,
-                title: "Task-shaped answers",
-                caption:
-                  "Ask for slide help \u2014 get named tools and a live catalog list, not a wall of filters to hunt through.",
-              },
-              {
-                src: "/projects/applied-ai-marketplace/product-chat-custom-gpts.png",
-                alt: "Chat requesting top Custom GPTs with Asset Type filter applied and ten matching results.",
-                width: 1800,
-                height: 1013,
-                title: "Chat plus facets",
-                caption:
-                  "Natural language sets the intent; structured filters refine without starting over.",
+                title: "Task-shaped chat answers",
+                caption: "Ask for slide help and get named tools and a live catalog list, not a wall of filters to hunt through.",
               },
               {
                 src: "/projects/applied-ai-marketplace/product-chat-related.png",
@@ -313,8 +333,7 @@ export const project: PastProject = {
                 width: 1800,
                 height: 1013,
                 title: "Related when exact fails",
-                caption:
-                  "No exact match still returns useful neighbors \u2014 keeping people in discovery instead of dead ends.",
+                caption: "No exact match still returns useful neighbors, keeping people in discovery instead of dead ends.",
               },
               {
                 src: "/projects/applied-ai-marketplace/product-chat-zero.png",
@@ -322,60 +341,14 @@ export const project: PastProject = {
                 width: 1800,
                 height: 1013,
                 title: "Graceful empty states",
-                caption:
-                  "Out-of-scope asks get clear guidance \u2014 plus paths to submit or request what\u2019s missing.",
-              },
-            ],
-          },
-          {
-            value: "browse-facets",
-            title: "Browse by how work is framed",
-            description:
-              "Use Case, Case Stage, Industry, Function, and Asset Type \u2014 the curated navigation research asked for.",
-            slides: [
-              {
-                src: "/projects/applied-ai-marketplace/product-browse-usecase.png",
-                alt: "Browse Everything grid filtered by Use Case categories.",
-                width: 1800,
-                height: 1013,
-                title: "Use Case",
-                caption:
-                  "Client engagement, coding, data analysis, research, slides, automation, writing \u2014 browse by the job to be done.",
-              },
-              {
-                src: "/projects/applied-ai-marketplace/product-browse-case-stage.png",
-                alt: "Browse Everything grid filtered by Case Stage from BD through close.",
-                width: 1800,
-                height: 1013,
-                title: "Case Stage",
-                caption:
-                  "From Drive BD & Proposals through Close Case \u2014 aligned to how case teams actually move.",
-              },
-              {
-                src: "/projects/applied-ai-marketplace/product-browse-industry.png",
-                alt: "Browse Everything grid of industry practice areas.",
-                width: 1800,
-                height: 1013,
-                title: "Industry",
-                caption:
-                  "Practice-area lenses for teams who already know which industry context they need.",
-              },
-              {
-                src: "/projects/applied-ai-marketplace/product-browse-asset-type.png",
-                alt: "Browse Everything grid of nine asset types including Agents, Datasets, Skills, and Developer Tools.",
-                width: 1800,
-                height: 1013,
-                title: "Asset Type",
-                caption:
-                  "Nine types in one catalog \u2014 Agents, Custom GPTs, Datasets, Skills, Developer Tools, and more.",
+                caption: "Out-of-scope asks get clear guidance, plus paths to submit or request what\u2019s missing.",
               },
             ],
           },
           {
             value: "pdp-access-models",
             title: "One PDP, five+ access models",
-            description:
-              "Launch, Request Access, and Purchase \u2014 one-time, usage-based, and per-seat recurring \u2014 in the same detail shell.",
+            description: "Launch, Request Access, and Purchase (one-time, usage-based, and per-seat recurring) in the same detail shell.",
             slides: [
               {
                 src: "/projects/applied-ai-marketplace/product-pdp-request-access.png",
@@ -383,8 +356,7 @@ export const project: PastProject = {
                 width: 1800,
                 height: 1013,
                 title: "Request Access",
-                caption:
-                  "Gated inventory stays in the same template \u2014 approval without a separate intake experience.",
+                caption: "Gated inventory stays in the same template: approval without a separate intake experience.",
               },
               {
                 src: "/projects/applied-ai-marketplace/product-pdp-purchase-claude.png",
@@ -392,8 +364,7 @@ export const project: PastProject = {
                 width: 1800,
                 height: 1013,
                 title: "One-time purchase",
-                caption:
-                  "Paid licensed tools surface price and Purchase in the same hero card as free launches.",
+                caption: "Paid licensed tools surface price and Purchase in the same hero card as free launches.",
               },
               {
                 src: "/projects/applied-ai-marketplace/product-pdp-usage-based.png",
@@ -401,8 +372,7 @@ export const project: PastProject = {
                 width: 1800,
                 height: 1013,
                 title: "Usage-based",
-                caption:
-                  "Per-request / API pricing with monthly billing \u2014 still one PDP, one CTA pattern.",
+                caption: "Per-request / API pricing with monthly billing, still one PDP and one CTA pattern.",
               },
               {
                 src: "/projects/applied-ai-marketplace/product-pdp-recurring.png",
@@ -410,8 +380,7 @@ export const project: PastProject = {
                 width: 1800,
                 height: 1013,
                 title: "Per-seat recurring",
-                caption:
-                  "Seat-based subscription pricing without inventing a second product template.",
+                caption: "Seat-based subscription pricing without inventing a second product template.",
               },
               {
                 src: "/projects/applied-ai-marketplace/product-pdp-one-time.png",
@@ -419,34 +388,273 @@ export const project: PastProject = {
                 width: 1800,
                 height: 1013,
                 title: "High-ticket one-time",
-                caption:
-                  "Premium proprietary assets use the same Purchase pattern \u2014 scaled for larger fees.",
+                caption: "Premium proprietary assets use the same Purchase pattern, scaled for larger fees.",
               },
             ],
           },
           {
-            value: "mobile",
-            title: "Responsive mobile",
-            description:
-              "Navigation drawer, chat history, and detail CTAs adapted for phone and tablet.",
+            value: "checkout",
+            title: "Request & purchase checkout",
+            description: "Home \u203a [Asset] \u203a Purchase Request: the same three steps for every paid or gated asset.",
             slides: [
               {
-                src: "/projects/applied-ai-marketplace/product-mobile-home.png",
-                alt: "Mobile navigation drawer open over a product detail page with chat history and Launch Asset.",
+                src: "/projects/applied-ai-marketplace/flow-checkout-project-code.webp",
+                alt: "Purchase Request step one asking for a project code, with the asset\u2019s pricing summary on the left.",
                 width: 1800,
                 height: 1013,
-                title: "Nav & chat history",
-                caption:
-                  "Home, collections, trending, and recent chats in a drawer \u2014 discovery continues off desktop.",
+                title: "1 \u00b7 Project code",
+                caption: "Every request starts with a valid project code, so billing lands on the right case. Pricing model, unit price, and billing cycle stay visible throughout.",
               },
               {
-                src: "/projects/applied-ai-marketplace/product-mobile-pdp.png",
-                alt: "Mobile product detail for Slide Generator with Launch Asset and metadata tags.",
+                src: "/projects/applied-ai-marketplace/flow-checkout-confirm-details.webp",
+                alt: "Purchase Request step two with user emails, start and end dates, and use case.",
                 width: 1800,
                 height: 1013,
-                title: "Detail on the go",
-                caption:
-                  "Launch, metadata, and overview stay scannable on a narrow viewport.",
+                title: "2 \u00b7 Confirm details",
+                caption: "Add everyone who needs access, set the access window, and tag the use case in one step.",
+              },
+              {
+                src: "/projects/applied-ai-marketplace/flow-checkout-review.webp",
+                alt: "Purchase Request with completed steps collapsed into editable summaries above Review & Submit.",
+                width: 1800,
+                height: 1013,
+                title: "3 \u00b7 Review & submit",
+                caption: "Completed steps collapse into summaries that can be edited before the final submit.",
+              },
+              {
+                src: "/projects/applied-ai-marketplace/flow-checkout-success.webp",
+                alt: "Request submitted confirmation with illustration and a link to My Requests.",
+                width: 1800,
+                height: 1013,
+                title: "Submitted",
+                caption: "A clear confirmation that approval is pending, that an email will follow, and where to track it.",
+              },
+              {
+                src: "/projects/applied-ai-marketplace/flow-checkout-request-access.webp",
+                alt: "Request Access flow for a free, approval-gated n8n asset using the same three steps.",
+                width: 1800,
+                height: 1013,
+                title: "Free but gated",
+                caption: "Request Access reuses the same three steps with no pricing, so one pattern covers every access model.",
+              },
+            ],
+          },
+          {
+            value: "submit-ai",
+            title: "Submit an asset with AI imagery",
+            description: "Home \u203a Submit Asset: a five-step submission where AI drafts the description and generates the card image.",
+            slides: [
+              {
+                src: "/projects/applied-ai-marketplace/flow-submit-core-details.webp",
+                alt: "Submit Asset step one, Core Details, with Enhance with AI and Auto Populate Form with AI actions under the description.",
+                width: 1800,
+                height: 1013,
+                title: "Five-step submission",
+                caption: "Core Details, Search & Discovery, Access & Pricing, Approvals & Compliance, Review & Submit. AI can enhance the description or auto-populate the form from it.",
+              },
+              {
+                src: "/projects/applied-ai-marketplace/flow-submit-ai-generating.webp",
+                alt: "Generate Asset Image modal loading three image options.",
+                width: 1800,
+                height: 1013,
+                title: "Generate from the description",
+                caption: "Once the description is long enough, one click generates image options from it.",
+              },
+              {
+                src: "/projects/applied-ai-marketplace/flow-submit-ai-options.webp",
+                alt: "Three AI-generated asset images with Download and Set as Asset Image actions and a regenerate counter.",
+                width: 1800,
+                height: 1013,
+                title: "Pick or regenerate",
+                caption: "Three options to download or set as the asset image, with a capped regenerate so it stays fast and affordable.",
+              },
+              {
+                src: "/projects/applied-ai-marketplace/flow-submit-ai-set.webp",
+                alt: "Submit Asset form with the selected AI image placed and a success toast.",
+                width: 1800,
+                height: 1013,
+                title: "Set and continue",
+                caption: "The chosen image drops straight into the form. Admins can still upload their own or regenerate.",
+              },
+              {
+                src: "/projects/applied-ai-marketplace/flow-submit-ai-samples.webp",
+                alt: "Grid of four AI-generated asset icons in the Marketplace style: flat icons on solid brand colors.",
+                width: 1800,
+                height: 1013,
+                title: "One visual family",
+                caption: "The prompt was tuned so every generated image reads as part of one set: a single flat icon on a solid brand color. Admin-submitted assets end up looking like one catalog.",
+              },
+            ],
+          },
+          {
+            value: "approvals",
+            title: "Request & approval workflow",
+            description: "Home \u203a My Approvals \u203a Request Details: how Asset Admins approve, extend, and revoke access.",
+            slides: [
+              {
+                src: "/projects/applied-ai-marketplace/flow-approvals-queue.webp",
+                alt: "My Approvals queue with total, approved, open, and rejected counts above a table of requests.",
+                width: 1800,
+                height: 1013,
+                title: "Approvals queue",
+                caption: "One queue for every request an admin can act on. Summary counts, status tabs, requester search, and a filter by asset.",
+              },
+              {
+                src: "/projects/applied-ai-marketplace/flow-approvals-remove-users.webp",
+                alt: "Pending Request Details with an Action Required banner to approve or reject, and users awaiting approval.",
+                width: 1800,
+                height: 1013,
+                title: "Pending request",
+                caption: "An Action Required banner holds Approve and Reject, and reminds approvers to grant access outside the Marketplace first. Users can be removed one at a time.",
+              },
+              {
+                src: "/projects/applied-ai-marketplace/flow-approvals-add-users.webp",
+                alt: "Request Details with active users listed and an email field for adding new users to an approved team request.",
+                width: 1800,
+                height: 1013,
+                title: "Add users to a live request",
+                caption: "Team requests grow without starting over. New users are added by email and notified automatically.",
+              },
+              {
+                src: "/projects/applied-ai-marketplace/flow-approvals-revoke.webp",
+                alt: "Revoke Access confirmation modal over the Request Details page.",
+                width: 1800,
+                height: 1013,
+                title: "Revoke access",
+                caption: "Revoking access for everyone is a deliberate, confirmed step. Users can submit a new request if they need access again.",
+              },
+            ],
+          },
+          {
+            value: "asset-admin",
+            title: "Asset Admin workspace",
+            description: "Home \u203a My Assets \u203a [Asset]: one place per asset to see analytics and edit its listing.",
+            slides: [
+              {
+                src: "/projects/applied-ai-marketplace/flow-asset-my-assets.webp",
+                alt: "Manage My Assets with active assets, views, average rating, and searchability score above an asset table.",
+                width: 1800,
+                height: 1013,
+                title: "My Assets",
+                caption: "Everything an admin owns in one table, with a searchability score that shows how discoverable each listing is.",
+              },
+              {
+                src: "/projects/applied-ai-marketplace/flow-asset-purchases-requests.webp",
+                alt: "Asset analytics showing total requests over time as a stacked bar chart, processing time, and an access-request donut.",
+                width: 1800,
+                height: 1013,
+                title: "Purchases & requests",
+                caption: "Request volume over time, average approval time, and a breakdown by outcome. The side nav splits Analytics from Edit Asset.",
+              },
+              {
+                src: "/projects/applied-ai-marketplace/flow-asset-chart-tooltip.webp",
+                alt: "Stacked bar chart with a hover tooltip breaking one day into approved, pending, and rejected requests.",
+                width: 1800,
+                height: 1013,
+                title: "Drill into a day",
+                caption: "Hovering a bar breaks one day into approved, pending, and rejected requests.",
+              },
+              {
+                src: "/projects/applied-ai-marketplace/flow-asset-core-details.webp",
+                alt: "Edit Asset Core Details form with a rich-text description of the asset and its context.",
+                width: 1800,
+                height: 1013,
+                title: "Edit the listing",
+                caption: "Core Details, Search & Discovery, Access & Pricing, Approval & Compliance, and a Change Log, all in the same workspace.",
+              },
+            ],
+          },
+          {
+            value: "invoicing",
+            title: "Invoicing & notifications",
+            description: "Automated invoices for active purchases, plus the emails that move a request between requester and approver.",
+            slides: [
+              {
+                src: "/projects/applied-ai-marketplace/flow-invoices-list.webp",
+                alt: "Manage My Invoices with date range, download, cost and invoice totals, and an invoice table.",
+                width: 1800,
+                height: 1013,
+                title: "My Invoices",
+                caption: "Invoices are generated automatically for every active purchase, with a date range and one-click download for finance.",
+              },
+              {
+                src: "/projects/applied-ai-marketplace/flow-invoices-request-approved.webp",
+                alt: "Approved Request Details from the requester side with Launch Asset, users, and linked invoices.",
+                width: 1800,
+                height: 1013,
+                title: "Requester view",
+                caption: "Requesters see the same Request Details page from their side: launch, status, users, and linked invoices.",
+              },
+              {
+                src: "/projects/applied-ai-marketplace/flow-invoices-email-requested.webp",
+                alt: "Email notification: New Users \u2013 Access Requested for OpenAI API Access.",
+                width: 1800,
+                height: 1013,
+                title: "Email: access requested",
+                caption: "Each request event sends an email that links back to the right page in the Marketplace.",
+              },
+              {
+                src: "/projects/applied-ai-marketplace/flow-invoices-email-approved.webp",
+                alt: "Email notification: New Users \u2013 Access Request Approved.",
+                width: 1800,
+                height: 1013,
+                title: "Email: access approved",
+                caption: "Approvals and rejections close the loop by email, so requesters don\u2019t have to keep checking.",
+              },
+            ],
+          },
+          {
+            value: "system-admin",
+            title: "System Admin tools",
+            description: "Home \u203a System Admin: reports and in-app announcements for the people who run the platform.",
+            slides: [
+              {
+                src: "/projects/applied-ai-marketplace/flow-reports-system-admin.webp",
+                alt: "System Admin portal with cards for Announcements & Notifications, Asset Approvals, User Roles, and Reports.",
+                width: 1800,
+                height: 1013,
+                title: "System Admin portal",
+                caption: "Announcements, asset approvals, user roles, and reports: the platform\u2019s operations tools, reached from one portal.",
+              },
+              {
+                src: "/projects/applied-ai-marketplace/flow-reports-generate.webp",
+                alt: "Generate Report modal with a multi-select of report types.",
+                width: 1800,
+                height: 1013,
+                title: "Reports on demand",
+                caption: "AI Inventory, Complete Product, Retired Admins/Owners, or Disclaimer Acceptance, run any time instead of waiting for the monthly job.",
+              },
+              {
+                src: "/projects/applied-ai-marketplace/flow-reports-history.webp",
+                alt: "Report history table with manual and scheduled runs, statuses, and records processed.",
+                width: 1800,
+                height: 1013,
+                title: "Run history",
+                caption: "Scheduled and manual runs share one history, with status, trigger, and records processed.",
+              },
+              {
+                src: "/projects/applied-ai-marketplace/flow-announce-audience.webp",
+                alt: "Create Announcement form with the Audience dropdown showing All users and Asset Admins with live counts.",
+                width: 1800,
+                height: 1013,
+                title: "Targeted announcements",
+                caption: "A required Audience field shows live counts for each option, so admin-only notices never reach the whole firm.",
+              },
+              {
+                src: "/projects/applied-ai-marketplace/flow-announce-system-alert.webp",
+                alt: "System Alert form with a notice that alerts interrupt all active users and require acknowledgement.",
+                width: 1800,
+                height: 1013,
+                title: "System Alert",
+                caption: "The form warns that System Alerts interrupt every active user, who must acknowledge them. Only one can be active at a time.",
+              },
+              {
+                src: "/projects/applied-ai-marketplace/flow-announce-dashboard.webp",
+                alt: "Announcements & Notifications dashboard with active counts and a table showing type, dates, and audience.",
+                width: 1800,
+                height: 1013,
+                title: "Announcements dashboard",
+                caption: "Active counts against the limits (3 announcements, 1 alert), with the audience shown on every row.",
               },
             ],
           },
@@ -456,18 +664,23 @@ export const project: PastProject = {
     {
       title: "Outcome",
       paragraphs: [
-        "Three months post-launch, the Marketplace has become a daily discovery tool across the firm \u2014 reducing time-to-find-asset from over 30 minutes to under 2, and reaching a large share of its core internal audience.",
+        "The Marketplace has become a daily discovery tool across the firm. 28k people are now active users \u2014 about two-thirds of everyone eligible \u2014 with 10.8k using it every month, and time to find an asset has dropped from over 30 minutes to under 2.",
       ],
       stats: [
         {
-          value: "750+",
-          label: "Products cataloged",
-          detail: "Unifying what was previously 10+ separate repositories.",
+          value: "28k",
+          label: "Active users",
+          detail: "~67% of the 41,766-person eligible population.",
         },
         {
-          value: "11,220",
-          label: "Active unique users (Q3)",
-          detail: "~27% of the 41,766-person eligible population.",
+          value: "10.8k",
+          label: "Monthly active users",
+          detail: "People coming back to the Marketplace every month.",
+        },
+        {
+          value: "76%",
+          label: "ESAT",
+          detail: "Employee satisfaction with the Marketplace.",
         },
         {
           value: "Under 2 min",
@@ -478,11 +691,6 @@ export const project: PastProject = {
           value: "40%",
           label: "PDP \u2192 CTA conversion",
           detail: "28,793 product page views converting to 11,531 CTA clicks.",
-        },
-        {
-          value: "57%",
-          label: "Positive chat feedback",
-          detail: "Across 11,902 AI chat sessions and 14,334 unique searches.",
         },
         {
           value: "50+",
