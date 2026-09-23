@@ -208,6 +208,15 @@ export const project: PastProject = {
             caption: "One search bar for chat or keywords, then Assets Worth Knowing, Curated Collections, and Browse Everything. People who know their task and people still exploring land in the same catalog.",
           },
           {
+            src: "/projects/applied-ai-marketplace/flow-search-ai-default.webp",
+            alt: "Homepage search bar in AI mode, the default, with the prompt \u201cAsk anything or search assets\u2026\u201d and quick-start pills.",
+            width: 1800,
+            height: 1013,
+            title: "AI search (default)",
+            caption:
+              "AI is the default mode. \u201cAsk anything or search assets\u2026\u201d invites a full description of the work, not just a keyword. Quick-start pills help people who aren\u2019t sure what to ask.",
+          },
+          {
             src: "/projects/applied-ai-marketplace/flow-search-ai-chat.webp",
             alt: "AI chat answering \u201cShow me tools that help with slide writing\u201d with linked recommendations beside 18 matching assets and 24 collections.",
             width: 1800,

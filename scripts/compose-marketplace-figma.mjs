@@ -23,6 +23,7 @@ const SHOTS = [
   ["home-default", "home-collections", { left: 49, top: 1048, height: 566 }],
   ["home-default", "home-browse", { left: 49, top: 1614, height: 392 }],
   // Main carousel
+  ["ai-search-default", "search-ai-default"],
   ["chat-main", "search-ai-chat"],
   ["browse-main", "browse-filters"],
   // Keyword search
