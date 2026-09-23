@@ -1,8 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { Maximize2, X } from "lucide-react";
-import { useEffect, useId, useState } from "react";
+import { ChevronLeft, ChevronRight, Maximize2, X } from "lucide-react";
+import {
+  useEffect,
+  useId,
+  useRef,
+  useState,
+  type PointerEvent as ReactPointerEvent,
+} from "react";
 import { createPortal } from "react-dom";
 
 import { cn } from "@/lib/utils";
@@ -21,6 +27,11 @@ export function ExpandableImage({
   previewAspectClassName = "aspect-video",
   /** object-position for cover previews (e.g. object-top for tall screens). */
   previewObjectPositionClassName = "object-center",
+  /** Controlled lightbox state (lets a parent keep it open across slides). */
+  open: openProp,
+  onOpenChange,
+  /** Prev/next controls inside the lightbox (arrows, arrow keys, swipe). */
+  lightboxNav,
 }: {
   src: string;
   alt: string;
@@ -32,9 +43,19 @@ export function ExpandableImage({
   previewFit?: "natural" | "cover";
   previewAspectClassName?: string;
   previewObjectPositionClassName?: string;
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+  lightboxNav?: { onPrev: () => void; onNext: () => void; position?: string };
 }) {
   const titleId = useId();
-  const [open, setOpen] = useState(false);
+  const [openState, setOpenState] = useState(false);
+  const open = openProp ?? openState;
+  const setOpen = (next: boolean) => {
+    if (openProp === undefined) setOpenState(next);
+    onOpenChange?.(next);
+  };
+  const swipeStart = useRef<{ x: number; y: number } | null>(null);
+  const suppressClick = useRef(false);
   const [mounted, setMounted] = useState(false);
   const cover = previewFit === "cover";
 
@@ -46,6 +67,13 @@ export function ExpandableImage({
     if (!open) return;
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") setOpen(false);
+      else if (lightboxNav && event.key === "ArrowLeft") {
+        event.preventDefault();
+        lightboxNav.onPrev();
+      } else if (lightboxNav && event.key === "ArrowRight") {
+        event.preventDefault();
+        lightboxNav.onNext();
+      }
     };
     const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
@@ -54,7 +82,31 @@ export function ExpandableImage({
       document.body.style.overflow = prevOverflow;
       window.removeEventListener("keydown", onKeyDown);
     };
-  }, [open]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [open, lightboxNav?.onPrev, lightboxNav?.onNext]);
+
+  const onLightboxPointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
+    suppressClick.current = false;
+    if (!lightboxNav) return;
+    if (event.pointerType === "mouse" && event.button !== 0) return;
+    swipeStart.current = { x: event.clientX, y: event.clientY };
+  };
+
+  const onLightboxPointerUp = (event: ReactPointerEvent<HTMLDivElement>) => {
+    const start = swipeStart.current;
+    swipeStart.current = null;
+    if (!start || !lightboxNav) return;
+    const dx = event.clientX - start.x;
+    const dy = event.clientY - start.y;
+    if (Math.abs(dx) < 48 || Math.abs(dx) < Math.abs(dy)) return;
+    // A swipe that ends on the backdrop would otherwise register as a close.
+    suppressClick.current = true;
+    if (dx > 0) lightboxNav.onPrev();
+    else lightboxNav.onNext();
+  };
+
+  const navButtonClassName =
+    "absolute top-1/2 z-[120] flex size-11 -translate-y-1/2 items-center justify-center rounded-full bg-background/95 text-foreground shadow-md ring-1 ring-border transition-colors hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring";
 
   return (
     <>
@@ -109,13 +161,24 @@ export function ExpandableImage({
               role="dialog"
               aria-modal="true"
               aria-labelledby={titleId}
-              className="fixed inset-0 z-[110]"
+              className="fixed inset-0 z-[110] touch-pan-y"
+              onPointerDown={onLightboxPointerDown}
+              onPointerUp={onLightboxPointerUp}
+              onPointerCancel={() => {
+                swipeStart.current = null;
+              }}
             >
               <button
                 type="button"
                 className="absolute inset-0 bg-black/85 backdrop-blur-[2px]"
                 aria-label="Close full screen image"
-                onClick={() => setOpen(false)}
+                onClick={() => {
+                  if (suppressClick.current) {
+                    suppressClick.current = false;
+                    return;
+                  }
+                  setOpen(false);
+                }}
               />
               <h2 id={titleId} className="sr-only">
                 {alt}
@@ -128,6 +191,40 @@ export function ExpandableImage({
               >
                 <X className="size-5" />
               </button>
+              {lightboxNav ? (
+                <>
+                  {lightboxNav.position ? (
+                    <p
+                      className="absolute top-[max(1rem,env(safe-area-inset-top))] left-[max(1rem,env(safe-area-inset-left))] z-[120] flex h-11 items-center rounded-full bg-background/95 px-4 text-sm tabular-nums text-foreground shadow-md ring-1 ring-border"
+                      aria-live="polite"
+                    >
+                      {lightboxNav.position}
+                    </p>
+                  ) : null}
+                  <button
+                    type="button"
+                    className={cn(
+                      navButtonClassName,
+                      "left-[max(0.5rem,env(safe-area-inset-left))] md:left-4"
+                    )}
+                    aria-label="Previous image"
+                    onClick={lightboxNav.onPrev}
+                  >
+                    <ChevronLeft className="size-5" />
+                  </button>
+                  <button
+                    type="button"
+                    className={cn(
+                      navButtonClassName,
+                      "right-[max(0.5rem,env(safe-area-inset-right))] md:right-4"
+                    )}
+                    aria-label="Next image"
+                    onClick={lightboxNav.onNext}
+                  >
+                    <ChevronRight className="size-5" />
+                  </button>
+                </>
+              ) : null}
               <div className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-auto p-4 pt-16">
                 {/*
                   Native img scales to the viewport. next/image width/height was
@@ -137,7 +234,13 @@ export function ExpandableImage({
                 <img
                   src={src}
                   alt={alt}
-                  className="pointer-events-auto max-h-[calc(100dvh-5rem)] max-w-[calc(100vw-2rem)] h-auto w-auto object-contain"
+                  draggable={false}
+                  className={cn(
+                    "pointer-events-auto max-h-[calc(100dvh-5rem)] h-auto w-auto object-contain select-none",
+                    lightboxNav
+                      ? "max-w-[calc(100vw-2rem)] md:max-w-[calc(100vw-9rem)]"
+                      : "max-w-[calc(100vw-2rem)]"
+                  )}
                 />
               </div>
             </div>,

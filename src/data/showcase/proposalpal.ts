@@ -6,8 +6,8 @@ export const project: PastProject = {
   title: "ProposalPal",
   description:
     "AI-powered proposal development agent that turns fragmented RFPs, notes, and BCG IP into a structured, high-quality first draft \u2014 in hours, not days.",
-  image: "/projects/proposalpal/proposalpal_card.png",
-  alt: "ProposalPal home with Welcome hero, New Proposal CTA, and an active 7-Eleven ERP proposal card.",
+  image: "/projects/proposalpal/proposalpal_card_dark.webp",
+  alt: "ProposalPal home in dark mode with Welcome hero, New Proposal CTA, and an active 7-Eleven ERP proposal card.",
   width: 1280,
   height: 720,
   overview: {
@@ -91,6 +91,22 @@ export const project: PastProject = {
         "Rather than ship a single drafting chat, we designed ProposalPal as a multi-agent pursuit workspace. Intake captures opportunity context and source materials; the dashboard then routes teams through specialized modules \u2014 Client Research, Engagement, Team Formation, Topic Research, Storyline & Proposal, Commercial Approach, Polish, and Practice Pitch.",
         "Each module pairs conversational refinement with structured outputs on the right \u2014 research sections, team profiles, proposal outline, commercial framing \u2014 so AI acceleration stays inspectable and editable.",
       ],
+      figures: [
+        {
+          afterParagraphIndex: 0,
+          src: "/projects/proposalpal/dark-workspace.webp",
+          alt: "Proposal workspace with the eight pursuit modules — Client Research, Client Engagement, Team Formation, Topic Research, Storyline & Proposal, Commercial Approach, Polish Proposal, Practice Pitch — above the chat.",
+          width: 1800,
+          height: 1125,
+        },
+        {
+          afterParagraphIndex: 1,
+          src: "/projects/proposalpal/dark-operations.webp",
+          alt: "Proposal Operations panel listing generated files with their types, running system tasks, and team members with owner and editor roles.",
+          width: 1800,
+          height: 1125,
+        },
+      ],
       topicGroups: [
         {
           title: "Workspace model",
@@ -119,8 +135,8 @@ export const project: PastProject = {
       productShowcase: {
         slides: [
           {
-            src: "/projects/proposalpal/product-home.png",
-            alt: "ProposalPal home with welcome hero, New Proposal CTA, and proposal cards including a 7-Eleven ERP opportunity.",
+            src: "/projects/proposalpal/dark-home.webp",
+            alt: "ProposalPal home in dark mode with the welcome hero, New Proposal button, and a 7-Eleven ERP proposal card.",
             width: 1800,
             height: 1125,
             title: "Proposal home",
@@ -128,8 +144,8 @@ export const project: PastProject = {
               "A search-first proposals board for pursuit teams \u2014 jump into an active opportunity or start a new one.",
           },
           {
-            src: "/projects/proposalpal/product-intake.png",
-            alt: "New Proposal intake with Opportunity ID, client name, RFP upload, draft upload, and proposal context fields.",
+            src: "/projects/proposalpal/dark-intake.webp",
+            alt: "New Proposal intake with opportunity ID, client, proposal name, RFP and draft uploads, and proposal context filled in.",
             width: 1800,
             height: 1125,
             title: "Structured intake",
@@ -137,8 +153,17 @@ export const project: PastProject = {
               "RFP, draft, and context uploads ground research and GenAI outputs before the team enters the workspace.",
           },
           {
-            src: "/projects/proposalpal/product-workspace-overview.png",
-            alt: "Proposal workspace overview with data sources panel, eight pursuit modules, and AI welcome chat.",
+            src: "/projects/proposalpal/dark-details.webp",
+            alt: "Proposal Details page with required information, practice areas, due date, proposal description, competitive landscape, topic expert, and attached files.",
+            width: 1800,
+            height: 1125,
+            title: "Proposal details",
+            caption:
+              "Everything the agents know about the pursuit \u2014 practices, competitors, experts, and files \u2014 on one editable page.",
+          },
+          {
+            src: "/projects/proposalpal/dark-workspace-sources.webp",
+            alt: "Proposal workspace with the Global Data Sources panel pulling relevant sources beside the module grid and welcome chat.",
             width: 1800,
             height: 1125,
             title: "Multi-agent workspace",
@@ -146,8 +171,8 @@ export const project: PastProject = {
               "Data sources on the left, pursuit modules in the center, and chat to steer the draft in real time.",
           },
           {
-            src: "/projects/proposalpal/product-client-research.png",
-            alt: "Client Research module with deep-research sections for overview, competitors, financials, and priorities.",
+            src: "/projects/proposalpal/dark-client-research.webp",
+            alt: "Client Research module with deep-research sections for context, competitors, financials, portfolio, news, executives, and priorities.",
             width: 1800,
             height: 1125,
             title: "Client research",
@@ -155,26 +180,17 @@ export const project: PastProject = {
               "Agent-led intelligence across industry, financials, leadership, and priorities \u2014 structured for proposal use.",
           },
           {
-            src: "/projects/proposalpal/product-team-formation.png",
-            alt: "Team Formation module recommending consultants with capability insights, suggested roles, and past projects.",
-            width: 1800,
-            height: 925,
-            title: "Team formation",
-            caption:
-              "Match roles to experts with capability insights, gaps, and past projects \u2014 then add people to the pursuit team.",
-          },
-          {
-            src: "/projects/proposalpal/product-storyline.png",
-            alt: "Storyline & Proposal module with hypotheses, Why BCG, approach, team, and executive summary sections.",
+            src: "/projects/proposalpal/dark-storyline.webp",
+            alt: "Storyline & Proposal module with proposal sections and a gate asking for Client Research to be completed first.",
             width: 1800,
             height: 1125,
             title: "Storyline & draft",
             caption:
-              "Build the proposal spine \u2014 hypotheses, value, approach, teaming, and executive summary \u2014 in one flow.",
+              "Build the proposal spine \u2014 hypotheses, value, approach, teaming, and executive summary \u2014 gated on research quality.",
           },
           {
-            src: "/projects/proposalpal/product-commercial.png",
-            alt: "Commercial Approach module with pricing strategy, investment framing, delivery model, and competitive edge.",
+            src: "/projects/proposalpal/dark-commercial.webp",
+            alt: "Commercial Approach module with pricing strategy, investment framing, delivery model, competitive edge, risks, and expert contacts.",
             width: 1800,
             height: 1125,
             title: "Commercial approach",
@@ -182,26 +198,53 @@ export const project: PastProject = {
               "Pricing, investment framing, delivery model, and competitive edge sit beside the narrative \u2014 not afterthoughts.",
           },
           {
-            src: "/projects/proposalpal/product-polish.png",
-            alt: "Polish Proposal module refining clarity, tone, and executive readability across proposal sections.",
+            src: "/projects/proposalpal/dark-polish.webp",
+            alt: "Polish Proposal module reviewing hypotheses, Why BCG, approach, teaming, pricing, presence, and areas for improvement.",
             width: 1800,
             height: 1125,
-            title: "Polish & pitch",
+            title: "Polish",
             caption:
-              "Refine clarity, tone, and executive readability before practice pitch \u2014 keeping human judgment in the loop.",
+              "Refine clarity, tone, and executive readability section by section \u2014 keeping human judgment in the loop.",
+          },
+          {
+            src: "/projects/proposalpal/dark-practice-pitch.webp",
+            alt: "Practice Pitch module with top client questions, persona-specific questions, and role-play questions.",
+            width: 1800,
+            height: 1125,
+            title: "Practice pitch",
+            caption:
+              "Rehearse against the questions the client is most likely to ask before walking into the room.",
+          },
+          {
+            src: "/projects/proposalpal/dark-chat.webp",
+            alt: "Proposal overview with a question about win themes typed into the Ask me anything chat.",
+            width: 1800,
+            height: 1125,
+            title: "Ask anything",
+            caption:
+              "A single chat carries the full proposal context, so teams can ask for angles, rewrites, or evidence at any point.",
           },
         ],
         accordion: [
           {
-            value: "intake-support",
-            title: "Intake & support",
+            value: "getting-started",
+            title: "Getting started",
             description:
-              "How teams start a proposal and find process guidance inside the product.",
+              "How teams find a proposal, set it up, and get help.",
             defaultOpen: true,
             slides: [
               {
-                src: "/projects/proposalpal/product-intake.png",
-                alt: "New Proposal form with required opportunity fields and document upload zones.",
+                src: "/projects/proposalpal/dark-home.webp",
+                alt: "Proposals board with New Proposal tile and the 7-Eleven ERP proposal card showing its team avatars.",
+                width: 1800,
+                height: 1125,
+                title: "Proposals board",
+                caption:
+                  "Every active pursuit, searchable and sortable, with the team visible on each card.",
+              },
+              {
+                src: "/projects/proposalpal/dark-intake.webp",
+                alt: "New Proposal form with required fields, RFP and draft upload zones, and proposal context.",
                 width: 1800,
                 height: 1125,
                 title: "Required information",
@@ -209,8 +252,17 @@ export const project: PastProject = {
                   "Opportunity ID, client, name, and source materials \u2014 the minimum to unlock the workspace.",
               },
               {
-                src: "/projects/proposalpal/product-help.png",
-                alt: "Instructions and Support FAQ covering access, creating proposals, and security.",
+                src: "/projects/proposalpal/dark-details.webp",
+                alt: "Proposal Details with practice areas, due date, description, competitive landscape, and attached RFP and draft files.",
+                width: 1800,
+                height: 1125,
+                title: "Proposal details",
+                caption:
+                  "Context the agents use as guardrails, editable at any point in the pursuit.",
+              },
+              {
+                src: "/projects/proposalpal/dark-help.webp",
+                alt: "Instructions and Support page with the FAQ open to what ProposalPal can do.",
                 width: 1800,
                 height: 1125,
                 title: "In-product guidance",
@@ -220,32 +272,103 @@ export const project: PastProject = {
             ],
           },
           {
+            value: "workspace",
+            title: "Workspace panels",
+            description:
+              "The panels around the chat that hold context, sources, history, and team.",
+            slides: [
+              {
+                src: "/projects/proposalpal/dark-workspace.webp",
+                alt: "Proposal workspace with the eight-module grid and welcome message for the 7-Eleven proposal.",
+                width: 1800,
+                height: 1125,
+                title: "Proposal overview",
+                caption:
+                  "Eight pursuit modules as first-class surfaces, with chat underneath.",
+              },
+              {
+                src: "/projects/proposalpal/dark-project-context.webp",
+                alt: "Data source navigation with the Project Context panel and a document upload area.",
+                width: 1800,
+                height: 1125,
+                title: "Project context",
+                caption:
+                  "Sources are organized as project context, global sources, and per-module sources.",
+              },
+              {
+                src: "/projects/proposalpal/dark-chat-history.webp",
+                alt: "Chat History panel listing saved chats beside the data source navigation.",
+                width: 1800,
+                height: 1125,
+                title: "Chat history",
+                caption:
+                  "Earlier threads stay one click away, tagged by the module they started in.",
+              },
+              {
+                src: "/projects/proposalpal/dark-operations.webp",
+                alt: "Proposal Operations panel with generated files and their types, system tasks, and team members with owner and editor roles.",
+                width: 1800,
+                height: 1125,
+                title: "Proposal operations",
+                caption:
+                  "Files, background tasks, and team roles in one place \u2014 so everyone knows what the agents are working on.",
+              },
+            ],
+          },
+          {
             value: "agent-modules",
             title: "Agent modules",
             description:
-              "Specialized surfaces across research, teaming, storyline, and commercial strategy.",
+              "Specialized surfaces across research, engagement, storyline, and commercial strategy.",
             slides: [
               {
-                src: "/projects/proposalpal/product-client-research.png",
-                alt: "Client Research deep-research accordion with loading section cards.",
+                src: "/projects/proposalpal/dark-client-research.webp",
+                alt: "Client Research deep-research sections from contextual overview through sources.",
                 width: 1800,
                 height: 1125,
-                title: "Research synthesis",
+                title: "Deep research",
                 caption:
-                  "Deep research, analyst reports, and value-science context assembled into proposal-ready sections.",
+                  "Eight research sections assembled into proposal-ready material.",
               },
               {
-                src: "/projects/proposalpal/product-team-formation.png",
-                alt: "Team Formation chat recommending Carlos Ramirez with Add to Team actions.",
+                src: "/projects/proposalpal/dark-value-science.webp",
+                alt: "Client Research Value Science Portal tab with executive summary, value opportunity, diagnostics, capture initiatives, and tracking.",
                 width: 1800,
-                height: 925,
-                title: "Staffing recommendations",
+                height: 1125,
+                title: "Value science",
                 caption:
-                  "Conversational teaming with structured profiles \u2014 copy email, add to team, inspect gaps.",
+                  "Value cases from the Value Science Portal, framed for the client\u2019s situation.",
               },
               {
-                src: "/projects/proposalpal/product-storyline.png",
-                alt: "Storyline module showing proposal section list and research-required gate.",
+                src: "/projects/proposalpal/dark-client-engagement.webp",
+                alt: "Client Engagement module with relationship mapping, team pairings, prior engagements, trends, and follow-up plan.",
+                width: 1800,
+                height: 1125,
+                title: "Client engagement",
+                caption:
+                  "Map decision-makers and plan who from BCG meets whom, and when.",
+              },
+              {
+                src: "/projects/proposalpal/dark-topic-research.webp",
+                alt: "Topic Research module listing methods and tools, industry primer, past proposals, credentials, vignettes, experts, benchmarks, and references.",
+                width: 1800,
+                height: 1125,
+                title: "Topic research",
+                caption:
+                  "BCG IP surfaced by type, ready to cite in the proposal.",
+              },
+              {
+                src: "/projects/proposalpal/dark-topic-sections.webp",
+                alt: "Topic Research Sections tab mapping research to executive summary, hypothesis, Why BCG, approach, and team sections.",
+                width: 1800,
+                height: 1125,
+                title: "Research by section",
+                caption:
+                  "The same research, reorganized around the proposal section it supports.",
+              },
+              {
+                src: "/projects/proposalpal/dark-storyline.webp",
+                alt: "Storyline module with proposal section list and research-required gate.",
                 width: 1800,
                 height: 1125,
                 title: "Narrative structure",
@@ -253,13 +376,31 @@ export const project: PastProject = {
                   "Proposal sections stay gated on research quality so drafts don\u2019t outrun evidence.",
               },
               {
-                src: "/projects/proposalpal/product-commercial.png",
+                src: "/projects/proposalpal/dark-commercial.webp",
                 alt: "Commercial Approach sections for pricing, delivery, competitive edge, and risks.",
                 width: 1800,
                 height: 1125,
                 title: "Win economics",
                 caption:
                   "Commercial framing generated alongside the storyline so pricing and value stay aligned.",
+              },
+              {
+                src: "/projects/proposalpal/dark-polish.webp",
+                alt: "Polish Proposal review sections including presence and engagement and areas for improvement.",
+                width: 1800,
+                height: 1125,
+                title: "Polish review",
+                caption:
+                  "A final pass on each section before the proposal goes out.",
+              },
+              {
+                src: "/projects/proposalpal/dark-practice-pitch.webp",
+                alt: "Practice Pitch question sets for the client, personas, and role-play.",
+                width: 1800,
+                height: 1125,
+                title: "Practice pitch",
+                caption:
+                  "Persona-driven Q&A to pressure-test the story before the pitch.",
               },
             ],
           },

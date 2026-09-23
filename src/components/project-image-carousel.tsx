@@ -26,6 +26,7 @@ export function ProjectImageCarousel({
 }) {
   const labelId = useId();
   const [index, setIndex] = useState(0);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
   const touchStartX = useRef<number | null>(null);
 
   const count = slides.length;
@@ -40,14 +41,33 @@ export function ProjectImageCarousel({
     [count]
   );
 
-  const goPrev = useCallback(() => goTo(safeIndex - 1), [goTo, safeIndex]);
-  const goNext = useCallback(() => goTo(safeIndex + 1), [goTo, safeIndex]);
+  const step = useCallback(
+    (delta: number) => {
+      if (count === 0) return;
+      setIndex((current) => (((current + delta) % count) + count) % count);
+    },
+    [count]
+  );
+
+  const goPrev = useCallback(() => step(-1), [step]);
+  const goNext = useCallback(() => step(1), [step]);
 
   useEffect(() => {
     if (safeIndex !== index) setIndex(safeIndex);
   }, [index, safeIndex]);
 
+  // Warm the neighbouring full-resolution images so lightbox paging is instant.
+  useEffect(() => {
+    if (!lightboxOpen || count < 2) return;
+    for (const offset of [-1, 1]) {
+      const img = new window.Image();
+      img.src = slides[(safeIndex + offset + count) % count].src;
+    }
+  }, [lightboxOpen, safeIndex, count, slides]);
+
   const onKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    // The lightbox handles its own keys (and its events bubble here via the portal).
+    if (lightboxOpen) return;
     if (event.key === "ArrowLeft") {
       event.preventDefault();
       goPrev();
@@ -64,6 +84,7 @@ export function ProjectImageCarousel({
   };
 
   const onPointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
+    if (lightboxOpen) return;
     if (event.pointerType === "mouse" && event.button !== 0) return;
     touchStartX.current = event.clientX;
   };
@@ -134,6 +155,17 @@ export function ProjectImageCarousel({
             previewAspectClassName="aspect-video"
             previewObjectPositionClassName={
               slide.height > slide.width * 1.15 ? "object-top" : "object-center"
+            }
+            open={lightboxOpen}
+            onOpenChange={setLightboxOpen}
+            lightboxNav={
+              count > 1
+                ? {
+                    onPrev: goPrev,
+                    onNext: goNext,
+                    position: `${safeIndex + 1} / ${count}`,
+                  }
+                : undefined
             }
           />
         </figure>
