@@ -51,6 +51,7 @@ export const PROJECT_TITLES: Record<string, string> = {
   "project-speed-signs": "Project Speed & Signs",
   "proposalpal": "ProposalPal",
   "roadway-mobile-ticket": "Roadway Mobile Ticket Experience",
+  "shortlist": "Shortlist",
   "smart-hydration-platform": "Smart Hydration",
   "solar-field-installation": "Automated Solar Field",
   "stemcell-spray": "Autonomous Shipping Systems for trackless trains",
