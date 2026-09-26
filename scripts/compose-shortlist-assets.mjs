@@ -26,10 +26,6 @@ const SLIDES = {
   "d15-own-numbers": "own-numbers",
   "d16-save-dialog": "save",
   "d17-saved": "saved",
-  "d20-design": "design",
-  "d21-design-2": "design-state",
-  "d22-design-3": "design-motion",
-  "d23-design-4": "design-forms",
 };
 
 for (const [src, out] of Object.entries(SLIDES)) {
@@ -64,3 +60,38 @@ const layers = phones.map((p) => {
 });
 await sharp({ create: { width: W, height: H, channels: 3, background: BG } }).composite(layers).webp({ quality: 88 }).toFile(path.join(OUT, "mobile.webp"));
 console.log("mobile", W, H);
+
+// Design system: each /design section (scripts/capture-shortlist-design.mjs),
+// cropped where a section is tall and set on the page's own paper at 16:10.
+const DS = path.join(SRC, "design");
+const FRAME = { w: 1800, h: 1125, pad: 70 };
+// published name -> [capture, top, height] in CSS px (captures are @2x); no crop when omitted
+const DS_SLIDES = {
+  "ds-intro": ["ds-00-intro"],
+  "ds-primitives": ["ds-01-primitives"],
+  "ds-criterion-hues": ["ds-02-criterion-hues"],
+  "ds-state": ["ds-03-state"],
+  "ds-type": ["ds-04-type"],
+  "ds-motion": ["ds-05-motion"],
+  "ds-map": ["ds-06-map"],
+  "ds-buttons": ["ds-07-buttons"],
+  "ds-forms": ["ds-08-forms", 0, 790],
+  "ds-forms-rules": ["ds-08-forms", 780, 946],
+  "ds-allocator": ["ds-09-components", 0, 810],
+  "ds-place-card": ["ds-09-components", 800, 590],
+  "ds-missing-tie": ["ds-09-components", 1380, 614],
+};
+for (const [out, [src, top, height]] of Object.entries(DS_SLIDES)) {
+  let img = sharp(path.join(DS, `${src}.png`));
+  const meta = await img.metadata();
+  if (top !== undefined) img = img.extract({ left: 0, top: top * 2, width: meta.width, height: Math.min(height * 2, meta.height - top * 2) });
+  const buf = await img.png().toBuffer();
+  const { data } = await sharp(buf).extract({ left: 2, top: 2, width: 1, height: 1 }).raw().toBuffer({ resolveWithObject: true });
+  const bg = { r: data[0], g: data[1], b: data[2] };
+  const fitted = await sharp(buf).resize(FRAME.w - FRAME.pad * 2, FRAME.h - FRAME.pad * 2, { fit: "inside", background: bg }).toBuffer();
+  await sharp({ create: { width: FRAME.w, height: FRAME.h, channels: 3, background: bg } })
+    .composite([{ input: fitted, gravity: "center" }])
+    .webp({ quality: 90 })
+    .toFile(path.join(OUT, `${out}.webp`));
+  console.log(out);
+}
