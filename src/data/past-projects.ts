@@ -231,7 +231,7 @@ export const pastProjects: PastProject[] = [
     category: "hardware",
     title: "Accessible fastening system",
     description:
-      "A magnetic-assisted fastening system for people with dexterity challenges, from research through prototyping.",
+      "A magnet-assisted zipper alternative for people with arthritis or limited grip, from human-factors research through prototyping.",
     image: "/projects/accessible-fastener/accessible-fastener_card.webp",
     alt: "Case study board for an accessible clothing fastener alternative to zippers.",
     width: 1024,
@@ -247,9 +247,9 @@ export const pastProjects: PastProject[] = [
     category: "hardware",
     title: "Nodit AI Camera",
     description:
-      "Camera and sensing concept integrating AI-assisted capture and hardware layout.",
+      "Ceiling-mounted 180° security camera and AI assistant that help retail staff monitor the floor and support shoppers.",
     image: "/projects/ai-camera-nodit/ai-camera-nodit_card.webp",
-    alt: "Nodit AI camera product case study.",
+    alt: "Nodit ceiling camera with tablet and phone monitoring apps.",
     width: 1024,
     height: 576,
     board: {
@@ -263,9 +263,9 @@ export const pastProjects: PastProject[] = [
     category: "hardware",
     title: "H2 Audio",
     description:
-      "Audio product and hardware exploration—from use cases through industrial design and visualization.",
+      "Discreet hearing earbuds with a 20-hour charging case and a companion app for tuning sound and fit.",
     image: "/projects/h2-audio/h2-audio_card.webp",
-    alt: "H2 Audio product case study board.",
+    alt: "H2 hearing earbuds, charging case, and companion app.",
     width: 1024,
     height: 576,
     board: {
@@ -277,11 +277,11 @@ export const pastProjects: PastProject[] = [
   {
     slug: "e-syringe",
     category: "hardware",
-    title: "Electronic syringe",
+    title: "Micro-needle Syringe",
     description:
-      "Medical injection device concept with digital interface and ergonomic hardware exploration.",
+      "Pain-free micro-needle injector with an e-ink patient display and a charging dock that tracks doses for nurses.",
     image: "/projects/e-syringe/e-syringe_card.webp",
-    alt: "Electronic syringe product design case study.",
+    alt: "Micro-needle syringe with e-ink display and charging dock.",
     width: 1024,
     height: 576,
     board: {
@@ -293,11 +293,11 @@ export const pastProjects: PastProject[] = [
   {
     slug: "ecowell-c79b",
     category: "hardware",
-    title: "Ecowell — case study (C79B)",
+    title: "3D Life Camera",
     description:
-      "A custom sustainable drink machine—from sketches and renders to prototype in context.",
+      "Rugged outdoor 3D camera pairing infrared and color sensors, from sketches and foam models to final renders.",
     image: "/projects/ecowell-c79b/ecowell-c79b_card.webp",
-    alt: "Ecowell sustainable drink machine case study board.",
+    alt: "3D Life rugged three-lens camera case study board.",
     width: 1024,
     height: 576,
     board: {
@@ -309,11 +309,11 @@ export const pastProjects: PastProject[] = [
   {
     slug: "ecowell-c8l9",
     category: "hardware",
-    title: "Ecowell — case study (C8L9)",
+    title: "Ecowell",
     description:
-      "Alternate case-study layout for the Ecowell sustainable drink machine.",
+      "A sustainable drink machine for Ecowell, from brand-driven sketches to renders and an in-store prototype.",
     image: "/projects/ecowell-c8l9/ecowell-c8l9_card.webp",
-    alt: "Ecowell drink machine case study, alternate board.",
+    alt: "Ecowell drink machine case study with sketches, renders, and in-store context.",
     width: 1024,
     height: 576,
     board: {
@@ -327,7 +327,7 @@ export const pastProjects: PastProject[] = [
     category: "hardware",
     title: "Footwear concept sketches",
     description:
-      "Industrial design explorations for tech-forward footwear—silhouettes, materials, and assembly studies.",
+      "Hand-drawn footwear explorations: silhouettes, cushioning, and strap details in pen and marker.",
     image: "/projects/footwear-sketches/footwear-sketches_card.webp",
     alt: "Composite of hand-drawn futuristic footwear concept sketches.",
     width: 1024,
@@ -341,11 +341,11 @@ export const pastProjects: PastProject[] = [
   {
     slug: "laser-scalpel",
     category: "hardware",
-    title: "Laser scalpel",
+    title: "Plasma Cutting Tool",
     description:
-      "Surgical laser instrument design with clinical context and mechanical detail.",
+      "Portable plasma cutter for medical and industrial use, with touchscreen temperature and flow control.",
     image: "/projects/laser-scalpel/laser-scalpel_card.webp",
-    alt: "Laser scalpel medical device case study.",
+    alt: "Plasma cutting tool with touchscreen control unit and handpiece.",
     width: 1024,
     height: 576,
     board: {
@@ -357,11 +357,11 @@ export const pastProjects: PastProject[] = [
   {
     slug: "lllt-knee-brace-c1zug",
     category: "hardware",
-    title: "Low level laser therapy — knee brace study",
+    title: "Mycelium Erosion Control",
     description:
-      "Wearable knee therapy device: research, hardware, app UI, and final renders.",
+      "Geotextiles grown from mycelium and natural fibers to filter construction-site runoff, shaped by field research.",
     image: "/projects/lllt-knee-brace-c1zug/lllt-knee-brace-c1zug_card.webp",
-    alt: "LLLT knee brace case study with app and product renders.",
+    alt: "Mycelium and burlap geotextile erosion-control case study.",
     width: 1024,
     height: 576,
     board: {
@@ -375,9 +375,9 @@ export const pastProjects: PastProject[] = [
     category: "hardware",
     title: "Low level laser therapy",
     description:
-      "Extended case study for knee osteoarthritis therapy—from anatomy and sketches to app and product.",
+      "Wearable light-therapy knee brace for osteoarthritis, with patient and physician portals, from user research to final renders.",
     image: "/projects/lllt-knee-osteoarthritis/lllt-knee-osteoarthritis_card.webp",
-    alt: "LLLT knee osteoarthritis case study board.",
+    alt: "LLLT knee brace for osteoarthritis with portal flows and product renders.",
     width: 1024,
     height: 576,
     board: {
@@ -389,11 +389,11 @@ export const pastProjects: PastProject[] = [
   {
     slug: "medical-recovery-systems",
     category: "hardware",
-    title: "Medical Recovery & Rehabilitation System",
+    title: "Ergonomic SmartGlove",
     description:
-      "Clinical concepts spanning 3D scanning for recovery, pediatric therapeutic play, prosthetic training, and bed-side systems.",
+      "Supportive glove for heavy computer users at risk of carpal tunnel and repetitive strain, from research to final form.",
     image: "/projects/medical-recovery-systems/medical-recovery-systems_card.webp",
-    alt: "Compilation of medical device and rehabilitation design projects.",
+    alt: "Ergonomic SmartGlove wrist support case study.",
     width: 1024,
     height: 576,
     board: {
@@ -407,7 +407,7 @@ export const pastProjects: PastProject[] = [
     category: "hardware",
     title: "Medication non-adherence research",
     description:
-      "Stakeholder research, field methods, and visual synthesis on adherence in an aging population.",
+      "Stakeholder mapping and field research on why aging patients miss medications.",
     image: "/projects/medication-adherence/medication-adherence_card.webp",
     alt: "Infographic on medication non-adherence research and field study.",
     width: 1024,
@@ -423,9 +423,9 @@ export const pastProjects: PastProject[] = [
     category: "hardware",
     title: "Micro windmill",
     description:
-      "Small-scale wind energy harvesting concept and visualization.",
+      "Rooftop micro wind-turbine tiles that capture building-accelerated wind for urban power.",
     image: "/projects/micro-windmill/micro-windmill_card.webp",
-    alt: "Micro windmill energy concept case study.",
+    alt: "Micro windmill tile energy concept case study.",
     width: 1024,
     height: 576,
     board: {
@@ -437,11 +437,11 @@ export const pastProjects: PastProject[] = [
   {
     slug: "moto-id",
     category: "hardware",
-    title: "Moto ID",
+    title: "Post-surgery Recovery System",
     description:
-      "Vehicle and mobility identity system exploration.",
+      "Mobile physical therapy tower that uses 3D scanning and motion tracking to guide recovery after hospital stays.",
     image: "/projects/moto-id/moto-id_card.webp",
-    alt: "Moto ID branding and mobility concept board.",
+    alt: "Physical therapy tower with 3D scanning for post-surgery recovery.",
     width: 1024,
     height: 576,
     board: {
@@ -455,9 +455,9 @@ export const pastProjects: PastProject[] = [
     category: "hardware",
     title: "Oasis",
     description:
-      "Product or environment concept for hydration, retail, or experiential design.",
+      "Connected skincare applicator and companion app that dose and track personalized treatments.",
     image: "/projects/oasis/oasis_card.webp",
-    alt: "Oasis project case study board.",
+    alt: "Oasis smart skincare applicator and app case study.",
     width: 1024,
     height: 576,
     board: {
@@ -471,7 +471,7 @@ export const pastProjects: PastProject[] = [
     category: "hardware",
     title: "Smart Hydration",
     description:
-      "Connected bottle, gym hardware, mechanical detail, and companion app UX for hydration and training.",
+      "Connected water bottle that doubles as a training weight, with a companion app for hydration and workouts.",
     image: "/projects/smart-hydration-platform/smart-hydration-platform_card.webp",
     alt: "Smart connected hydration and fitness platform case study.",
     width: 1024,
@@ -487,7 +487,7 @@ export const pastProjects: PastProject[] = [
     category: "hardware",
     title: "Automated Solar Field",
     description:
-      "Robotic solar deployment in the field, team operations, software dashboards, and system diagrams.",
+      "Robotic solar carts that automate field installation, with cloud dashboards for fleet and yield management.",
     image: "/projects/solar-field-installation/solar-field-installation_card.webp",
     alt: "Automated solar field installation system case study.",
     width: 1024,
@@ -501,9 +501,9 @@ export const pastProjects: PastProject[] = [
   {
     slug: "stemcell-spray",
     category: "hardware",
-    title: "Autonomous Shipping Systems for trackless trains",
+    title: "Autonomous Trackless Freight",
     description:
-      "Modular wheeled platforms for containerized freight, shown in environment, port loading, and component detail.",
+      "Self-driving wheeled platforms that move shipping containers as trackless trains, from port loading to open road.",
     image: "/projects/stemcell-spray/stemcell-spray_card.webp",
     alt: "Autonomous trackless train shipping and modular freight platforms case study.",
     width: 1024,
@@ -519,7 +519,7 @@ export const pastProjects: PastProject[] = [
     category: "hardware",
     title: "Stemcell spray system",
     description:
-      "Pain-free skin grafting workflow with device renders, cartridges, and mobile app screens.",
+      "Sprays a patient's own skin cells as a pain-free alternative to skin grafts, with a processing unit and mobile app.",
     image: "/projects/stemcell-spray-alt/stemcell-spray-alt_card.webp",
     alt: "Stemcell spray system for skin grafting case study.",
     width: 1024,
@@ -535,7 +535,7 @@ export const pastProjects: PastProject[] = [
     category: "hardware",
     title: "Human-centric UAV delivery",
     description:
-      "Aerial logistics for sparse infrastructure—operations, payload, testing, and modular airframe diagrams.",
+      "Modular VTOL drone for delivering aid where roads fail, from requirements to payload and airframe design.",
     image: "/projects/uav-humanitarian-delivery/uav-humanitarian-delivery_card.webp",
     alt: "UAV humanitarian delivery case study with drone renders and process photos.",
     width: 1024,
@@ -549,11 +549,11 @@ export const pastProjects: PastProject[] = [
   {
     slug: "vaccine-transport",
     category: "hardware",
-    title: "Vaccine transport for mobile Africa",
+    title: "Campus Safety Beacon",
     description:
-      "Cold-chain portable carrier inspired by real mobility constraints, from research through exploded technical views.",
+      "Student ID badge with a panic button and mesh-network link to campus public safety, researched with Motorola and Syracuse University.",
     image: "/projects/vaccine-transport/vaccine-transport_card.webp",
-    alt: "Vaccine transport system for mobile Africa case study.",
+    alt: "Campus safety beacon ID badge with panic button and smartphone mount.",
     width: 1024,
     height: 576,
     board: {
@@ -565,11 +565,11 @@ export const pastProjects: PastProject[] = [
   {
     slug: "vaccine-transport-c23c1",
     category: "hardware",
-    title: "Vaccine transport — alternate board",
+    title: "Vaccine transport for mobile Africa",
     description:
-      "Alternate case-study layout for the mobile vaccine transport system.",
+      "Rugged cold-chain vaccine carrier that mounts to motorcycles and bikes for last-mile delivery.",
     image: "/projects/vaccine-transport-c23c1/vaccine-transport-c23c1_card.webp",
-    alt: "Alternate vaccine transport for mobile Africa case study board.",
+    alt: "Vaccine cold-chain carrier with bike mount case study.",
     width: 1024,
     height: 576,
     board: {
@@ -583,9 +583,9 @@ export const pastProjects: PastProject[] = [
     category: "hardware",
     title: "MDX",
     description:
-      "Medical Health Learning platform—research, UX, and system visualization for clinical education.",
+      "Camera-equipped smart glasses and a social learning network for sharing medical procedures and knowledge.",
     image: "/projects/mdx/mdx_card.webp",
-    alt: "MDX Medical Health Learning platform case study board.",
+    alt: "MDX smart glasses and medical learning app case study.",
     width: 1024,
     height: 576,
     board: {
