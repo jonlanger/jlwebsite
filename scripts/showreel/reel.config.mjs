@@ -6,6 +6,7 @@
 export default {
   order: [
     "fluidsim",
+    "collabfin",
     "relationshipviz",
     "shortlist",
     "careshift",

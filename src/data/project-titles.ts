@@ -25,6 +25,7 @@ export const PROJECT_TITLES: Record<string, string> = {
   "climate-sync": "Climate Sync",
   "coco": "Coco",
   "connect-pool-robot-app": "Connected Pool Robot & App",
+  "collabfin": "Collabfin",
   "consultants-portal": "Consultants Portal",
   "dialysis-management": "Dialysis Management",
   "e-syringe": "Electronic syringe",

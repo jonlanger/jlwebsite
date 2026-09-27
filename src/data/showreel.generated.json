@@ -13,6 +13,18 @@
       "poster": "/showreel/fluidsim.jpg?v=fbe2a42c"
     },
     {
+      "slug": "collabfin",
+      "title": "Collabfin",
+      "kind": "Collaborative app",
+      "line": "Raising the savings split pulls the emergency fund in by eight months.",
+      "duration": 5.3,
+      "video": {
+        "desktop": "/showreel/collabfin-1080.mp4?v=cedbe279",
+        "mobile": "/showreel/collabfin-720.mp4?v=cedbe279"
+      },
+      "poster": "/showreel/collabfin.jpg?v=cedbe279"
+    },
+    {
       "slug": "relationshipviz",
       "title": "RelationshipViz",
       "kind": "Data visualization",

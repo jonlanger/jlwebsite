@@ -2012,6 +2012,7 @@ const bySlug = new Map(
  */
 export const PROJECT_GRID_ORDER: Record<ProjectCategory, readonly string[]> = {
   software: [
+    "collabfin",
     "relationshipviz",
     "shortlist",
     "careshift",
