@@ -1,15 +1,16 @@
 import Link from "next/link";
 
 import { PageShell } from "@/components/page-shell";
+import { Showreel } from "@/components/showreel";
 import { buttonVariants } from "@/lib/button-variants";
-import { contentColumnClass } from "@/lib/content-layout";
+import { contentColumnClass, contentMaxWidthClass } from "@/lib/content-layout";
 import { cn } from "@/lib/utils";
 
 export default function HomePage() {
   return (
     <>
-      <section className="relative min-h-[70vh] overflow-hidden">
-        <PageShell className="relative flex min-h-[70vh] flex-col justify-center py-24 md:py-36">
+      <section className="relative overflow-hidden">
+        <PageShell className="relative flex flex-col pb-20 pt-16 md:pb-28 md:pt-24">
           <div className={cn(contentColumnClass, "gap-5 md:gap-6")}>
             <p className="font-heading text-[64px] font-semibold leading-none tracking-tight text-foreground">
               Jon Langer
@@ -43,6 +44,9 @@ export default function HomePage() {
                 See process
               </Link>
             </div>
+          </div>
+          <div className={cn("mx-auto mt-12 w-full md:mt-16", contentMaxWidthClass)}>
+            <Showreel />
           </div>
         </PageShell>
       </section>

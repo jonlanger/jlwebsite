@@ -1,0 +1,88 @@
+{
+  "clips": [
+    {
+      "slug": "fluidsim",
+      "title": "Attractor Particles",
+      "kind": "Creative tech",
+      "line": "Recording a GPU particle swarm while reshaping it, then analysing its main flow.",
+      "duration": 10.5,
+      "video": {
+        "desktop": "/showreel/fluidsim-1080.mp4?v=fbe2a42c",
+        "mobile": "/showreel/fluidsim-720.mp4?v=fbe2a42c"
+      },
+      "poster": "/showreel/fluidsim.jpg?v=fbe2a42c"
+    },
+    {
+      "slug": "relationshipviz",
+      "title": "RelationshipViz",
+      "kind": "Data visualization",
+      "line": "Switching on the risk lens, then opening Nvidia’s scorecard.",
+      "duration": 5.333,
+      "video": {
+        "desktop": "/showreel/relationshipviz-1080.mp4?v=369cd435",
+        "mobile": "/showreel/relationshipviz-720.mp4?v=369cd435"
+      },
+      "poster": "/showreel/relationshipviz.jpg?v=369cd435"
+    },
+    {
+      "slug": "shortlist",
+      "title": "Shortlist",
+      "kind": "Decision tool",
+      "line": "Changing priorities and watching the ranking re-sort.",
+      "duration": 5.633,
+      "video": {
+        "desktop": "/showreel/shortlist-1080.mp4?v=a65af2cd",
+        "mobile": "/showreel/shortlist-720.mp4?v=a65af2cd"
+      },
+      "poster": "/showreel/shortlist.jpg?v=a65af2cd"
+    },
+    {
+      "slug": "careshift",
+      "title": "Careshift",
+      "kind": "Healthcare",
+      "line": "A flagged incident blocks the handoff until it’s reviewed.",
+      "duration": 5.833,
+      "video": {
+        "desktop": "/showreel/careshift-1080.mp4?v=944229bd",
+        "mobile": "/showreel/careshift-720.mp4?v=944229bd"
+      },
+      "poster": "/showreel/careshift.jpg?v=944229bd"
+    },
+    {
+      "slug": "climate-sync",
+      "title": "Climate Sync",
+      "kind": "Geospatial",
+      "line": "Finding cities that share a flood-risk climate fingerprint.",
+      "duration": 5.867,
+      "video": {
+        "desktop": "/showreel/climate-sync-1080.mp4?v=6d4c02ac",
+        "mobile": "/showreel/climate-sync-720.mp4?v=6d4c02ac"
+      },
+      "poster": "/showreel/climate-sync.jpg?v=6d4c02ac"
+    },
+    {
+      "slug": "atomicatlas",
+      "title": "AtomicAtlas",
+      "kind": "Scientific viz",
+      "line": "Turning a protein, then inspecting the helices and strands it’s built from.",
+      "duration": 7.533,
+      "video": {
+        "desktop": "/showreel/atomicatlas-1080.mp4?v=7f78482a",
+        "mobile": "/showreel/atomicatlas-720.mp4?v=7f78482a"
+      },
+      "poster": "/showreel/atomicatlas.jpg?v=7f78482a"
+    },
+    {
+      "slug": "botanica",
+      "title": "Botanica",
+      "kind": "3D / point cloud",
+      "line": "Following a guided tour pinned to the plant’s own anatomy.",
+      "duration": 8.2,
+      "video": {
+        "desktop": "/showreel/botanica-1080.mp4?v=125c80f6",
+        "mobile": "/showreel/botanica-720.mp4?v=125c80f6"
+      },
+      "poster": "/showreel/botanica.jpg?v=125c80f6"
+    }
+  ]
+}
