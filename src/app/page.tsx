@@ -10,13 +10,13 @@ export default function HomePage() {
   return (
     <>
       <section className="relative overflow-hidden">
-        <PageShell className="relative flex flex-col pb-20 pt-16 md:pb-28 md:pt-24">
+        <PageShell className="relative flex flex-col pb-20 pt-16 md:pb-28 md:pt-48">
           <div className={cn(contentColumnClass, "gap-5 md:gap-6")}>
             <p className="font-heading text-[64px] font-semibold leading-none tracking-tight text-foreground">
               Jon Langer
             </p>
             <p className="font-heading text-[32px] font-light leading-snug tracking-tight text-muted-foreground">
-              Design that works at the intersection of people, systems, and
+              Design at the intersection of people, systems, and
               craft.
             </p>
             <p className="text-[16px] leading-relaxed text-muted-foreground">

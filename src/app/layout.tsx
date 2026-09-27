@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     template: "%s · Jon Langer",
   },
   description:
-    "Design that works at the intersection of people, systems, and craft. Portfolio of Jon Langer.",
+    "Design at the intersection of people, systems, and craft. Portfolio of Jon Langer.",
 };
 
 export default function RootLayout({
