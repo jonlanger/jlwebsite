@@ -17,6 +17,7 @@ import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
 import config from "./reel.config.mjs";
+import { recordDeviceClip } from "./lib/devices.mjs";
 import { openSession } from "./lib/harness.mjs";
 import { planClip } from "./lib/plan.mjs";
 
@@ -49,17 +50,33 @@ async function loadProject(slug) {
   return { ...mod.default, file };
 }
 
-function recordingIsCurrent(slug) {
+// Device-render clips (projects with a `stage`) also depend on the stage renderer.
+const DEVICE_FILES = [path.join(HERE, "lib/devices.mjs"), path.join(HERE, "lib/stage.html")];
+const sourceHashOf = (project) =>
+  hashOf(project.file, path.join(HERE, "lib/harness.mjs"), ...(project.stage ? DEVICE_FILES : []));
+
+async function recordingIsCurrent(slug) {
   const log = path.join(framesDir(slug), "frames.json");
   if (!fs.existsSync(log)) return false;
   const { sourceHash } = JSON.parse(fs.readFileSync(log, "utf8"));
-  return sourceHash === hashOf(projectFile(slug), path.join(HERE, "lib/harness.mjs"));
+  return sourceHash === sourceHashOf(await loadProject(slug));
 }
 
 async function record(slug) {
   const project = await loadProject(slug);
   const capture = { ...config.capture, ...project.capture };
   console.log(`● recording ${slug}`);
+  if (project.stage) {
+    const log = await recordDeviceClip({
+      project,
+      framesDir: framesDir(slug),
+      screensDir: path.join(CACHE, "screens", slug),
+      capture,
+      sourceHash: sourceHashOf(project),
+    });
+    console.log(`  ${log.frames.length} stage frames over ${log.end.toFixed(1)}s`);
+    return;
+  }
   const s = await openSession({
     framesDir: framesDir(slug),
     viewport: capture.viewport,
@@ -71,7 +88,7 @@ async function record(slug) {
     await project.setup?.(s);
     await s.start();
     await project.act(s);
-    const log = await s.stop({ sourceHash: hashOf(project.file, path.join(HERE, "lib/harness.mjs")) });
+    const log = await s.stop({ sourceHash: sourceHashOf(project) });
     const fps = log.frames.length / Math.max(0.001, log.end);
     console.log(`  ${log.frames.length} frames over ${log.end.toFixed(1)}s (~${fps.toFixed(0)} fps captured)`);
   } catch (err) {
@@ -152,8 +169,7 @@ async function build() {
 const targets = only.length ? only : config.order;
 if (command === "record" || command === "all") {
   for (const slug of targets) {
-    if (!force && recordingIsCurrent(slug) && command === "all") continue;
-    if (!force && recordingIsCurrent(slug) && !only.length) continue;
+    if (!force && (command === "all" || !only.length) && (await recordingIsCurrent(slug))) continue;
     await record(slug);
   }
 }

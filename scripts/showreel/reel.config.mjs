@@ -9,6 +9,7 @@ export default {
     "collabfin",
     "relationshipviz",
     "shortlist",
+    "solar-field-installation",
     "careshift",
     "climate-sync",
     "atomicatlas",

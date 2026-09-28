@@ -14,3 +14,8 @@ Re-record (run from this folder; frames land in `./frames/`, which is ignored):
   Chromium runs headed so WebGL/WebGPU scenes render on the GPU.
 - `manifest.json` sets each clip's in/out points (seconds) and playback speed.
   The encoder prints chapter start/duration; copy them into `src/data/showreel.ts`.
+
+Device renders: a project file can export `screens` + `stage` instead of `act`
+(see `projects/solar-field-installation-devices.mjs`). Each screen is recorded with the
+normal harness, then `lib/devices.mjs` maps the recordings onto a laptop and two
+phones in `lib/stage.html` and renders the scene frame by frame.

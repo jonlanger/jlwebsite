@@ -1,0 +1,209 @@
+<!doctype html>
+<!--
+  Device stage for showreel clips (see devices.mjs). A laptop and two phones
+  float over a studio floor; each screen shows frames from a real recording.
+  devices.mjs calls stage.init(cfg) once, then stage.render(t) per frame.
+-->
+<html>
+<head>
+<meta charset="utf-8" />
+<style>
+  :root {
+    --floor-hi: #e4e3df;
+    --floor-lo: #b9b8b3;
+    --metal-hi: #e9e9ec;
+    --metal-lo: #a9aab0;
+    --bezel: #0d0d10;
+    --frame-hi: #5b5c62;
+    --frame-lo: #1c1c20;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { width: 100%; height: 100%; overflow: hidden; }
+  body {
+    background:
+      radial-gradient(120% 90% at 62% 30%, var(--floor-hi) 0%, #d3d2cd 45%, var(--floor-lo) 100%);
+  }
+
+  /* Soft window-light shadows falling across the backdrop, as in a product studio. */
+  .gobo { position: absolute; inset: -20%; pointer-events: none; filter: blur(46px); opacity: .22; }
+  .gobo i { position: absolute; background: #2b2a27; border-radius: 40px; }
+  .gobo i:nth-child(1) { left: 6%;  top: 62%; width: 30%; height: 70%; transform: rotate(-24deg); }
+  .gobo i:nth-child(2) { left: 40%; top: 58%; width: 16%; height: 70%; transform: rotate(-24deg); }
+  .gobo i:nth-child(3) { left: 62%; top: 60%; width: 22%; height: 70%; transform: rotate(-24deg); }
+
+  .viewport { position: absolute; inset: 0; perspective: 2600px; perspective-origin: 50% 38%; }
+  .world { position: absolute; left: 50%; top: 50%; width: 0; height: 0; transform-style: preserve-3d; }
+  .world * { transform-style: preserve-3d; }
+
+  /* Floor shadows: blurred blobs on a plane under the devices. */
+  .floor { position: absolute; left: -1400px; top: 0; width: 2800px; height: 2000px;
+           transform: translate3d(0, 430px, -900px) rotateX(90deg); transform-origin: 50% 0; }
+  .floor .shadow { position: absolute; border-radius: 50%; background: rgba(28, 27, 24, .5); filter: blur(38px); }
+
+  /* ---------- laptop ---------- */
+  .laptop { position: absolute; }
+  .lid {
+    position: absolute; left: -500px; top: -660px; width: 1000px; height: 650px;
+    transform-origin: 50% 100%; transform: rotateX(8deg);
+  }
+  .lid .back, .lid .front { position: absolute; inset: 0; border-radius: 22px; }
+  .lid .back {
+    transform: translateZ(-7px);
+    background: linear-gradient(160deg, var(--metal-hi), var(--metal-lo));
+  }
+  .lid .front {
+    background: var(--bezel); padding: 22px 22px 26px;
+    box-shadow: inset 0 0 0 2px #2a2a2f, inset 0 0 0 5px #0a0a0c;
+  }
+  .lid .edge { position: absolute; left: 0; right: 0; top: 0; height: 7px;
+               transform-origin: 50% 0; transform: rotateX(90deg); background: #8d8e94; border-radius: 4px; }
+  .base {
+    position: absolute; left: -540px; top: -10px; width: 1080px; height: 700px;
+    transform-origin: 50% 0; transform: rotateX(90deg);
+  }
+  .base .deck {
+    position: absolute; inset: 0; border-radius: 14px 14px 30px 30px;
+    background: linear-gradient(180deg, #d9dade 0%, #c7c8cd 60%, #b7b8bd 100%);
+    box-shadow: inset 0 2px 0 rgba(255,255,255,.7);
+  }
+  .base .keys { position: absolute; left: 90px; right: 90px; top: 60px; height: 330px; border-radius: 12px;
+                background:
+                  repeating-linear-gradient(90deg, transparent 0 58px, #c6c7cc 58px 64px),
+                  repeating-linear-gradient(180deg, transparent 0 52px, #c6c7cc 52px 58px),
+                  #2d2e33; }
+  .base .pad { position: absolute; left: 340px; width: 400px; top: 430px; height: 230px; border-radius: 14px;
+               background: #c2c3c8; box-shadow: inset 0 0 0 1.5px #aeafb4; }
+  .base .front-edge { position: absolute; left: 0; right: 0; bottom: 0; height: 14px; transform-origin: 50% 100%;
+                      transform: rotateX(-90deg); background: linear-gradient(#a3a4a9, #7d7e83); border-radius: 0 0 10px 10px; }
+
+  /* ---------- phones ---------- */
+  .phone { position: absolute; width: 322px; height: 680px; margin: -340px 0 0 -161px; }
+  .phone .body, .phone .side { position: absolute; inset: 0; border-radius: 54px; }
+  .phone .side { background: linear-gradient(135deg, var(--frame-hi), var(--frame-lo)); }
+  .phone .body {
+    background: var(--bezel); padding: 13px;
+    box-shadow: inset 0 0 0 2.5px #4d4e54, inset 0 0 0 4px #0a0a0c;
+  }
+  .phone .island { position: absolute; left: 50%; top: 26px; width: 96px; height: 28px; margin-left: -48px;
+                   border-radius: 20px; background: #000; transform: translateZ(1px); }
+
+  /* Flat, so overflow + radius clip the recording (preserve-3d would disable clipping). */
+  .world .screen, .world .screen * { transform-style: flat; }
+  .screen { position: relative; width: 100%; height: 100%; overflow: hidden; background: #09090b; }
+  .lid .screen { border-radius: 6px; }
+  .phone .screen { border-radius: 42px; }
+  .screen img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+  .screen .glare { position: absolute; inset: 0; pointer-events: none;
+                   background: linear-gradient(118deg, rgba(255,255,255,.16) 0%, rgba(255,255,255,.05) 34%, rgba(255,255,255,0) 35%, rgba(255,255,255,0) 100%); }
+</style>
+</head>
+<body>
+  <div class="gobo"><i></i><i></i><i></i></div>
+  <div class="viewport">
+    <div class="world" id="world">
+      <div class="floor">
+        <div class="shadow" id="sh-laptop" style="left: 860px; top: 380px; width: 1100px; height: 560px"></div>
+        <div class="shadow" id="sh-left"   style="left: 330px; top: 900px; width: 380px; height: 240px"></div>
+        <div class="shadow" id="sh-right"  style="left: 2070px; top: 820px; width: 380px; height: 240px"></div>
+      </div>
+
+      <div class="laptop" id="laptop">
+        <div class="base"><div class="deck"><div class="keys"></div><div class="pad"></div></div><div class="front-edge"></div></div>
+        <div class="lid">
+          <div class="back"></div>
+          <div class="edge"></div>
+          <div class="front"><div class="screen"><img data-slot="laptop" alt="" /><div class="glare"></div></div></div>
+        </div>
+      </div>
+
+      <div class="phone" id="left">
+        <div class="body"><div class="screen"><img data-slot="left" alt="" /><div class="glare"></div></div></div>
+        <div class="island"></div>
+      </div>
+
+      <div class="phone" id="right">
+        <div class="body"><div class="screen"><img data-slot="right" alt="" /><div class="glare"></div></div></div>
+        <div class="island"></div>
+      </div>
+    </div>
+  </div>
+
+<script>
+  const $ = (id) => document.getElementById(id);
+  const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
+  const smooth = (p) => { p = clamp(p, 0, 1); return p * p * (3 - 2 * p); };
+  const easeOut = (p) => 1 - Math.pow(1 - clamp(p, 0, 1), 3);
+  const lerp = (a, b, p) => a + (b - a) * p;
+
+  let cfg = null;
+
+  window.stage = {
+    init(c) {
+      cfg = c;
+      // Phone thickness: a stack of frame-colored layers reads as a solid edge.
+      for (const ph of document.querySelectorAll(".phone")) {
+        for (let z = 14; z >= 1; z -= 1.5) {
+          const d = document.createElement("div");
+          d.className = "side";
+          d.style.transform = `translateZ(${-z}px)`;
+          ph.prepend(d);
+        }
+      }
+      // Hide device slots with no screen assigned.
+      for (const slot of ["laptop", "left", "right"]) {
+        if (!c.devices[slot]) { $(slot).style.display = "none"; $("sh-" + slot).style.display = "none"; }
+      }
+    },
+
+    /** Draw the scene at time t (seconds). Resolves once every screen image has decoded. */
+    async render(t) {
+      const { duration, devices, offsets, screens, fps } = cfg;
+      const p = t / duration;
+
+      // Camera: a slow orbit and dolly across the whole clip.
+      const orbit = lerp(-24, -12, smooth(p));
+      const tilt = lerp(16, 11, smooth(p));
+      const dolly = lerp(-260, -60, smooth(p));
+      $("world").style.transform =
+        `translate3d(20px, 50px, ${dolly}px) scale3d(.54, .54, .54) rotateX(${-tilt}deg) rotateY(${orbit}deg) rotateZ(1.5deg)`;
+
+      // Devices finish settling over the first second, then float gently. Frame 0
+      // is also the clip's poster, so everything starts in shot.
+      const arrive = (delay) => lerp(0.55, 1, easeOut((t - delay) / 1.1));
+      const bob = (phase, amp) => Math.sin(t * 1.1 + phase) * amp;
+
+      const aL = arrive(0);
+      $("laptop").style.transform = `translate3d(0, ${lerp(90, 0, aL) + bob(0, 4)}px, 0) rotateY(0deg)`;
+
+      const a1 = arrive(0.15);
+      $("left").style.transform =
+        `translate3d(-790px, ${lerp(140, -10, a1) + bob(1.4, 10)}px, 300px) rotateY(24deg) rotateX(-4deg) rotateZ(-5deg)`;
+
+      const a2 = arrive(0.3);
+      $("right").style.transform =
+        `translate3d(800px, ${lerp(140, -40, a2) + bob(2.6, 10)}px, 220px) rotateY(-16deg) rotateX(-3deg) rotateZ(4deg)`;
+
+      for (const [slot, a] of [["laptop", aL], ["left", a1], ["right", a2]]) {
+        const sh = $("sh-" + slot);
+        if (sh) sh.style.opacity = a * (slot === "laptop" ? 0.9 : 0.7);
+      }
+
+      // Screens: pick the recording frame for this moment (held on first/last frame outside it).
+      const loads = [];
+      for (const [slot, id] of Object.entries(devices)) {
+        if (!id) continue;
+        const frames = screens[id].frames;
+        const i = clamp(Math.floor((t - (offsets[id] ?? 0)) * fps), 0, frames.length - 1);
+        const img = document.querySelector(`img[data-slot="${slot}"]`);
+        if (img.getAttribute("src") !== frames[i]) {
+          img.src = frames[i];
+          loads.push(img.decode().catch(() => {}));
+        }
+      }
+      await Promise.all(loads);
+      await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
+    },
+  };
+</script>
+</body>
+</html>

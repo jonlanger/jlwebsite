@@ -483,22 +483,6 @@ export const pastProjects: PastProject[] = [
     },
   },
   {
-    slug: "solar-field-installation",
-    category: "hardware",
-    title: "Automated Solar Field",
-    description:
-      "Robotic solar carts that automate field installation, with cloud dashboards for fleet and yield management.",
-    image: "/projects/solar-field-installation/solar-field-installation_card.webp",
-    alt: "Automated solar field installation system case study.",
-    width: 1024,
-    height: 576,
-    board: {
-      src: "/projects/solar-field-installation/solar-field-installation_board.webp",
-      width: 1920,
-      height: 16050,
-    },
-  },
-  {
     slug: "stemcell-spray",
     category: "hardware",
     title: "Autonomous Trackless Freight",

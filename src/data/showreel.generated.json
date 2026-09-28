@@ -49,6 +49,18 @@
       "poster": "/showreel/shortlist.jpg?v=a65af2cd"
     },
     {
+      "slug": "solar-field-installation",
+      "title": "SolarSwarm",
+      "kind": "Robotics platform",
+      "line": "Scrolling a solar field from truck to tracking array.",
+      "duration": 9.067,
+      "video": {
+        "desktop": "/showreel/solar-field-installation-1080.mp4?v=e1db42f0",
+        "mobile": "/showreel/solar-field-installation-720.mp4?v=e1db42f0"
+      },
+      "poster": "/showreel/solar-field-installation.jpg?v=e1db42f0"
+    },
+    {
       "slug": "careshift",
       "title": "Careshift",
       "kind": "Healthcare",
