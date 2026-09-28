@@ -51,14 +51,14 @@
     {
       "slug": "solar-field-installation",
       "title": "SolarSwarm",
-      "kind": "Robotics platform",
-      "line": "Scrolling a solar field from truck to tracking array.",
-      "duration": 9.067,
+      "kind": "Fleet platform",
+      "line": "Tracing a fence line fills the lot with robots, clear of the access road.",
+      "duration": 9,
       "video": {
-        "desktop": "/showreel/solar-field-installation-1080.mp4?v=e1db42f0",
-        "mobile": "/showreel/solar-field-installation-720.mp4?v=e1db42f0"
+        "desktop": "/showreel/solar-field-installation-1080.mp4?v=8fa77f64",
+        "mobile": "/showreel/solar-field-installation-720.mp4?v=8fa77f64"
       },
-      "poster": "/showreel/solar-field-installation.jpg?v=e1db42f0"
+      "poster": "/showreel/solar-field-installation.jpg?v=8fa77f64"
     },
     {
       "slug": "careshift",

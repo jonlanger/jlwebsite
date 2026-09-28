@@ -231,7 +231,7 @@ const LANDSCAPE_HTML = `
 const STAGES = [
   { t: "Survey", buyer: "Shares the site and a year of utility bills.", ops: "Drone survey; swarm plans row pitch, shading and slope.", robot: "—", screen: "Site boundary and a savings estimate", mood: 2 },
   { t: "Lease", buyer: "Signs a PPA or lease. No capital outlay.", ops: "Lessor assigns units; pipeline moves to scheduled.", robot: "Staged at the depot", screen: "Lease pipeline", mood: 3 },
-  { t: "Deploy", buyer: "Watches trucks arrive. No construction crew.", ops: "Pairs units at the portal; commissions the array.", robot: "Rolls off, washes, drives into formation", screen: "Onboarding: register → site → layout → deploy", mood: 4 },
+  { t: "Deploy", buyer: "Watches trucks arrive. No construction crew.", ops: "Pairs units at the portal; commissions the array.", robot: "Rolls off, washes, drives into formation", screen: "Onboarding: trace the fence, size the array, place drop-off and swap", mood: 4 },
   { t: "Operate", buyer: "Sees output and savings against the utility rate.", ops: "Monitors every fleet; tracks SLAs.", robot: "Tracks the sun, dual-axis", screen: "Energy in / out, fleet map", mood: 5 },
   { t: "Service", buyer: "A unit faults. Wants to know it is handled.", ops: "Forecast flagged it; spare dispatched.", robot: "Drives to the service lane; spare takes the slot", screen: "Predictive maintenance, digital twin, tickets", mood: 2 },
   { t: "Grow", buyer: "Adds units or moves rows for the season.", ops: "Redeploys idle units from other contracts.", robot: "Re-forms or relocates", screen: "Request more units, relocate", mood: 4 },

@@ -127,22 +127,36 @@ async function main() {
     await shot(page, "b08-maintenance");
   });
 
-  // Onboarding: register → site → layout → deploy
+  // Onboarding: choose site → map & size → register → infrastructure → deploy.
+  // The fence is the same road-free lot as the showreel clip: west of the dirt
+  // access track at the default Barstow site, its east side parallel to the track.
+  // Offsets are CSS px from the map's centre, which opens on the site at a fixed zoom.
+  const LOT = [[-301.5, -191], [48.5, -191], [-26.5, 164], [-301.5, 164]];
   await tryShot("onboarding", async () => {
     await app(page, "/app/onboarding");
-    await page.getByRole("button", { name: /pair/i }).first().click();
-    await page.waitForTimeout(6000);
-    await shot(page, "c01-onboard-register");
-    await page.getByRole("button", { name: /Continue/ }).click();
-    await page.getByText("Extend existing site").click();
+    await shot(page, "c01-onboard-site", { settle: 2500 });
+    await page.getByRole("button", { name: /^Continue/ }).click();
+    await page.waitForTimeout(7000); // sub-metre imagery
+    const map = await page.locator(".maplibregl-canvas").last().boundingBox();
+    const cx = map.x + map.width / 2, cy = map.y + map.height / 2;
+    for (const [dx, dy] of [...LOT, LOT[0]]) {
+      await page.mouse.click(cx + dx, cy + dy);
+      await page.waitForTimeout(400);
+    }
+    await page.waitForTimeout(2500);
+    await shot(page, "c02-onboard-map");
+    await page.getByRole("button", { name: /^Order .* units/ }).click();
     await page.waitForTimeout(1200);
-    await shot(page, "c02-onboard-site");
-    await page.getByRole("button", { name: /Continue/ }).click();
+    await page.getByRole("button", { name: /Scan manifest/ }).click();
+    await page.getByRole("button", { name: "All paired" }).waitFor();
+    await shot(page, "c03-onboard-register");
+    await page.getByRole("button", { name: /^Continue/ }).click();
+    await page.waitForTimeout(3000);
+    await shot(page, "c04-onboard-infra");
+    await page.getByRole("button", { name: /^Continue/ }).click();
+    await page.getByRole("button", { name: /Commission array/ }).waitFor({ timeout: 60000 });
     await page.waitForTimeout(1500);
-    await shot(page, "c03-onboard-layout");
-    await page.getByRole("button", { name: /Continue/ }).click();
-    await page.waitForTimeout(9000);
-    await shot(page, "c04-onboard-deploy");
+    await shot(page, "c05-onboard-deploy");
   });
 
   // Phones

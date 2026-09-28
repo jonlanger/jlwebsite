@@ -32,10 +32,11 @@ const SLIDES = {
   "b06-robot-twin": "app-twin",
   "b07-energy": "app-energy",
   "b08-maintenance": "app-maintenance",
-  "c01-onboard-register": "onboard-register",
-  "c02-onboard-site": "onboard-site",
-  "c03-onboard-layout": "onboard-layout",
-  "c04-onboard-deploy": "onboard-deploy",
+  "c01-onboard-site": "onboard-site",
+  "c02-onboard-map": "onboard-map",
+  "c03-onboard-register": "onboard-register",
+  "c04-onboard-infra": "onboard-infra",
+  "c05-onboard-deploy": "onboard-deploy",
 };
 
 for (const [src, out] of Object.entries(SLIDES)) {
