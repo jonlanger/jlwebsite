@@ -89,6 +89,29 @@ export default async function PastProjectPage({ params }: Props) {
               </a>
             </p>
           ) : null}
+          {project.liveLinks?.length ? (
+            <ul
+              aria-label="Live apps"
+              className="-mt-1 flex flex-wrap gap-x-6 gap-y-1"
+            >
+              {project.liveLinks.map((link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={cn(
+                      buttonVariants({ variant: "link", size: "sm" }),
+                      "gap-1.5 px-0 text-sm text-muted-foreground hover:text-foreground"
+                    )}
+                  >
+                    {link.label}
+                    <ExternalLink className="size-3.5" aria-hidden />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          ) : null}
 
           {detailSections.map((b, i) => (
             <ProjectSectionBlock

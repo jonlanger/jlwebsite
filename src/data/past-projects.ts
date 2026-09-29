@@ -1,12 +1,3 @@
-import { COCO_IMPLEMENT_TABS } from "@/data/coco-implement-tabs";
-import { COCO_USER_FLOW_TABS } from "@/data/coco-user-flows";
-import {
-  COCO_COLLECTOR_JOURNEY_COLUMNS,
-  COCO_CUSTOMER_JOURNEY_COLUMNS,
-  COCO_DRIVER_JOURNEY_COLUMNS,
-  COCO_FLEET_MANAGER_JOURNEY_COLUMNS,
-  type CocoJourneyMapColumns,
-} from "@/data/coco-journey-maps";
 import { AUREUM_IMPLEMENT_TABS } from "@/data/aureum-implement-tabs";
 import { AUREUM_USER_FLOW_TABS } from "@/data/aureum-user-flows";
 import { EQUIPIFY_IMPLEMENT_TABS } from "@/data/equipify-implement-tabs";
@@ -141,15 +132,6 @@ export type JourneyBlock =
   | JourneyAccordionBlock
   | JourneyTableBlock;
 
-function journeyColumnsFromCocoData(
-  columns: CocoJourneyMapColumns
-): JourneyMapColumn[] {
-  return columns.map((col) => ({
-    header: col.header,
-    rows: col.rows,
-  }));
-}
-
 /** One case-study block: top rule, section title, body copy; optional Role/Scope (e.g. Overview). */
 export type ProjectStat = {
   value: string;
@@ -219,6 +201,8 @@ export type PastProject = {
   board?: { src: string; width: number; height: number };
   /** Optional public live demo / product URL shown on the detail page. */
   liveUrl?: string;
+  /** Extra live links under the main one (e.g. one app per user role). */
+  liveLinks?: readonly { label: string; href: string }[];
   /** First narrative section (often Overview; may include role/scope). */
   overview?: ProjectSection;
   /** Further sections in the same layout, after overview. */
@@ -583,183 +567,6 @@ export const pastProjects: PastProject[] = [
 /** Newer work (add entries here; slugs must be unique across all project lists). */
 export const recentProjects2023_2026: PastProject[] = [
   ...PORTFOLIO_SHOWCASE_PROJECTS,
-  {
-    slug: "coco",
-    category: "software",
-    title: "Coco",
-    description:
-      "Fleet and waste management platform for drivers, collectors, and customers.",
-    image: "/projects/coco_card.png",
-    alt: "Aerial view of a garbage truck in an urban neighborhood.",
-    width: 1024,
-    height: 585,
-    overview: {
-      title: "Overview",
-      paragraphs: [
-        "Waste management companies running mixed fleets — trash compactors, recycling vehicles, specialty collection — have no unified way to track assets, coordinate crews, or communicate with customers in real time. Coco is a connected platform designed for four distinct user groups: customers, collectors, drivers, and fleet managers.",
-        "The challenge was designing a system that works across radically different contexts: a customer scheduling a pickup from their phone, a collector confirming hazardous materials in the field, a driver navigating dense city traffic, and a manager monitoring compliance across an entire fleet — all at the same time.",
-      ],
-      role: "UX Research, Product Design, Interaction Design",
-      scope: "iOS, Android, Tablet (in-cab), Web Dashboard",
-    },
-    sections: [
-      {
-        title: "Research",
-        paragraphs: [
-          "Understanding this problem required getting close to the physical environment — not just the software. Route pressures, confined spaces, hazardous materials, and inconsistent pickup locations all shape how users actually behave in the field. That complexity had to be designed for, not designed around.",
-          "Four primary user groups were identified, each with distinct needs and risk profiles:",
-        ],
-        figures: [
-          {
-            afterParagraphIndex: 0,
-            src: "/projects/coco_system_sketch.png",
-            alt: "Early system sketch for Coco: field context, user roles, and service touchpoints.",
-            width: 2388,
-            height: 1668,
-          },
-        ],
-        table: {
-          ariaLabel: "User groups and needs from research",
-          rows: [
-            {
-              col1: "Customers",
-              col2:
-                "Want transparency — to know when their pickup is coming and that it was completed correctly.",
-            },
-            {
-              col1: "Collectors",
-              col2:
-                "Need in-the-moment guidance — the right items, from the right location, with confirmation that compliance was met.",
-            },
-            {
-              col1: "Drivers",
-              col2:
-                "Are managing safety, time, and coordination simultaneously. The interface needs to work while they're moving.",
-            },
-            {
-              col1: "Fleet managers",
-              col2:
-                "Are responsible for all of the above. Their tool is a command surface, not a task list.",
-            },
-          ],
-        },
-      },
-      {
-        title: "User Stories",
-        paragraphs: [
-          "Rather than building one product for everyone, the platform was structured around role-specific flows that share a common data layer.",
-        ],
-        table: {
-          ariaLabel: "Roles and core user-story needs",
-          rows: [
-            {
-              col1: "Customer",
-              col2:
-                "Schedule and track pickups; photo upload for bulk or specialty items; payment management.",
-            },
-            {
-              col1: "Collector",
-              col2:
-                "Guided item confirmation; compliance tracking; safety record.",
-            },
-            {
-              col1: "Driver",
-              col2:
-                "Optimized route navigation; real-time dispatch communication; maintenance logging.",
-            },
-            {
-              col1: "Fleet Manager",
-              col2:
-                "Live fleet visibility; performance and cost reporting; SOP compliance monitoring.",
-            },
-          ],
-        },
-      },
-      {
-        title: "Journey Mapping",
-        paragraphs: [],
-        journeyBlocks: [
-          {
-            type: "paragraph",
-            text: "Mapping the full system across all four user types revealed that friction points rarely live in the middle of a journey — they cluster at the edges, where handoffs happen and communication breaks down.",
-          },
-          {
-            type: "journeyAccordion",
-            value: "customer",
-            title: "Customer Journey Map",
-            defaultOpen: true,
-            tableAriaLabel: "Customer journey map, six stages",
-            columns: journeyColumnsFromCocoData(COCO_CUSTOMER_JOURNEY_COLUMNS),
-          },
-          {
-            type: "paragraph",
-            text: "Most service failures occur at Problem Discovery and Tracking — the moments before and after the core transaction. Customers don't leave because of a missed pickup; they leave because no one told them about it. That insight directly shaped the notification architecture.",
-          },
-          {
-            type: "journeyAccordion",
-            value: "fleet-manager",
-            title: "Fleet Manager Journey Map",
-            tableAriaLabel: "Fleet manager journey map, six stages",
-            columns: journeyColumnsFromCocoData(
-              COCO_FLEET_MANAGER_JOURNEY_COLUMNS
-            ),
-          },
-          {
-            type: "paragraph",
-            text: "The fleet manager journey exposed a different kind of friction: too much data, not enough signal. Surfacing risk and compliance status without burying managers in dashboards became the central design challenge for the dashboard hierarchy.",
-          },
-          {
-            type: "paragraph",
-            text: "The Driver and Collector maps reinforced a finding that wasn't visible in interviews alone — navigation and collection are not sequential tasks, they happen simultaneously. That shaped how communication between the two roles was designed.",
-          },
-          {
-            type: "journeyAccordion",
-            value: "driver",
-            title: "Driver Journey Map",
-            tableAriaLabel: "Driver journey map, six stages",
-            columns: journeyColumnsFromCocoData(COCO_DRIVER_JOURNEY_COLUMNS),
-          },
-          {
-            type: "journeyAccordion",
-            value: "collector",
-            title: "Collector Journey Map",
-            tableAriaLabel: "Collector journey map, six stages",
-            columns: journeyColumnsFromCocoData(COCO_COLLECTOR_JOURNEY_COLUMNS),
-          },
-        ],
-      },
-      {
-        title: "User Flows",
-        paragraphs: [
-          "Before any screens were designed, the full interaction architecture was mapped for each user type — from first login through day-to-day use.",
-          "The complexity of this system lives in the flows, not the interfaces. Four distinct onboarding paths and four distinct daily experiences, all sharing a common data layer underneath.",
-        ],
-        userFlowTabs: COCO_USER_FLOW_TABS,
-      },
-      {
-        title: "Test",
-        paragraphs: [
-          "Feature prioritization was validated across all four user groups through structured ranking exercises. The results confirmed some assumptions and challenged others — most notably that real-time status visibility is the universal priority for field users, while fleet managers are primarily concerned with systemic risk and compliance rather than individual pickups.",
-          "The most significant finding cuts across all four rankings: Pickup Tracking and Notifications ranks first for every field-facing user — customers, collectors, and drivers — but falls to sixth for fleet managers, who prioritize Fleet Maintenance Scheduling and Compliance Management above everything else. Field users want to know what's happening right now. Managers want to know what's at risk tomorrow. That distinction drove the information hierarchy in both the mobile and dashboard experiences.",
-        ],
-        featureRankingChartsAfterParagraphIndex: 0,
-      },
-      {
-        title: "Refine",
-        paragraphs: [
-          "With the system architecture mapped and feature priorities validated, the design language was established iteratively — a component library, color system, and visual identity developed in parallel with the high-fidelity screens. The 3D asset library was a deliberate choice to ground the brand in the physical world of the service, giving the platform a visual identity rooted in the actual vehicles, containers, and equipment its users interact with every day.",
-          "The biggest refinement decisions happened at the system level — how status is communicated across four different user contexts, how compliance risk surfaces without creating noise, and how a single design language stretches from a customer's mobile pickup request to a fleet manager's compliance dashboard.",
-        ],
-      },
-      {
-        title: "Implement",
-        paragraphs: [
-          "The final designs bring together four distinct experiences built on a shared system — each optimized for the context, constraints, and priorities of its user.",
-        ],
-        implementTabs: COCO_IMPLEMENT_TABS,
-      },
-    ],
-  },
   {
     slug: "petricor",
     category: "software",
@@ -2070,10 +1877,37 @@ const ALL_PROJECTS: readonly PastProject[] = [
   ...pastProjects,
 ];
 
+/**
+ * Projects whose cards are hidden from the /projects grid while they are being
+ * reworked. Their data and detail pages stay intact; remove a slug to restore it.
+ */
+export const HIDDEN_PROJECT_SLUGS: ReadonlySet<string> = new Set([
+  "equipify",
+  "studioflow",
+  "headlines",
+  "foodtrack",
+  "voxelplm",
+  "ecowell-c79b", // 3D Life Camera
+  "h2-audio",
+  "accessible-fastener",
+  "footwear-sketches",
+  "ecowell-c8l9", // Ecowell
+  "vaccine-transport", // Campus Safety Beacon
+  "uav-humanitarian-delivery",
+  "e-syringe", // Micro-needle Syringe
+  "lllt-knee-brace-c1zug", // Mycelium Erosion Control
+  "laser-scalpel", // Plasma Cutting Tool
+  "stemcell-spray-alt", // Stemcell spray system
+  "vaccine-transport-c23c1", // Vaccine transport for mobile Africa
+  "medication-adherence",
+]);
+
 /** Projects in one category, in grid order. */
 export function projectsInCategory(category: ProjectCategory): PastProject[] {
   return sortPastProjectsForGrid(
-    ALL_PROJECTS.filter((p) => p.category === category),
+    ALL_PROJECTS.filter(
+      (p) => p.category === category && !HIDDEN_PROJECT_SLUGS.has(p.slug)
+    ),
     PROJECT_GRID_ORDER[category]
   );
 }

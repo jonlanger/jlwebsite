@@ -1,6 +1,7 @@
 "use client";
 
 import { Accordion } from "@base-ui/react/accordion";
+import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 
 import { ProjectImageCarousel } from "@/components/project-image-carousel";
@@ -14,16 +15,21 @@ export function ProjectProductShowcase({
   showcase: ProductShowcaseData;
   className?: string;
 }) {
-  const defaultOpen = showcase.accordion
-    ?.filter((item) => item.defaultOpen)
-    .map((item) => item.value);
+  // Captured once: Base UI warns if an uncontrolled default changes identity.
+  const [defaultOpen] = useState(() =>
+    showcase.accordion
+      ?.filter((item) => item.defaultOpen)
+      .map((item) => item.value)
+  );
 
   return (
     <div className={cn("w-full space-y-10 md:space-y-12", className)}>
-      <ProjectImageCarousel
-        slides={showcase.slides}
-        ariaLabel="Product story screens"
-      />
+      {showcase.slides.length > 0 ? (
+        <ProjectImageCarousel
+          slides={showcase.slides}
+          ariaLabel="Product story screens"
+        />
+      ) : null}
 
       {showcase.accordion && showcase.accordion.length > 0 ? (
         <Accordion.Root

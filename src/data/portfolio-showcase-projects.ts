@@ -23,6 +23,7 @@ import { project as shortlist } from "@/data/showcase/shortlist";
 import { project as relationshipviz } from "@/data/showcase/relationshipviz";
 import { project as collabfin } from "@/data/showcase/collabfin";
 import { project as solarFieldInstallation } from "@/data/showcase/solar-field-installation";
+import { project as coco } from "@/data/showcase/coco";
 
 /** Showcase order matches the September 2024 portfolio page. */
 export const PORTFOLIO_SHOWCASE_PROJECTS: PastProject[] = [
@@ -50,4 +51,5 @@ export const PORTFOLIO_SHOWCASE_PROJECTS: PastProject[] = [
   dialysisManagement,
   connectPoolRobot,
   additiveMfgPrintSimScan,
+  coco,
 ];
