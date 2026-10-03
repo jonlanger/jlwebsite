@@ -1,45 +1,55 @@
 "use client";
 
-import { Moon, Sun } from "lucide-react";
+import { Monitor, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/lib/button-variants";
 import { cn } from "@/lib/utils";
 
-export function ThemeToggle({ className }: { className?: string }) {
-  const { resolvedTheme, setTheme } = useTheme();
+const MODES = [
+  { value: "system", label: "System", Icon: Monitor },
+  { value: "light", label: "Light", Icon: Sun },
+  { value: "dark", label: "Dark", Icon: Moon },
+] as const;
+
+export function ThemeToggle() {
+  const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  if (!mounted) {
-    return (
-      <span
-        className="inline-flex size-8 shrink-0 items-center justify-center"
-        aria-hidden
-      />
-    );
-  }
-
-  const isDark = resolvedTheme === "dark";
+  // Theme is unknown until mount; render nothing selected to avoid a hydration mismatch.
+  const current = mounted ? (theme ?? "system") : undefined;
 
   return (
-    <Button
-      type="button"
-      variant="ghost"
-      size="icon"
-      className={cn("shrink-0 text-foreground", className)}
-      onClick={() => setTheme(isDark ? "light" : "dark")}
-      aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
-    >
-      {isDark ? (
-        <Sun className="size-4" aria-hidden />
-      ) : (
-        <Moon className="size-4" aria-hidden />
-      )}
-    </Button>
+    <div className="flex flex-col gap-2">
+      <p className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">
+        Appearance
+      </p>
+      <div className="flex flex-wrap gap-2">
+        {MODES.map(({ value, label, Icon }) => (
+          <button
+            key={value}
+            type="button"
+            onClick={() => setTheme(value)}
+            className={cn(
+              buttonVariants({
+                variant: current === value ? "default" : "outline",
+                size: "default",
+              }),
+              "h-[48px] min-h-[48px] gap-1.5 px-4 lg:h-[32px] lg:min-h-[32px]"
+            )}
+            aria-pressed={current === value}
+            aria-label={`Appearance: ${label}`}
+          >
+            <Icon className="size-4" aria-hidden />
+            {label}
+          </button>
+        ))}
+      </div>
+    </div>
   );
 }

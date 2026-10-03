@@ -556,9 +556,9 @@ export const project: PastProject = {
               ),
               screen(
                 "site-outcomes",
-                "Outcomes",
-                "Design targets from discovery research.",
-                "Homepage outcomes: 30% fewer missed pickups, 18% less drive time per route, 100% of pickups photo-verified and under 2 minutes to book, marked as design targets."
+                "By design",
+                "What the prototype does, not projected results.",
+                "Homepage by design section: no more “did they even come?”. One photo required before a collector can close a stop and sent to the customer, four compliance checks built into the pickup flow, one to two stops of notice before the crew reaches the bin, and five steps to request a pickup. A note says CoCo is a concept with no measured results yet."
               ),
               screen(
                 "site-features",

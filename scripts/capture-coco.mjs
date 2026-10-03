@@ -91,7 +91,7 @@ async function main() {
   await shot(page, "h02-platform");
   await scrollToId(page, "story");
   await shot(page, "h03-story");
-  await scrollToText(page, "Fewer surprises");
+  await scrollToText(page, "did they even come", 170);
   await shot(page, "h04-outcomes");
   await scrollToId(page, "features");
   await shot(page, "h05-features");

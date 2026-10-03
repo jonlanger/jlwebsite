@@ -116,9 +116,7 @@ export function SiteHeader() {
             <p className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">
               Settings
             </p>
-            <div className="flex items-center">
-              <ThemeToggle className="size-10 shrink-0 rounded-md bg-secondary text-secondary-foreground hover:bg-secondary/80" />
-            </div>
+            <ThemeToggle />
             <TextSizeControl />
           </div>
         </div>

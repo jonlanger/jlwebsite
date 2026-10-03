@@ -2,6 +2,7 @@
 
 import { Accordion } from "@base-ui/react/accordion";
 import { ChevronDown } from "lucide-react";
+import { useState } from "react";
 
 import type {
   JourneyAccordionBlock,
@@ -79,10 +80,12 @@ function JourneyMapTable({
 
 function JourneyMapAccordion(block: JourneyAccordionBlock) {
   const { value, title, defaultOpen, tableAriaLabel, columns } = block;
+  // Captured once: Base UI warns if an uncontrolled default changes identity.
+  const [initialOpen] = useState(() => (defaultOpen ? [value] : []));
   return (
     <Accordion.Root
       className="w-full overflow-hidden rounded-lg border border-border bg-card/60"
-      defaultValue={defaultOpen ? [value] : []}
+      defaultValue={initialOpen}
       multiple={false}
     >
       <Accordion.Item value={value}>
