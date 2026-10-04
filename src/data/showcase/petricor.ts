@@ -35,7 +35,7 @@ export const project: PastProject = {
   description:
     "Automated fungi and mould analysis for microbiology labs: a benchtop incubator-imager, its touchscreen, and a cloud platform for review and sign-off.",
   image: `${DIR}/petricor_card.webp`,
-  alt: "The Petricor PC-6 benchtop incubator-imager on a blue backdrop, its touchscreen showing a live incubation run.",
+  alt: "Petricor touchscreen dish view: an air sample from the incubator room with labelled colonies of P. chrysogenum, A. alternata and C. cladosporioides beside a list of presumptive IDs and diameters.",
   width: 1280,
   height: 720,
   liveUrl: `${APP}/`,

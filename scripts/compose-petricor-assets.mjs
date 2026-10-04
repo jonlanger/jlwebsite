@@ -41,8 +41,8 @@ const RENDERS = [
 ];
 for (const n of RENDERS) await webp(`renders/${n}.png`, `hw-${n.replace(/_/g, "-")}`, undefined, 86);
 
-// Grid card: the blue hero render, 16:9.
-await sharp(path.join(SRC, "renders/hero_blue.png")).resize(1280, 720).webp({ quality: 86 }).toFile(path.join(OUT, "petricor_card.webp"));
+// Grid card, 16:9: the core feature, live colony tracking on a dish (PC-6 touchscreen).
+await sharp(path.join(SRC, "shots/device-dish.jpg")).resize(1280, 720).webp({ quality: 86 }).toFile(path.join(OUT, "petricor_card.webp"));
 console.log("petricor_card");
 
 // Diagrams: PNG -> WebP at the same size.
