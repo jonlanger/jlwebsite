@@ -1525,6 +1525,7 @@ export const HIDDEN_PROJECT_SLUGS: ReadonlySet<string> = new Set([
   "stemcell-spray-alt", // Stemcell spray system
   "vaccine-transport-c23c1", // Vaccine transport for mobile Africa
   "medication-adherence",
+  "moto-id", // Post-surgery Recovery System
 ]);
 
 /** Projects in one category, in grid order. */
