@@ -28,7 +28,7 @@ const SHOTS = [
 const RENDERS = [
   "hero_blue", "open_blue", "open", "exploded", "exploded_side", "section", "interior", "plates_top",
   "x_imaging", "x_carousel", "x_climate", "x_console", "x_insulation",
-  "d_carousel", "d_culture", "d_culture_b", "d_scanner", "d_console", "d_imaging", "d_rear_io", "rear", "side",
+  "d_carousel", "d_culture", "d_culture_b", "d_scanner", "d_console",
 ];
 
 async function download(url, file) {

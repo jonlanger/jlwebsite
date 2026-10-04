@@ -37,7 +37,7 @@ for (const [src, out] of Object.entries(CAPTURES)) await webp(`${src}.png`, out,
 const RENDERS = [
   "hero_blue", "open_blue", "exploded", "exploded_side", "section", "interior", "plates_top",
   "x_imaging", "x_carousel", "x_climate", "x_console", "x_insulation",
-  "d_carousel", "d_culture", "d_culture_b", "d_scanner", "d_console", "d_imaging", "d_rear_io", "rear",
+  "d_carousel", "d_culture", "d_culture_b", "d_scanner", "d_console",
 ];
 for (const n of RENDERS) await webp(`renders/${n}.png`, `hw-${n.replace(/_/g, "-")}`, undefined, 86);
 

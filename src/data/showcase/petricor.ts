@@ -329,10 +329,7 @@ export const project: PastProject = {
             slides: [
               render("d-scanner", "Side reader", "Reader window in the navy grip inlay, finger recess below.", "Side reader window set into the navy grip inlay, with a finger recess below for lifting."),
               render("d-console", "Console", "Label printer door and touchscreen.", "The angled console: label printer door and the touchscreen showing incubation."),
-              render("d-imaging", "Imaging head, sectioned", "Window, diffuser, ring light, lens and sensor.", "Sectioned imaging head above a dish."),
               render("d-culture", "Culture, macro", "Fusarium: floccose aerial mycelium over diffusing violet pigment.", "Macro render of a Fusarium colony with white aerial mycelium over a violet centre."),
-              render("d-rear-io", "Rear I/O", "IEC inlet, Ethernet, USB-A ×2, power switch.", "Rear connector panel: IEC inlet, Ethernet, two USB-A ports and a power switch."),
-              render("rear", "Rear", "Exhaust grille, reservoir hatch and I/O.", "Rear three-quarter view of the PC-6 with the exhaust grille, reservoir hatch and I/O."),
             ],
           },
         ],
