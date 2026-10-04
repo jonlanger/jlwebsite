@@ -1,5 +1,3 @@
-import { AUREUM_IMPLEMENT_TABS } from "@/data/aureum-implement-tabs";
-import { AUREUM_USER_FLOW_TABS } from "@/data/aureum-user-flows";
 import { EQUIPIFY_IMPLEMENT_TABS } from "@/data/equipify-implement-tabs";
 import { EQUIPIFY_USER_FLOW_TABS } from "@/data/equipify-user-flows";
 import { HEADLINES_FEATURE_RANKING_DATA } from "@/data/headlines-feature-ranking";
@@ -125,10 +123,20 @@ export type JourneyTableBlock = {
   columns: readonly JourneyMapColumn[];
 };
 
+/** Diagram between journey blocks (e.g. a synthesis across several maps). */
+export type JourneyFigureBlock = {
+  type: "figure";
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+};
+
 export type JourneyBlock =
   | JourneyParagraphBlock
   | JourneyAccordionBlock
-  | JourneyTableBlock;
+  | JourneyTableBlock
+  | JourneyFigureBlock;
 
 /** One case-study block: top rule, section title, body copy; optional Role/Scope (e.g. Overview). */
 export type ProjectStat = {
@@ -565,205 +573,6 @@ export const pastProjects: PastProject[] = [
 /** Newer work (add entries here; slugs must be unique across all project lists). */
 export const recentProjects2023_2026: PastProject[] = [
   ...PORTFOLIO_SHOWCASE_PROJECTS,
-  {
-    slug: "aureum",
-    category: "software",
-    title: "Aureum AI",
-    description:
-      "Holistic AI-powered personal finance coach for budgeting, goals, and insights.",
-    image: "/projects/aureum/aureum_card.webp",
-    alt: "Aureum AI personal finance coach brand illustration.",
-    width: 1792,
-    height: 1024,
-    overview: {
-      title: "Overview",
-      paragraphs: [
-        "Most people lack the financial literacy and personalized guidance to make confident decisions about saving, investing, and budgeting. Generic finance tools fail to account for individual goals, income patterns, and life stage — leaving users with fragmented accounts, generic advice, and no cohesive view of their financial health.",
-        "Aureum AI is a holistic personal finance coach that combines AI-driven planning, real-time expense tracking, predictive analytics, and community support into a single experience — helping users from first account setup through daily financial decisions with guidance tailored to their unique situation.",
-      ],
-      role: "UX Research, Product Design, Interaction Design",
-      scope: "iOS, Android, Web App",
-    },
-    sections: [
-      {
-        title: "Research",
-        paragraphs: [
-          "Research revealed four interconnected problem spaces: financial literacy gaps, lack of personalized guidance, missed savings and investment opportunities, and the social isolation that often accompanies financial stress. Existing tools address pieces of the puzzle but rarely integrate them into a cohesive experience.",
-          "Five user archetypes were identified across income levels, life stages, and financial sophistication:",
-        ],
-        figures: [
-          {
-            afterParagraphIndex: 0,
-            src: "/projects/aureum/aureum_system_sketch.png",
-            alt: "Early Aureum system sketch: AI finance coach concept and touchpoints.",
-            width: 3840,
-            height: 2160,
-          },
-          {
-            afterParagraphIndex: 1,
-            src: "/projects/aureum/aureum_problem_statement.png",
-            alt: "Aureum problem statement: financial literacy, personalization, and integration gaps.",
-            width: 3840,
-            height: 2160,
-          },
-        ],
-        table: {
-          ariaLabel: "Research personas and primary needs",
-          rows: [
-            {
-              col1: "Emily Johnson",
-              col2:
-                "Marketing specialist — needs customized budgeting, personalized investment advice, and progress tracking toward a home down payment.",
-            },
-            {
-              col1: "Michael Chen",
-              col2:
-                "Software engineer — needs integrated account management, real-time investment insights, and automated savings recommendations.",
-            },
-            {
-              col1: "Sarah Martinez",
-              col2:
-                "Small business owner — needs business/personal finance separation, cash flow tools, and tailored financial literacy.",
-            },
-            {
-              col1: "David Lee",
-              col2:
-                "High school teacher — needs debt management, college savings planning, and accessible financial education.",
-            },
-            {
-              col1: "Lisa Robinson",
-              col2:
-                "Retired nurse — needs healthcare cost management, retirement planning, and easy investment tracking.",
-            },
-          ],
-        },
-      },
-      {
-        title: "User Stories",
-        paragraphs: [
-          "The platform was structured around eight core capability areas — from account setup through community engagement — with AI nudges designed to intervene at friction points rather than overwhelm users with generic notifications.",
-        ],
-        table: {
-          ariaLabel: "Core capability areas and user needs",
-          rows: [
-            {
-              col1: "Financial Planning",
-              col2:
-                "AI-generated budgets and goal prioritization tailored to individual income and objectives.",
-            },
-            {
-              col1: "Expense Tracking",
-              col2:
-                "Automated categorization with manual override and real-time spending visibility.",
-            },
-            {
-              col1: "Savings & Investments",
-              col2:
-                "Automated transfers, portfolio monitoring, and tailored investment recommendations.",
-            },
-            {
-              col1: "Debt Management",
-              col2:
-                "Consolidated debt overview with AI-generated repayment plans and payment reminders.",
-            },
-            {
-              col1: "Financial Education",
-              col2:
-                "Interactive modules and quizzes matched to user role and knowledge level.",
-            },
-            {
-              col1: "Community",
-              col2:
-                "Peer groups, webinars, and mentorship to reduce financial isolation and stress.",
-            },
-          ],
-        },
-      },
-      {
-        title: "Journey Mapping",
-        paragraphs: [
-          "Journey maps across five personas revealed that emotional peaks occur at goal-setting and progress milestones, while friction clusters at account setup, data privacy concerns, and the complexity of connecting multiple financial accounts.",
-          "The product discovery map traced the path from problem awareness through purchase, initial use, continued engagement, and community participation — identifying where AI intervention could convert apprehension into confidence.",
-        ],
-        figures: [
-          {
-            afterParagraphIndex: 0,
-            src: "/projects/aureum/aureum_journey_emily_johnson.png",
-            alt: "Emily Johnson user journey map across account setup through community interaction.",
-            width: 3636,
-            height: 1666,
-          },
-          {
-            afterParagraphIndex: 0,
-            src: "/projects/aureum/aureum_journey_michael_chen.png",
-            alt: "Michael Chen user journey map across financial planning and investment management.",
-            width: 3636,
-            height: 1676,
-          },
-          {
-            afterParagraphIndex: 1,
-            src: "/projects/aureum/aureum_product_discovery_map.png",
-            alt: "Aureum product discovery map from problem awareness through community engagement.",
-            width: 3840,
-            height: 2160,
-          },
-        ],
-      },
-      {
-        title: "User Flows",
-        paragraphs: [
-          "Before detailed screen design, the full interaction architecture was mapped — from onboarding and account connection through daily expense tracking, savings management, and community features.",
-          "The system onboarding flow integrates automated and manual tracking, personalized financial planning, and AI-driven insights into a guided first experience designed to deliver value before asking for deep financial commitment.",
-        ],
-        userFlowTabs: AUREUM_USER_FLOW_TABS,
-      },
-      {
-        title: "Test",
-        paragraphs: [
-          "AI-driven planning and real-time expense tracking were near-universal across all five personas. The divergence showed up in what people wanted to see first.",
-          "\"I don't need another chart of what I spent — I need to know what's about to go wrong.\" — Lisa Robinson, ranking predictive analytics above everything else.",
-          "Michael Chen flipped that priority: the financial health dashboard came first, with predictive tools as supporting context. Same product, two opening moves — one oriented toward future risk, the other toward current standing — which decided what anchors the home screen and what lives one tap deeper.",
-        ],
-      },
-      {
-        title: "Refine",
-        paragraphs: [
-          "The brand direction — friendly, sophisticated, bold — required rethinking how finance is portrayed visually. A component library, illustration system, and logo suite were developed to feel approachable without sacrificing the credibility users expect from a financial product.",
-          "Refinement focused on making AI guidance feel supportive rather than prescriptive — nudges that assist without overwhelming, and a visual language that celebrates progress rather than highlighting deficits.",
-        ],
-        figures: [
-          {
-            afterParagraphIndex: 0,
-            src: "/projects/aureum/aureum_components.png",
-            alt: "Aureum UI component library.",
-            width: 10660,
-            height: 4000,
-          },
-          {
-            afterParagraphIndex: 0,
-            src: "/projects/aureum/aureum_illustration_assets.png",
-            alt: "Aureum illustration asset library.",
-            width: 3018,
-            height: 1500,
-          },
-          {
-            afterParagraphIndex: 1,
-            src: "/projects/aureum/aureum_logo_and_brand.png",
-            alt: "Aureum logo and brand guidelines.",
-            width: 4546,
-            height: 1578,
-          },
-        ],
-      },
-      {
-        title: "Implement",
-        paragraphs: [
-          "The final designs bring together onboarding, dashboard, budgeting, goals, and insights into a cohesive mobile-first experience — each surface optimized for its moment in the user's financial day while sharing a common data layer and AI recommendation engine underneath.",
-        ],
-        implementTabs: AUREUM_IMPLEMENT_TABS,
-      },
-    ],
-  },
   {
     slug: "equipify",
     category: "software",

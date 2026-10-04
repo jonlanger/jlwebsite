@@ -4,6 +4,8 @@ import { Accordion } from "@base-ui/react/accordion";
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 
+import { ExpandableImage } from "@/components/expandable-image";
+
 import type {
   JourneyAccordionBlock,
   JourneyBlock,
@@ -130,6 +132,16 @@ export function ProjectJourneyMapping({
           >
             {block.text}
           </p>
+        ) : block.type === "figure" ? (
+          <figure key={block.src} className="m-0 py-2">
+            <ExpandableImage
+              src={block.src}
+              alt={block.alt}
+              width={block.width}
+              height={block.height}
+              sizes="(max-width: 900px) 100vw, 900px"
+            />
+          </figure>
         ) : block.type === "journeyTable" ? (
           <div
             key={`table-${i}`}

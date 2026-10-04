@@ -25,6 +25,7 @@ import { project as collabfin } from "@/data/showcase/collabfin";
 import { project as solarFieldInstallation } from "@/data/showcase/solar-field-installation";
 import { project as coco } from "@/data/showcase/coco";
 import { project as petricor } from "@/data/showcase/petricor";
+import { project as aureum } from "@/data/showcase/aureum";
 
 /** Showcase order matches the September 2024 portfolio page. */
 export const PORTFOLIO_SHOWCASE_PROJECTS: PastProject[] = [
@@ -54,4 +55,5 @@ export const PORTFOLIO_SHOWCASE_PROJECTS: PastProject[] = [
   additiveMfgPrintSimScan,
   coco,
   petricor,
+  aureum,
 ];

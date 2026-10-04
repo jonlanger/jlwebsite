@@ -49,6 +49,18 @@
       "poster": "/showreel/relationshipviz.jpg?v=369cd435"
     },
     {
+      "slug": "aureum",
+      "title": "Aureum AI",
+      "kind": "AI finance coach",
+      "line": "Following Sprout’s nudge to claim a $1,240 employer match, then watching the Money Map move on.",
+      "duration": 13.4,
+      "video": {
+        "desktop": "/showreel/aureum-1080.mp4?v=34ad95cb",
+        "mobile": "/showreel/aureum-720.mp4?v=34ad95cb"
+      },
+      "poster": "/showreel/aureum.jpg?v=34ad95cb"
+    },
+    {
       "slug": "shortlist",
       "title": "Shortlist",
       "kind": "Decision tool",

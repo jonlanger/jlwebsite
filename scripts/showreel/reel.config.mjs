@@ -9,6 +9,7 @@ export default {
     "collabfin",
     "petricor",
     "relationshipviz",
+    "aureum",
     "shortlist",
     "solar-field-installation",
     "careshift",
