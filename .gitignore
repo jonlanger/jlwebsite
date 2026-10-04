@@ -40,3 +40,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 .tmp-venv/
+
+# Re-downloadable by scripts/capture-petricor.mjs
+public/projects/petricor/_src/renders/
+public/projects/petricor/_src/shots/

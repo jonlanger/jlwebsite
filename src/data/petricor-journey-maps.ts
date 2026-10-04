@@ -1,0 +1,217 @@
+import type { JourneyMapColumn } from "@/data/past-projects";
+
+/**
+ * Petricor journey maps, transposed so stages run down the rows: 11–13 stages
+ * do not fit across the case-study column, but four or five aspects do.
+ */
+const STAGES = [
+  "Awareness",
+  "Research",
+  "Evaluation",
+  "Decision",
+  "Implementation planning",
+  "Installation & setup",
+  "Training",
+  "Operational use",
+  "Monitoring & optimization",
+  "Maintenance",
+  "Review & feedback",
+] as const;
+
+/** Dr. Alex Morgan, Senior Microbiologist: from manual analysis to running Petricor. */
+export const PETRICOR_ALEX_MORGAN_JOURNEY_COLUMNS: readonly JourneyMapColumn[] = [
+  { header: "Stage", rows: STAGES },
+  {
+    header: "Actions",
+    rows: [
+      "Recognizes inefficiencies in the manual fungal analysis process and starts exploring automation.",
+      "Researches automated systems, reads reviews, attends product demos and consults peers in the industry.",
+      "Evaluates Petricor’s features and integration, calculates ROI, and requests detailed demos and trial runs.",
+      "Decides to implement Petricor, based on its features and positive feedback from trials.",
+      "Develops an implementation plan, allocates the budget and sets timelines for installation.",
+      "Installs the hardware, sets up the software and configures the system.",
+      "Runs training sessions for lab personnel, with user manuals and support.",
+      "Uses Petricor for daily operations, monitors performance and troubleshoots issues.",
+      "Monitors system performance, updates software and optimizes workflows.",
+      "Schedules maintenance checks, updates software and replaces parts as needed.",
+      "Collects feedback from users, reviews performance data and makes adjustments.",
+    ],
+  },
+  {
+    header: "Thoughts & feelings",
+    rows: [
+      "Frustrated by slow manual work and the potential for human error. Eager for a reliable automated solution.",
+      "Curious and hopeful that an effective system exists. Cautious about reliability and cost.",
+      "Analytical and critical: will it be efficient, and compatible with the lab’s existing systems?",
+      "Confident in the decision; looking forward to better efficiency and accuracy.",
+      "Organized and strategic, making sure every part of the rollout is planned.",
+      "Excited about the new system, but cautious about setup challenges.",
+      "Engaged and eager to learn; expects a learning curve.",
+      "Relieved by the reduced manual workload; results are faster and more accurate.",
+      "Confident in the system; proactive about minor issues.",
+      "Secure in the system’s reliability and long-term performance.",
+      "Satisfied with the improvements; open to further enhancements.",
+    ],
+  },
+  {
+    header: "Pain points",
+    rows: [
+      "Time-consuming manual processes with a high potential for human error.",
+      "Information overload; hard to compare features across systems.",
+      "Integration with current lab infrastructure and data systems.",
+      "Initial investment, and the time needed for full implementation.",
+      "Coordinating multiple stakeholders within budget constraints.",
+      "Technical issues during setup; compatibility with existing lab systems.",
+      "Resistance to change from some staff; making sure everyone understands.",
+      "Minor early issues with operation; ongoing support needs.",
+      "Keeping up with updates and fixing bugs as they appear.",
+      "Scheduling downtime and managing maintenance costs.",
+      "Gathering comprehensive feedback and acting on it.",
+    ],
+  },
+  {
+    header: "Goals",
+    rows: [
+      "Improve the accuracy and efficiency of microbial analysis through automation.",
+      "Find a reliable, cost-effective system that fits existing lab workflows.",
+      "Confirm Petricor meets every lab requirement and pays back.",
+      "Choose the system that best fits the lab’s needs and budget.",
+      "Integrate Petricor into lab workflows and systems without friction.",
+      "Install and set up without disrupting lab operations.",
+      "Every lab member trained to use Petricor effectively.",
+      "Efficient daily use with minimal manual intervention.",
+      "Keep Petricor at optimal efficiency and accuracy.",
+      "Long-term reliability and performance.",
+      "Continuously improve performance and user satisfaction.",
+    ],
+  },
+];
+
+/** Who buys and who implements, by stage, around the lab staff who use it daily. */
+export const PETRICOR_STAKEHOLDER_JOURNEY_COLUMNS: readonly JourneyMapColumn[] = [
+  { header: "Stage", rows: STAGES },
+  {
+    header: "Lab problem",
+    rows: [
+      "Manual processes are slow, error-prone and inefficient for high-throughput fungal analysis.",
+      "Find a reliable, comprehensive automated system for fungal and mould analysis.",
+      "Compare features, reliability and cost-effectiveness across systems.",
+      "Select the system that meets lab requirements and budget.",
+      "Plan how Petricor fits existing lab workflows and systems.",
+      "Integrate Petricor into the lab’s infrastructure; confirm compatibility.",
+      "Make sure all lab personnel can use Petricor effectively.",
+      "Move fungal and mould analysis from manual to automated.",
+      "Keep Petricor at optimal efficiency; resolve operational issues.",
+      "Maintain Petricor for long-term reliability and performance.",
+      "Assess the impact on lab operations and find what to improve.",
+    ],
+  },
+  {
+    header: "Buying stakeholders",
+    rows: [
+      "Lab directors, research heads",
+      "Lab directors, research heads",
+      "Lab directors, research heads, financial officers",
+      "Lab directors, research heads, financial officers",
+      "Lab directors, research heads",
+      "Lab directors, research heads",
+      "Training coordinators, lab directors",
+      "Lab managers, senior microbiologists",
+      "Lab managers, senior microbiologists",
+      "Lab managers, senior microbiologists",
+      "Lab directors, research heads",
+    ],
+  },
+  {
+    header: "Implementation stakeholders",
+    rows: [
+      "Procurement, IT",
+      "Procurement, IT",
+      "IT, lab managers, senior microbiologists",
+      "Procurement, IT",
+      "IT, lab managers, senior microbiologists",
+      "IT, lab managers, senior microbiologists",
+      "IT, lab managers, senior microbiologists, Petricor trainers",
+      "IT, lab managers, lab technicians",
+      "IT, lab managers, lab technicians",
+      "IT, maintenance team",
+      "Lab managers, senior microbiologists",
+    ],
+  },
+];
+
+/** Manual vs automated, aspect by aspect. */
+export const PETRICOR_MANUAL_VS_AUTOMATED_COLUMNS: readonly JourneyMapColumn[] = [
+  {
+    header: "Aspect",
+    rows: [
+      "Time",
+      "Accuracy & consistency",
+      "Data recording",
+      "Colony counting",
+      "Identification",
+      "Documentation & reporting",
+      "Quality control",
+      "Sterilization",
+      "Data analysis",
+      "Peer review & verification",
+      "Overall efficiency",
+      "Cost",
+      "Scalability",
+    ],
+  },
+  {
+    header: "Manual",
+    rows: [
+      "37–70 hours, excluding incubation",
+      "Subject to human error and variability",
+      "Manual entry, prone to errors",
+      "Time-consuming and error-prone",
+      "Requires skilled personnel; time-intensive",
+      "Manual documentation; time-consuming",
+      "Manual checks; potential for oversight",
+      "Manual; time-consuming",
+      "Manual statistical analysis; time-consuming",
+      "Manual review; potential for delays",
+      "Labour-intensive and slow",
+      "High labour costs; potential for costly errors",
+      "Limited by manual processes",
+    ],
+  },
+  {
+    header: "Automated",
+    rows: [
+      "3.5–6 hours, excluding incubation",
+      "Standardized, automated procedures",
+      "Automatic, integrated with LIMS",
+      "Image processing counts colonies",
+      "AI and ML algorithms for rapid identification",
+      "Reports generated automatically",
+      "Continuous monitoring and calibration",
+      "Automated sterilization of equipment",
+      "Automated statistics and trend identification",
+      "Automated alerts and cross-checking",
+      "Minimal manual intervention",
+      "Upfront investment, lower running costs",
+      "Handles large sample volumes",
+    ],
+  },
+  {
+    header: "Advantage",
+    rows: [
+      "Far less time per analysis, so higher throughput",
+      "Fewer errors and less variability; reliable results",
+      "Accurate, consistent data that is easy to manage",
+      "Rapid, precise counts that save time",
+      "Faster, more accurate IDs; less reliance on scarce specialists",
+      "Instant reports; less administrative work",
+      "Higher reliability and accuracy",
+      "Consistent, thorough sterilization in less time",
+      "Deeper insights and quicker results",
+      "Timely verification and validation",
+      "Frees scientists’ time; higher lab productivity",
+      "Savings over time from less labour and more efficiency",
+      "Meets higher demand without a proportional increase in staff",
+    ],
+  },
+];

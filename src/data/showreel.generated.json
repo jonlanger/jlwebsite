@@ -5,12 +5,12 @@
       "title": "Attractor Particles",
       "kind": "Creative tech",
       "line": "Recording a GPU particle swarm while reshaping it, then analysing its main flow.",
-      "duration": 10.5,
+      "duration": 7.4,
       "video": {
-        "desktop": "/showreel/fluidsim-1080.mp4?v=fbe2a42c",
-        "mobile": "/showreel/fluidsim-720.mp4?v=fbe2a42c"
+        "desktop": "/showreel/fluidsim-1080.mp4?v=39c2e2c2",
+        "mobile": "/showreel/fluidsim-720.mp4?v=39c2e2c2"
       },
-      "poster": "/showreel/fluidsim.jpg?v=fbe2a42c"
+      "poster": "/showreel/fluidsim.jpg?v=39c2e2c2"
     },
     {
       "slug": "collabfin",
@@ -23,6 +23,18 @@
         "mobile": "/showreel/collabfin-720.mp4?v=cedbe279"
       },
       "poster": "/showreel/collabfin.jpg?v=cedbe279"
+    },
+    {
+      "slug": "petricor",
+      "title": "Petricor",
+      "kind": "Lab platform",
+      "line": "Scrubbing five days of mould growth, comparing all six dishes, then taking the run to sign-off.",
+      "duration": 12.8,
+      "video": {
+        "desktop": "/showreel/petricor-1080.mp4?v=cbe78f7b",
+        "mobile": "/showreel/petricor-720.mp4?v=cbe78f7b"
+      },
+      "poster": "/showreel/petricor.jpg?v=cbe78f7b"
     },
     {
       "slug": "relationshipviz",

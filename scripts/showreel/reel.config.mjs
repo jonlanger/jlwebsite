@@ -7,6 +7,7 @@ export default {
   order: [
     "fluidsim",
     "collabfin",
+    "petricor",
     "relationshipviz",
     "shortlist",
     "solar-field-installation",

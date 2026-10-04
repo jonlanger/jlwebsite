@@ -21,7 +21,8 @@ function JourneyMapTable({
   const colCount = columns.length;
   const rowCount = columns[0]?.rows.length ?? 0;
   const lastBodyRow = rowCount - 1;
-  const hasAspectColumn = columns[0]?.header === "Aspect";
+  // A first column of row labels (aspects, or stages in a transposed map).
+  const hasAspectColumn = ["Aspect", "Stage"].includes(columns[0]?.header ?? "");
 
   return (
     <div className="w-full overflow-x-auto">

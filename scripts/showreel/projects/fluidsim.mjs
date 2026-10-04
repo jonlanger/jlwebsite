@@ -12,12 +12,15 @@ export default {
   async act(s) {
     const { page } = s;
     await s.hold(700); // open on the live swarm
+    // The app records a fixed 2s clip and stops on its own — there is no Stop
+    // click. The drag has to land inside that window, so keep it short.
     await s.clickEl(page.getByRole("button", { name: /Record/ }), { zoom: 1.6 });
     // Pull the right-hand attractor across the scene while it records.
-    await s.drag([[920, 386], [870, 320], [790, 280], [730, 270]], { ms: 2200 });
-    await s.hold(500);
-    await s.clickEl(page.getByRole("button", { name: /Record|Stop/ }).first(), { zoom: 1.6 });
-    await s.clickEl(page.getByRole("button", { name: "Analyze" }), { zoom: 1.6 });
+    await s.drag([[920, 386], [870, 320], [790, 280], [730, 270]], { ms: 1000, approachMs: 400 });
+    const analyze = page.getByRole("button", { name: "Analyze" });
+    await analyze.waitFor({ state: "visible" }); // recording has ended
+    await s.hold(400);
+    await s.clickEl(analyze, { zoom: 1.6 });
     await s.wait(1500);
     await s.hold(1400); // the analysed flow
   },
