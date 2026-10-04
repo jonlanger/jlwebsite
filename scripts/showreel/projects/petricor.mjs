@@ -1,4 +1,4 @@
-/** Review a finished run: scrub the colony timelapse, compare all six dishes, reach sign-off. */
+/** Review a finished run: play the colony timelapse, compare all six dishes, reach sign-off. */
 const BASE = "https://petricorcloud.vercel.app";
 
 /** The demo's server intermittently answers 500; retry until it doesn't. */
@@ -20,7 +20,7 @@ async function scrollTo(s, y, ms = 900) {
 export default {
   title: "Petricor",
   kind: "Lab platform",
-  line: "Scrubbing five days of mould growth, comparing all six dishes, then taking the run to sign-off.",
+  line: "Playing five days of mold growth, comparing all six dishes, then taking the run to sign-off.",
 
   async setup(s) {
     const { page } = s;

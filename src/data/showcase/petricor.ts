@@ -33,7 +33,7 @@ export const project: PastProject = {
   category: "software",
   title: "Petricor",
   description:
-    "Automated fungi and mould analysis for microbiology labs: a benchtop incubator-imager, its touchscreen, and a cloud platform for review and sign-off.",
+    "Automated fungi and mold analysis for microbiology labs: a benchtop incubator-imager, its touchscreen, and a cloud platform for review and sign-off.",
   image: `${DIR}/petricor_card.webp`,
   alt: "Petricor touchscreen dish view: an air sample from the incubator room with labelled colonies of P. chrysogenum, A. alternata and C. cladosporioides beside a list of presumptive IDs and diameters.",
   width: 1280,
@@ -47,7 +47,7 @@ export const project: PastProject = {
   overview: {
     title: "Overview",
     paragraphs: [
-      "Fungi and mould analysis in microbiology labs is slow, manual work. Sample preparation, incubation, imaging, identification and reporting can take days, and results vary by technician. Sample volumes in food, pharmaceutical, environmental and clinical labs keep rising, but skilled staff do not.",
+      "Fungi and mold analysis in microbiology labs is slow, manual work. Sample preparation, incubation, imaging, identification and reporting can take days, and results vary by technician. Sample volumes in food, pharmaceutical, environmental and clinical labs keep rising, but skilled staff do not.",
       "Petricor automates the whole workflow. The PC-6 incubates and photographs six culture dishes on a schedule, and its touchscreen guides the bench through every step. Petricor Cloud turns each frame into tracked colonies, reviewed results and a signed report. It started as research, journey maps and a Figma system. It is now a working prototype in which the touchscreen and the cloud run against one simulated instrument, so a run started on one lands in the other.",
     ],
     role: "UX Research, Product Design, Interaction Design, Industrial Design, Front-end Build",
@@ -119,7 +119,7 @@ export const project: PastProject = {
       paragraphs: [
         "Desk research covered the science and the regulation around the bench, so that the prototype would behave like real cultures and fit procedures labs already follow.",
         "Predictive mycology. The prototype does not invent colony growth; it models it. Radial growth follows the Cardinal Model with Inflection (Rosso, Lobry & Flandrois, 1993), driven by the chamber’s own temperature log. It uses cardinal temperatures fitted for real Aspergillus niger and Penicillium expansum isolates (Gougouli & Koutsoumanis, 2010). The same curve gives reviewers an expected growth rate, so a reference strain that grows too slowly shows up as a QC finding.",
-        "Methods and regulation. Each saved protocol mirrors an established method: ISO 21527-1 for yeast and mould enumeration in food, EU GMP Annex 1 and ISO 14698 for cleanroom air monitoring, ISO 11133 for media QC with reference strains, and CLSI M54 for clinical culture. Results are regulated electronic records, so 21 CFR Part 11, EU GMP Annex 11 and the ALCOA+ principles shaped badge sign-in, the append-only audit trail and role-gated sign-off.",
+        "Methods and regulation. Each saved protocol mirrors an established method: ISO 21527-1 for yeast and mold enumeration in food, EU GMP Annex 1 and ISO 14698 for cleanroom air monitoring, ISO 11133 for media QC with reference strains, and CLSI M54 for clinical culture. Results are regulated electronic records, so 21 CFR Part 11, EU GMP Annex 11 and the ALCOA+ principles shaped badge sign-in, the append-only audit trail and role-gated sign-off.",
         "Reference data. Taxonomy and occurrence data come from GBIF, and culture photographs from openly licensed Wikimedia Commons files. Where the demo uses a placeholder rather than a published value, it says so next to the number.",
       ],
       figures: [
@@ -133,7 +133,7 @@ export const project: PastProject = {
         {
           afterParagraphIndex: 2,
           src: `${DIR}/research-standards.webp`,
-          alt: "Four protocols, four rulebooks. Yeast and mould enumeration on DRBC agar at 25 °C for 120 hours, based on ISO 21527-1, for food and product QC. Environmental air monitoring on Sabouraud dextrose agar at 25 °C for 168 hours, based on EU GMP Annex 1 and ISO 14698, for cleanrooms. Reference strain QC on potato dextrose agar at 25 °C for 96 hours, based on ISO 11133. Clinical isolate culture on Sabouraud dextrose agar at 30 °C for 72 hours, based on CLSI M54. Data integrity under 21 CFR Part 11, EU GMP Annex 11 and ALCOA+: attributable, original and enduring, and signed.",
+          alt: "Four protocols, four rulebooks. Yeast and mold enumeration on DRBC agar at 25 °C for 120 hours, based on ISO 21527-1, for food and product QC. Environmental air monitoring on Sabouraud dextrose agar at 25 °C for 168 hours, based on EU GMP Annex 1 and ISO 14698, for cleanrooms. Reference strain QC on potato dextrose agar at 25 °C for 96 hours, based on ISO 11133. Clinical isolate culture on Sabouraud dextrose agar at 30 °C for 72 hours, based on CLSI M54. Data integrity under 21 CFR Part 11, EU GMP Annex 11 and ALCOA+: attributable, original and enduring, and signed.",
           width: 2400,
           height: 1062,
         },
@@ -242,7 +242,7 @@ export const project: PastProject = {
           screen("cloud-overview", "Live overview", "Every instrument, run and alert, streaming as the instruments capture.", "Petricor Cloud overview: instruments online, runs incubating, a run awaiting review and open alerts, above the live run on Bench A with its six dishes, chamber temperature and humidity, the review queue, alerts and presumptive IDs."),
           screen("cloud-run", "Timelapse and colony tracking", "Each colony keeps its identity across frames.", "A run in Petricor Cloud: one dish at 70 hours with labelled colonies, beside a colony detail card for Penicillium chrysogenum with diameter, radial rate and a growth curve."),
           screen("cloud-compare", "All six, same hour", "Every dish in a run, side by side.", "All six dishes of a reference QC run shown side by side at the same hour, with the colony list."),
-          screen("cloud-review", "Review and sign-off", "Presumptive IDs are flagged; approval is role-based.", "A completed yeast and mould run awaiting review, showing one dish at 120 hours with labelled P. expansum, A. niger and R. stolonifer colonies."),
+          screen("cloud-review", "Review and sign-off", "Presumptive IDs are flagged; approval is role-based.", "A completed yeast and mold run awaiting review, showing one dish at 120 hours with labelled P. expansum, A. niger and R. stolonifer colonies."),
           screen("cloud-report", "Signed report", "Every dish, count and composition, ready to print.", "Per-run report for air monitoring week 38: protocol, instrument, operator and approval, six dish images and a table of colonies by species per sample."),
           screen("cloud-samples", "Chain of custody", "Every dish linked to its sample by a printed barcode.", "Samples table: barcode, sample, source type, location and run for every dish."),
         ],
@@ -253,7 +253,7 @@ export const project: PastProject = {
             description: "Seven steps, from protocol to inspecting a dish mid-run.",
             defaultOpen: true,
             slides: [
-              screen("device-protocol", "01 · Choose a protocol", "Temperature, humidity, duration, interval and channels in one saved recipe.", "Touchscreen: choose a protocol from yeast and mould enumeration, environmental air monitoring, reference strain QC and clinical isolate culture."),
+              screen("device-protocol", "01 · Choose a protocol", "Temperature, humidity, duration, interval and channels in one saved recipe.", "Touchscreen: choose a protocol from yeast and mold enumeration, environmental air monitoring, reference strain QC and clinical isolate culture."),
               screen("device-samples", "02 · Assign samples", "Up to six from the bench queue, or register one on the spot.", "Touchscreen: assign samples, four of six selected from the bench queue, with register sample and create run."),
               screen("device-printing", "03 · Print dish labels", "One barcode per dish, linked to its sample record.", "Touchscreen: printing dish labels, with the carousel map and each sample marked printed."),
               screen("device-scan", "04 · Scan each dish", "Barcodes not in this run are rejected before loading.", "Touchscreen: scan each dish at the side reader; the reader is armed and each sample shows printed and scanned."),
@@ -267,7 +267,7 @@ export const project: PastProject = {
             title: "More of Petricor Cloud",
             description: "Runs, channels, growth curves, roles and the mycelium lab.",
             slides: [
-              screen("cloud-runs", "Runs", "Every run across every instrument, with progress and review status.", "Runs table: air monitoring week 38 approved, yeast and mould lots 4471/4472 pending review, and reference QC incubating."),
+              screen("cloud-runs", "Runs", "Every run across every instrument, with progress and review status.", "Runs table: air monitoring week 38 approved, yeast and mold lots 4471/4472 pending review, and reference QC incubating."),
               screen("cloud-all-six-uv", "UV 365 nm", "Any channel, all six dishes.", "All six dishes of the air-monitoring run under UV 365 nm, colonies glowing against dark agar."),
               screen("cloud-growth-review", "Growth and sign-off", "Colony diameter over time, then the approval with its note.", "Growth tab: colony diameter and colonies detected over 168 hours, above the approved sign-off with its note."),
               screen("cloud-roles", "People, roles and protocols", "Who can operate, sign off, edit protocols and manage the lab.", "Settings: people and roles, the role permissions matrix, protocols and integrations."),
@@ -283,7 +283,7 @@ export const project: PastProject = {
       title: "Hardware",
       paragraphs: [
         "The PC-6 is built around the dish. It has a conditioned chamber with a sealed imaging head, a six-position carousel, a label printer and a side reader, all reached from one angled console.",
-        "The instrument is modelled part by part in Blender from a parametric script, with 113 named parts. That one model produces the renders and the interactive 3D viewer, so what you explore is what was rendered. Sub-assemblies were exploded to check the design for manufacture: a dry electronics bay below a sealed chamber, a Peltier heat pump with an atomiser and HEPA filter, moulded EPP insulation, and screws that never land on a visible surface.",
+        "The instrument is modelled part by part in Blender from a parametric script, with 113 named parts. That one model produces the renders and the interactive 3D viewer, so what you explore is what was rendered. Sub-assemblies were exploded to check the design for manufacture: a dry electronics bay below a sealed chamber, a Peltier heat pump with an atomiser and HEPA filter, molded EPP insulation, and screws that never land on a visible surface.",
       ],
       figuresLayout: "grid-2",
       figures: [
@@ -319,7 +319,7 @@ export const project: PastProject = {
             slides: [
               render("x-climate", "Climate & humidity", "Duct, heat exchangers, Peltier modules, blower, PTC heater, HEPA, reservoir and atomiser.", "Climate and humidity sub-assembly, exploded."),
               render("x-console", "Console", "Cover glass, display, LCD module, driver board, printer door and mechanism.", "Console sub-assembly, exploded: cover glass, display, driver board and label printer."),
-              render("x-insulation", "Insulation", "Moulded EPP panels follow the rounded shell.", "Insulation sub-assembly, exploded: moulded EPP panels around the chamber."),
+              render("x-insulation", "Insulation", "Molded EPP panels follow the rounded shell.", "Insulation sub-assembly, exploded: molded EPP panels around the chamber."),
             ],
           },
           {

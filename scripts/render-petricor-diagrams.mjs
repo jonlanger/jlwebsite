@@ -243,7 +243,7 @@ const CUSTODY_HTML = `
   <p class="sub">Interviews kept returning to mislabelled and misplaced dishes. In Petricor every dish is traced by its printed barcode, and each hand-off is an event on the sample record rather than a line in a notebook.</p>
   <div style="display:flex;align-items:center;gap:14px;margin-top:30px">
     <div class="mono" style="background:#fff;border:1px solid var(--line);border-radius:8px;padding:10px 14px;font-size:15px;font-weight:600;letter-spacing:.06em">▌▍▌▌▍▍▌▍▌ PC00030423</div>
-    <div style="color:var(--dim);font-size:15px">Yeast &amp; mould — lots 4471/4472 · DRBC agar · 25 °C</div>
+    <div style="color:var(--dim);font-size:15px">Yeast &amp; mold — lots 4471/4472 · DRBC agar · 25 °C</div>
   </div>
   <div style="position:relative;margin-top:30px">
     <div style="position:absolute;left:30px;right:30px;top:15px;height:2px;background:var(--indigo-100)"></div>
@@ -328,7 +328,7 @@ const GROWTH_HTML = `
 
 /* ---------- Secondary research: protocols and the standards behind them ---------- */
 const PROTOCOLS = [
-  ["Yeast & mould enumeration", "DRBC agar · 25 °C · 85 % RH · 120 h · image /2 h", "ISO 21527-1", "Horizontal method for enumerating yeasts and moulds in food: DRBC agar, 25 °C, five days. Counts and presumptive genus per dish.", "Food & product QC"],
+  ["Yeast & mold enumeration", "DRBC agar · 25 °C · 85 % RH · 120 h · image /2 h", "ISO 21527-1", "Horizontal method for enumerating yeasts and molds in food: DRBC agar, 25 °C, five days. Counts and presumptive genus per dish.", "Food & product QC"],
   ["Environmental air monitoring", "Sabouraud dextrose · 25 °C · 80 % RH · 168 h · /4 h", "EU GMP Annex 1 · ISO 14698", "Settle and active-air plates from classified rooms, read as a trend by location, with alert and action limits.", "Cleanrooms · pharma"],
   ["Reference strain QC", "Potato dextrose agar · 25 °C · 85 % RH · 96 h · /1 h", "ISO 11133", "Reference strains check that media and incubation perform. Radial growth rate is compared with the expected curve.", "Lab quality"],
   ["Clinical isolate culture", "Sabouraud dextrose · 30 °C · 85 % RH · 72 h · /2 h", "CLSI M54", "Primary culture of submitted isolates, read for morphology by a mycologist before any identification is reported.", "Clinical mycology"],
