@@ -58,10 +58,32 @@ export function ExpandableImage({
   const suppressClick = useRef(false);
   const [mounted, setMounted] = useState(false);
   const cover = previewFit === "cover";
+  // The lightbox keeps showing the previous image until the next one has
+  // decoded, so paging swaps in place instead of blanking or painting in.
+  const [lightboxImage, setLightboxImage] = useState({ src, alt });
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    if (!open) {
+      setLightboxImage({ src, alt });
+      return;
+    }
+    let cancelled = false;
+    const next = new window.Image();
+    next.src = src;
+    next
+      .decode()
+      .catch(() => undefined)
+      .then(() => {
+        if (!cancelled) setLightboxImage({ src, alt });
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [open, src, alt]);
 
   useEffect(() => {
     if (!open) return;
@@ -232,8 +254,8 @@ export function ExpandableImage({
                 */}
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={src}
-                  alt={alt}
+                  src={lightboxImage.src}
+                  alt={lightboxImage.alt}
                   draggable={false}
                   className={cn(
                     "pointer-events-auto max-h-[calc(100dvh-5rem)] h-auto w-auto object-contain select-none",

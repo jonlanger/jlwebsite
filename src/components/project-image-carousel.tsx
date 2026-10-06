@@ -142,8 +142,8 @@ export function ProjectImageCarousel({
         }}
       >
         <figure className="m-0">
+          {/* No key: remounting would tear down the open lightbox between slides. */}
           <ExpandableImage
-            key={slide.src}
             src={slide.src}
             alt={slide.alt}
             width={slide.width}
