@@ -1369,22 +1369,6 @@ export const recentProjects2023_2026: PastProject[] = [
     ],
   },
   {
-    slug: "teleoperation-station",
-    category: "hardware",
-    title: "Teleoperation System",
-    description:
-      "Modular remote operation workstations for vehicles and robots, from use cases to scalable room layouts.",
-    image: "/projects/teleoperation-station/teleoperation-station_card.webp",
-    alt: "Teleoperation station for vehicles and robotics case study.",
-    width: 1024,
-    height: 576,
-    board: {
-      src: "/projects/teleoperation-station/teleoperation-station_board.webp",
-      width: 1920,
-      height: 11894,
-    },
-  },
-  {
     slug: "voxelplm",
     category: "software",
     title: "Voxel PLM",

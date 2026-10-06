@@ -26,6 +26,7 @@ import { project as solarFieldInstallation } from "@/data/showcase/solar-field-i
 import { project as coco } from "@/data/showcase/coco";
 import { project as petricor } from "@/data/showcase/petricor";
 import { project as aureum } from "@/data/showcase/aureum";
+import { project as teleoperationStation } from "@/data/showcase/teleoperation-station";
 
 /** Showcase order matches the September 2024 portfolio page. */
 export const PORTFOLIO_SHOWCASE_PROJECTS: PastProject[] = [
@@ -56,4 +57,5 @@ export const PORTFOLIO_SHOWCASE_PROJECTS: PastProject[] = [
   coco,
   petricor,
   aureum,
+  teleoperationStation,
 ];
