@@ -85,6 +85,18 @@
       "poster": "/showreel/solar-field-installation.jpg?v=8fa77f64"
     },
     {
+      "slug": "teleoperation-station",
+      "title": "teleop",
+      "kind": "Remote operations",
+      "line": "A vehicle stops and asks for help; the operator nudges its path and approves it without taking the wheel.",
+      "duration": 10.933,
+      "video": {
+        "desktop": "/showreel/teleoperation-station-1080.mp4?v=104a95ea",
+        "mobile": "/showreel/teleoperation-station-720.mp4?v=104a95ea"
+      },
+      "poster": "/showreel/teleoperation-station.jpg?v=104a95ea"
+    },
+    {
       "slug": "careshift",
       "title": "Careshift",
       "kind": "Healthcare",

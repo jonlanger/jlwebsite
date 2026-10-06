@@ -18,7 +18,6 @@ import path from "node:path";
  *   node scripts/render-teleop-diagrams.mjs
  */
 const OUT = path.resolve("public/projects/teleoperation-station/_src");
-const BOARD = path.resolve("public/projects/teleoperation-station/_src/teleoperation-station_board.webp");
 const TELEOP = path.join(os.homedir(), "Documents/Projects/teleop");
 
 const CSS = `
@@ -359,37 +358,33 @@ const IA_HTML = `
   </div>
 </div>`;
 
-/* ---------- Lineage: from a room to a wheel ---------- */
+/* ---------- Design direction: the Wheel and the console ---------- */
 async function dataUri(file, extract, w = 900) {
   let img = sharp(file);
   if (extract) img = img.extract(extract);
   const buf = await img.resize(w).jpeg({ quality: 82 }).toBuffer();
   return `data:image/jpeg;base64,${buf.toString("base64")}`;
 }
-async function lineageHtml() {
-  const pod = await dataUri(BOARD, { left: 0, top: 4300, width: 1920, height: 1700 });
-  const hex = await dataUri(BOARD, { left: 380, top: 6480, width: 1160, height: 1100 }, 600);
-  const wheel = await dataUri(path.join(TELEOP, "hardware/out_v6/hero.png"), { left: 200, top: 100, width: 1200, height: 1000 });
-  const room = await dataUri(path.join(TELEOP, "hardware/context/out/row.png"), null);
-  const img = (src, h) => `<div style="height:${h}px;border-radius:10px;background:#fff url(${src}) center/cover no-repeat;border:1px solid var(--line)"></div>`;
+async function directionHtml() {
+  const wheel = await dataUri(path.join(TELEOP, "hardware/out_v6/hero.png"), { left: 260, top: 120, width: 1080, height: 1000 });
+  const desk = await dataUri(path.join(TELEOP, "hardware/context/out/station.png"), null, 1100);
+  const consoleShot = await dataUri(path.join(OUT, "op-console.png"), null, 1100);
+  const img = (src, extra = "") => `<div style="border-radius:10px;background:#fff url(${src}) center/cover no-repeat;border:1px solid var(--line);${extra}"></div>`;
   return `
 <div id="c">
-  <div class="eyebrow">Where it started · the station → the Wheel</div>
-  <h1>From a room <em>to a wheel</em></h1>
-  <p class="sub">The first concept was furniture: hexagonal pods with a curved windshield display, a red stop on the desk and a mint spine, tiling three to a cluster into a room. The rebuild kept the ideas that worked and moved them into a device and software that fit any desk.</p>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:30px">
-    <div class="card" style="padding:18px"><div class="lab" style="margin-top:0">Before · the station</div>
-      <div style="display:grid;grid-template-columns:1.6fr 1fr;gap:10px">${img(pod, 300)}${img(hex, 300)}</div>
-      <p class="b" style="margin-top:12px">Built-in seat, display, wheel and pedals. Modular, but every seat is a construction project, and the design ends at the operator.</p></div>
-    <div class="card dark" style="padding:18px"><div class="lab" style="margin-top:0">Now · the Wheel and the console</div>
-      <div style="display:grid;grid-template-columns:1fr 1.6fr;gap:10px">${img(wheel, 300)}${img(room, 300)}</div>
-      <p class="b" style="margin-top:12px">A desktop Wheel and a windshield-size display on an ordinary desk, plus four workspaces for everyone behind the operator.</p></div>
+  <div class="eyebrow">Design direction · the Wheel and the console</div>
+  <h1>One instrument, <em>two surfaces</em></h1>
+  <p class="sub">The Wheel an operator holds and the console they watch are designed as one system: the same names, the same colors and the same rhythm. A desktop Wheel and a windshield-size display turn any desk into a station.</p>
+  <div style="display:grid;grid-template-columns:1fr 1.25fr;grid-template-rows:230px 230px;gap:14px;margin-top:30px">
+    ${img(wheel, "grid-row:1 / span 2")}
+    ${img(desk)}
+    ${img(consoleShot, "background-position:top left")}
   </div>
   <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:16px">
-    ${[["Kept", "mint", "The mint spine", "became the halo: one light that carries state, on the Wheel, on screen and on the vehicle."],
-      ["Kept", "stop", "The red stop", "stays the only red: a domed cap you can hit without looking. Esc and on-screen STOP match it."],
-      ["Kept", "", "The windshield view", "A 1.65 × 0.7 m display at a driver’s angle: 11° below to 19° above eye level."],
-      ["Changed", "amber", "Driving → helping", "Most requests are a brake, a nudge or a label. Taking the wheel is the exception, so the console is built around guidance."]].map(([tag, k, h, t]) => `<div class="card"><span class="chip ${k}">${tag}</span><h3 style="margin-top:6px">${h}</h3><p class="b" style="margin-top:6px">${t}</p></div>`).join("")}
+    ${[["State", "mint", "One light carries state", "The halo is mint in autonomy, amber while a person drives and pulses during a handoff, matching the console badge and the vehicle’s light strip."],
+      ["Safety", "stop", "Red means stop", "The emergency stop is the only red: a domed Ø28 cap you can hit without looking. Esc and the on-screen STOP do the same."],
+      ["View", "", "A windshield, not a monitor", "A 1.65 × 0.7 m display at a driver’s angle, 11° below to 19° above eye level, with the Wheel’s rim just overlapping its edge."],
+      ["Job", "amber", "Built to help", "Most requests are a brake, a nudge or a label, so guidance comes first. Claim is one mint key; Release is a deliberate 1.2 s hold."]].map(([tag, k, h, t]) => `<div class="card"><span class="chip ${k}">${tag}</span><h3 style="margin-top:6px">${h}</h3><p class="b" style="margin-top:6px">${t}</p></div>`).join("")}
   </div>
 </div>`;
 }
@@ -433,7 +428,7 @@ const tab = await browser.newPage({ viewport: { width: 1600, height: 1000 }, dev
 const ALL = [
   ["diagram-why", () => WHY_HTML],
   ["diagram-people", () => PEOPLE_HTML],
-  ["diagram-lineage", lineageHtml],
+  ["diagram-direction", directionHtml],
   ["diagram-latency", () => LADDER_HTML],
   ["diagram-ia", () => IA_HTML],
   ["flow-request", () => FLOW_HTML],

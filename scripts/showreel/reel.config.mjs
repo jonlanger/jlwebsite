@@ -12,6 +12,7 @@ export default {
     "aureum",
     "shortlist",
     "solar-field-installation",
+    "teleoperation-station",
     "careshift",
     "climate-sync",
     "atomicatlas",

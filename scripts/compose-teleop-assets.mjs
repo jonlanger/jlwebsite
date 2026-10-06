@@ -69,6 +69,6 @@ await sharp(path.join(TELEOP, "hardware/context/out/station.png")).resize(1280, 
 console.log("teleoperation-station_card");
 
 // Diagrams: PNG -> WebP at the same size.
-for (const n of ["diagram-why", "diagram-people", "diagram-lineage", "diagram-latency", "diagram-ia", "flow-request", "diagram-states", "diagram-commands", "diagram-blueprint", "diagram-system", "diagram-wheel"]) {
+for (const n of ["diagram-why", "diagram-people", "diagram-direction", "diagram-latency", "diagram-ia", "flow-request", "diagram-states", "diagram-commands", "diagram-blueprint", "diagram-system", "diagram-wheel"]) {
   await save(sharp(path.join(SRC, `${n}.png`)), n, 90);
 }

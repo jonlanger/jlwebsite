@@ -79,18 +79,18 @@ export const project: PastProject = {
       ],
     },
     {
-      title: "Where It Started",
+      title: "Design Direction",
       paragraphs: [
-        "The first concept was furniture. Hexagonal pods tiled three to a cluster, each with a built-in seat, a curved windshield display, a wheel, pedals and a red stop on the desk, and a mint spine where the pods met. It solved how a room of operators could be laid out, but every seat was a construction project and the design ended at the person in it.",
-        "The rebuild kept what worked and moved it into a device and software that fit any desk. The mint spine became the halo, the one light that says who is driving. The red stop stayed the only red. The windshield-size view stayed. The biggest change was the job itself: from driving to helping.",
+        "teleop is one system for two surfaces: the Wheel an operator holds and the console they watch. Each control has one fixed name, used on the hardware legend, on screen and in copy, and a twin in the console that behaves the same way.",
+        "Four ideas set the direction. One light carries state, and it always matches the console. Red only ever means stop. The road view is the size and angle of a windshield, not a monitor. And the product is built for helping, not just driving: most requests are a brake, a nudge or a label, so guidance comes before taking the wheel.",
       ],
       figures: [
         {
           afterParagraphIndex: 1,
-          src: `${DIR}/diagram-lineage.webp`,
-          alt: "From a room to a wheel. Before: the original station, a white hexagonal pod with a curved display, built-in seat, wheel, pedals and a red stop, tiling three to a cluster with a mint spine. Now: the teleop Wheel in satin carbon with gum grips and a mint halo, and a row of four ordinary desks with windshield-size displays showing the console. Kept: the mint spine became the halo, one light that carries state on the Wheel, on screen and on the vehicle; the red stop stays the only red, a domed cap you can hit without looking; the windshield view, a 1.65 by 0.7 m display at a driver's angle. Changed: driving became helping, since most requests are a brake, a nudge or a label.",
+          src: `${DIR}/diagram-direction.webp`,
+          alt: "One instrument, two surfaces. The teleop Wheel in satin carbon with gum grips, a mint halo and a red emergency stop; one station with the Wheel on a desk under a windshield-size display; and the operator console in the dark theme. State: one light carries state, mint in autonomy, amber while a person drives, pulsing during a handoff, matching the console badge and the vehicle's light strip. Safety: red means stop, a domed 28 mm cap you can hit without looking, with Esc and the on-screen STOP doing the same. View: a windshield, not a monitor, 1.65 by 0.7 m at a driver's angle. Job: built to help, so guidance comes first; Claim is one mint key and Release is a deliberate 1.2 s hold.",
           width: 2400,
-          height: 1356,
+          height: 1476,
         },
       ],
     },
