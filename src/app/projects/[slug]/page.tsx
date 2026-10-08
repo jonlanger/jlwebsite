@@ -42,14 +42,19 @@ export default async function PastProjectPage({ params }: Props) {
   const project = getPastProject(slug);
   if (!project) notFound();
 
+  const bodySections = (project.sections ?? []).map((section, i) => ({
+    section,
+    id: `${slug}-section-${i}`,
+  }));
+  // Lead with results: the Outcome section sits directly after the Overview.
+  const isOutcome = (b: { section: ProjectSection }) =>
+    b.section.title === "Outcome";
   const detailSections: { section: ProjectSection; id: string }[] = [
     ...(project.overview
       ? [{ section: project.overview, id: `${slug}-overview` }]
       : []),
-    ...(project.sections ?? []).map((section, i) => ({
-      section,
-      id: `${slug}-section-${i}`,
-    })),
+    ...bodySections.filter(isOutcome),
+    ...bodySections.filter((b) => !isOutcome(b)),
   ];
 
   return (
