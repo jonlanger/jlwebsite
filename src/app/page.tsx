@@ -27,19 +27,13 @@ export default function HomePage() {
             <div className="mt-3 flex flex-wrap justify-start gap-4 md:mt-4">
               <Link
                 href="/projects"
-                className={cn(
-                  buttonVariants({ size: "lg" }),
-                  "h-11 px-6 text-base"
-                )}
+                className={buttonVariants({ size: "xl" })}
               >
                 View All Projects
               </Link>
               <Link
                 href="/process"
-                className={cn(
-                  buttonVariants({ variant: "outline", size: "lg" }),
-                  "h-11 px-6 text-base"
-                )}
+                className={buttonVariants({ variant: "outline", size: "xl" })}
               >
                 See process
               </Link>
@@ -63,10 +57,7 @@ export default function HomePage() {
           <div className="mt-12 flex flex-wrap gap-4">
             <a
               href="mailto:jlanger1@gmail.com"
-              className={cn(
-                buttonVariants({ size: "lg" }),
-                "h-11 px-6 text-base"
-              )}
+              className={buttonVariants({ size: "xl" })}
             >
               jlanger1@gmail.com
             </a>
@@ -74,10 +65,7 @@ export default function HomePage() {
               href="https://www.linkedin.com/in/jonlanger/"
               target="_blank"
               rel="noopener noreferrer"
-              className={cn(
-                buttonVariants({ variant: "outline", size: "lg" }),
-                "h-11 px-6 text-base"
-              )}
+              className={buttonVariants({ variant: "outline", size: "xl" })}
             >
               LinkedIn
             </a>

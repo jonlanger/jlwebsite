@@ -5,7 +5,10 @@ import {
   PROJECT_CATEGORIES,
   type ProjectCategory,
 } from "@/data/project-categories";
-import { cn } from "@/lib/utils";
+import {
+  segmentVariants,
+  segmentedControlVariants,
+} from "@/lib/segmented-control-variants";
 
 /**
  * Segmented control for the /projects category filter.
@@ -18,7 +21,7 @@ export function ProjectCategoryNav({ active }: { active: ProjectCategory }) {
   return (
     <nav
       aria-label="Filter projects by category"
-      className="mt-10 flex flex-wrap gap-1 rounded-lg bg-muted/50 p-1 ring-1 ring-foreground/10 sm:inline-flex"
+      className={segmentedControlVariants({ className: "mt-10" })}
     >
       {PROJECT_CATEGORIES.map((category) => {
         const isActive = category.id === active;
@@ -32,13 +35,7 @@ export function ProjectCategoryNav({ active }: { active: ProjectCategory }) {
             }
             aria-current={isActive ? "page" : undefined}
             scroll={false}
-            className={cn(
-              "rounded-md px-3 py-1.5 text-sm font-medium transition-colors outline-none",
-              "focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-background",
-              isActive
-                ? "bg-background text-foreground shadow-sm"
-                : "text-muted-foreground hover:text-foreground"
-            )}
+            className={segmentVariants({ active: isActive })}
           >
             {category.label}
           </Link>

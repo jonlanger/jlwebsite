@@ -1,10 +1,14 @@
 "use client";
 
-import { Accordion } from "@base-ui/react/accordion";
-import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 
 import { ExpandableImage } from "@/components/expandable-image";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionPanel,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 import type {
   JourneyAccordionBlock,
@@ -86,32 +90,16 @@ function JourneyMapAccordion(block: JourneyAccordionBlock) {
   // Captured once: Base UI warns if an uncontrolled default changes identity.
   const [initialOpen] = useState(() => (defaultOpen ? [value] : []));
   return (
-    <Accordion.Root
-      className="w-full overflow-hidden rounded-lg border border-border bg-card/60"
-      defaultValue={initialOpen}
-      multiple={false}
-    >
-      <Accordion.Item value={value}>
-        <Accordion.Header>
-          <Accordion.Trigger
-            className={cn(
-              "group flex w-full items-center justify-between gap-3 px-4 py-3 text-left outline-none",
-              "font-heading text-lg font-semibold tracking-tight text-foreground",
-              "hover:bg-muted/40 focus-visible:ring-2 focus-visible:ring-ring"
-            )}
-          >
-            <span>{title}</span>
-            <ChevronDown
-              className="size-5 shrink-0 text-muted-foreground transition-transform duration-200 group-data-[panel-open]:rotate-180"
-              aria-hidden
-            />
-          </Accordion.Trigger>
-        </Accordion.Header>
-        <Accordion.Panel className="border-t border-border px-3 pb-4 pt-3 md:px-4">
+    <Accordion defaultValue={initialOpen}>
+      <AccordionItem value={value}>
+        <AccordionTrigger>
+          <span>{title}</span>
+        </AccordionTrigger>
+        <AccordionPanel className="px-3 md:px-4">
           <JourneyMapTable columns={columns} ariaLabel={tableAriaLabel} />
-        </Accordion.Panel>
-      </Accordion.Item>
-    </Accordion.Root>
+        </AccordionPanel>
+      </AccordionItem>
+    </Accordion>
   );
 }
 

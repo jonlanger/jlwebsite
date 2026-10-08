@@ -3,6 +3,12 @@ import type { Metadata } from "next";
 import { PastProjectsGrid } from "@/components/past-projects-grid";
 import { PageShell } from "@/components/page-shell";
 import { ProjectCategoryNav } from "@/components/project-category-nav";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionPanel,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { projectsInCategory } from "@/data/past-projects";
 import {
   DEFAULT_PROJECT_CATEGORY,
@@ -51,13 +57,23 @@ export default async function ProjectsPage({
         <h1 className="font-heading text-4xl font-extrabold tracking-tight md:text-5xl">
           Portfolio, case studies &amp; projects
         </h1>
-        <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
-          The following projects are grounded in real-world research and
-          experience. Client details and personal information have been adjusted
-          for privacy. Every project starts with people — their journeys,
-          motivations, and contexts shape the design language, workflows, copy,
-          and implementation strategy from the ground up.
-        </p>
+        <Accordion className="mt-6 w-fit has-[[data-panel-open]]:w-full">
+          <AccordionItem value="about">
+            <AccordionTrigger>About this work</AccordionTrigger>
+            <AccordionPanel className="space-y-4 text-lg leading-relaxed text-muted-foreground">
+              <p>
+                These projects are grounded in real research and experience.
+                Client details and personal information have been changed for
+                privacy.
+              </p>
+              <p>
+                Every project starts with people: their journeys, motivations,
+                and contexts shape the design language, workflows, copy, and
+                implementation from the ground up.
+              </p>
+            </AccordionPanel>
+          </AccordionItem>
+        </Accordion>
 
         <ProjectCategoryNav active={view} />
 

@@ -4,8 +4,10 @@ import { Monitor, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
-import { buttonVariants } from "@/lib/button-variants";
-import { cn } from "@/lib/utils";
+import {
+  segmentVariants,
+  segmentedControlVariants,
+} from "@/lib/segmented-control-variants";
 
 const MODES = [
   { value: "system", label: "System", Icon: Monitor },
@@ -29,19 +31,20 @@ export function ThemeToggle() {
       <p className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">
         Appearance
       </p>
-      <div className="flex flex-wrap gap-2">
+      <div
+        role="group"
+        aria-label="Appearance"
+        className={segmentedControlVariants({ orientation: "vertical" })}
+      >
         {MODES.map(({ value, label, Icon }) => (
           <button
             key={value}
             type="button"
             onClick={() => setTheme(value)}
-            className={cn(
-              buttonVariants({
-                variant: current === value ? "default" : "outline",
-                size: "default",
-              }),
-              "h-[48px] min-h-[48px] gap-1.5 px-4 lg:h-[32px] lg:min-h-[32px]"
-            )}
+            className={segmentVariants({
+              active: current === value,
+              orientation: "vertical",
+            })}
             aria-pressed={current === value}
             aria-label={`Appearance: ${label}`}
           >
