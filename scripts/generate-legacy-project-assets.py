@@ -66,7 +66,7 @@ BOARDS: dict[str, tuple[str, int]] = {
     "oasis": ("oasis.png", 100),
     "smart-hydration-platform": ("smart-hydration-platform.png", 100),
     "solar-field-installation": ("solar-field-installation.png", 100),
-    "stemcell-spray": ("stemcell-spray.png", 100),
+    "autonomous-trackless-freight": ("stemcell-spray.png", 100),
     "stemcell-spray-alt": ("stemcell-spray-alt.png", 100),
     "uav-humanitarian-delivery": ("uav-humanitarian-delivery.png", 100),
     "vaccine-transport": ("vaccine-transport.png", 100),

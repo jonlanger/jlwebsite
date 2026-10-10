@@ -473,17 +473,17 @@ export const pastProjects: PastProject[] = [
     },
   },
   {
-    slug: "stemcell-spray",
+    slug: "autonomous-trackless-freight",
     category: "hardware",
     title: "Autonomous Trackless Freight",
     description:
       "Self-driving wheeled platforms that move shipping containers as trackless trains, from port loading to open road.",
-    image: "/projects/stemcell-spray/stemcell-spray_card.webp",
+    image: "/projects/autonomous-trackless-freight/autonomous-trackless-freight_card.webp",
     alt: "Autonomous trackless train shipping and modular freight platforms case study.",
     width: 1024,
     height: 576,
     board: {
-      src: "/projects/stemcell-spray/stemcell-spray_board.webp",
+      src: "/projects/autonomous-trackless-freight/autonomous-trackless-freight_board.webp",
       width: 1920,
       height: 10390,
     },

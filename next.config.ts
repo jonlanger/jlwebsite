@@ -24,7 +24,12 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/projects/autonomous-shipping",
-        destination: "/projects/stemcell-spray",
+        destination: "/projects/autonomous-trackless-freight",
+        permanent: true,
+      },
+      {
+        source: "/projects/stemcell-spray",
+        destination: "/projects/autonomous-trackless-freight",
         permanent: true,
       },
       {

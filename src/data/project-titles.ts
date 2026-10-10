@@ -56,7 +56,7 @@ export const PROJECT_TITLES: Record<string, string> = {
   "shortlist": "Shortlist",
   "smart-hydration-platform": "Smart Hydration",
   "solar-field-installation": "SolarSwarm",
-  "stemcell-spray": "Autonomous Trackless Freight",
+  "autonomous-trackless-freight": "Autonomous Trackless Freight",
   "stemcell-spray-alt": "Stemcell spray system",
   "studioflow": "Studioflow",
   "teleoperation-station": "Teleoperation System",
